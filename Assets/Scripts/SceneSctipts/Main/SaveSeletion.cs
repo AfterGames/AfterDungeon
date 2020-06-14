@@ -35,7 +35,7 @@ public class SaveSeletion : UICluster
     
     public void LoadGame()
     {
-        SceneManager.LoadScene("0_Re");
+        SceneManager.LoadScene("0_1");
     }
 
     public void Startbutton()

@@ -180,9 +180,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(spr.sprite.name);
-        Debug.Log(transform.position);
-        Debug.Log(++num);
         VelocityLimit();
         isGrounded = GroundChecking();
         closestWall = WallChecking();

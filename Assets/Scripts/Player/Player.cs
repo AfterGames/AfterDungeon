@@ -6,7 +6,6 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     [Header("Control State")]
-    public bool specialControl;
     public bool fireLock;
     [SerializeField] private bool canControl = true;
 
@@ -75,7 +74,7 @@ public class Player : MonoBehaviour
             transform.position = originPos;
             GetFalseDamage(0.5f);
         }
-        if (canControl && Time.timeScale>0 && !specialControl)
+        if (canControl && Time.timeScale>0)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             jump = Input.GetButtonDown("Jump");
