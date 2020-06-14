@@ -116,6 +116,8 @@ public class PlayerMovement : MonoBehaviour
     private float lastWallTime = -999f;                                 // 너그러운 벽점프를 위한 마지막 벽 인접 시간
     private int? closestWall = null;
 
+
+    private int num = 0;
     //private bool isJumpTrue = false;
 
 
@@ -178,6 +180,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(spr.sprite.name);
+        Debug.Log(transform.position);
+        Debug.Log(++num);
         VelocityLimit();
         isGrounded = GroundChecking();
         closestWall = WallChecking();
