@@ -33,7 +33,7 @@ public class SaveSeletion : UICluster
         }
     }
     
-    public void LoadGame()
+    public static void LoadGame()
     {
         SceneManager.LoadScene("0_1");
     }

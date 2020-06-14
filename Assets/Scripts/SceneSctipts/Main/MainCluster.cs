@@ -9,6 +9,18 @@ public class MainCluster : UICluster
     public void GoNextCluster()
     {
         ActivateAll(false);
-        saveCluster.ActivateAll(true);
+        bool isthereData = false;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            isthereData = saveCluster.transform.GetChild(i).GetComponent<SaveSlots>().HasData || isthereData;
+        }
+        if (!isthereData)
+        {
+            SaveSeletion.LoadGame();
+        }
+        else
+        {
+            saveCluster.ActivateAll(true);
+        }
     }
 }
