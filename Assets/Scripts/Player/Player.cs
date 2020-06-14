@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("Control State")]
     public bool specialControl;
-    [SerializeField] private bool fireLock;
+    public bool fireLock;
     [SerializeField] private bool canControl = true;
 
     private PlayerMovement mover;

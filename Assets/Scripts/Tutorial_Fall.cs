@@ -23,8 +23,14 @@ public class Tutorial_Fall : MonoBehaviour
     {
            if (!started)
            {
-            started = true;
-                GetComponent<PlayableDirector>().Play();
+                started = true;
+            StartCoroutine(Play());
             }
+    }
+    
+    private IEnumerator Play()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<PlayableDirector>().Play();
     }
 }
