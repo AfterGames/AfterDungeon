@@ -22,14 +22,38 @@ public class SaveSlots : UIEffect
         {
             return hasData;
         }
+        set
+        {
+            hasData = value;
+        }
     }
 
     private void Awake()
     {
         hasData = PlayerPrefs.HasKey("worldNum_" + slotNum.ToString());
-        if(!hasData)
+        if (!hasData)
         {
             for (int i=0;i<transform.childCount;i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+            noDataText.SetActive(true);
+        }
+        else
+        {
+            noDataText.SetActive(false);
+            slotNumText.text = "Save " + slotNum.ToString();
+            WorldNumText.text = "World " + PlayerPrefs.GetInt("worldNum_" + slotNum.ToString()).ToString();
+            deathNumText.text = "Death: " + PlayerPrefs.GetInt("deathNum_" + slotNum.ToString()).ToString();
+        }
+    }
+    public void SetSlot()
+    {
+        hasData = PlayerPrefs.HasKey("worldNum_" + slotNum.ToString());
+        Debug.Log(PlayerPrefs.HasKey("worldNum_" + 1.ToString()));
+        if (!hasData)
+        {
+            for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
             }
