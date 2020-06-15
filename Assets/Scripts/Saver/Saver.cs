@@ -37,6 +37,8 @@ public class Saver : MonoBehaviour
         PlayerPrefs.SetInt("deathNum_" + slotNum.ToString(), DataAdmin.instance.GetData(DataType.deathNum));
         PlayerPrefs.SetInt("saveType_" + slotNum.ToString(), (int)SaveType.Stage);
         PlayerPrefs.SetString("sceneName_" + slotNum.ToString(), SceneManager.GetActiveScene().name);
+
+        PlayerPrefs.Save();
     }
 
     public static void SaveDataOnMap(int slotNum)

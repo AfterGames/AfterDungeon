@@ -63,4 +63,10 @@ public class SaveSlots : UIEffect
         }
         //GetComponent<Button>().onClick.Invoke();
     }
+
+    private void Update()
+    {
+        hasData = PlayerPrefs.HasKey("worldNum_" + slotNum.ToString());
+        Debug.Log(slotNum.ToString() + ": " + hasData);
+    }
 }

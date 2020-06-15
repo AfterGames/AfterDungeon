@@ -692,12 +692,23 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(dir) < 0.2f) return;
         if (dir > 0 == IsFacingRight) return;
 
-
+        /*
         isFacingRight = !isFacingRight;
 
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        */
+        if(dir>0)
+        {
+            isFacingRight = true;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if(dir<0)
+        {
+            isFacingRight = false;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     private IEnumerator EscapeJumping(float duration)
