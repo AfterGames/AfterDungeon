@@ -58,8 +58,7 @@ public class DataAdmin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerPrefs.HasKey("worldNum_1"));
-        Debug.Log(PlayerPrefs.GetInt("worldNum_1"));
+       
     }
     public int GetWorldNum(string worldName)
     {

@@ -8,6 +8,8 @@ public class MainCluster : UICluster
 
     public void GoNextCluster()
     {
+        Debug.Log(PlayerPrefs.HasKey("worldNum_1"));
+        Debug.Log(PlayerPrefs.GetInt("worldNum_1"));
         ActivateAll(false);
         bool isthereData = false;
         for (int i = 0; i < transform.childCount; i++)
