@@ -160,10 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2878f23912f2eb444bfde3d13f19b199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialControl: 0
   fireLock: 1
   canControl: 1
+  specialControl: 0
   animator: {fileID: 7502948887635153046}
+  animator2: {fileID: 3291570910232183853}
   FadeObjectPrefab: {fileID: 410562717421112242, guid: 6335fa76957120141929cfb0eb1cf446,
     type: 3}
   stageNum: 0

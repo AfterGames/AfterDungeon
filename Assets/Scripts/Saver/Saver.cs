@@ -31,7 +31,9 @@ public class Saver : MonoBehaviour
     {
         PlayerPrefs.SetInt("stageNum_" + slotNum.ToString(), FindObjectOfType<Player>().stageNum);
         Debug.Log(FindObjectOfType<Player>().stageNum);
+        Debug.Log("slot: " + slotNum);
         PlayerPrefs.SetInt("worldNum_" + slotNum.ToString(), DataAdmin.instance.GetWorldNum(SceneManager.GetActiveScene().name));
+        Debug.Log(DataAdmin.instance.GetWorldNum(SceneManager.GetActiveScene().name));
         PlayerPrefs.SetInt("deathNum_" + slotNum.ToString(), DataAdmin.instance.GetData(DataType.deathNum));
         PlayerPrefs.SetInt("saveType_" + slotNum.ToString(), (int)SaveType.Stage);
         PlayerPrefs.SetString("sceneName_" + slotNum.ToString(), SceneManager.GetActiveScene().name);

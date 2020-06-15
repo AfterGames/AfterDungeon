@@ -23,8 +23,10 @@ public class Tutorial_Fall : MonoBehaviour
     {
            if (!started)
            {
+                collision.gameObject.GetComponent<Player>().specialControl = true;
+                collision.gameObject.transform.localScale = new Vector3(1, 1, 1);
                 started = true;
-            StartCoroutine(Play());
+                StartCoroutine(Play());
             }
     }
     

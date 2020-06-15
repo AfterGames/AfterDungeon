@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     [Header("Control State")]
     public bool fireLock;
     [SerializeField] private bool canControl = true;
+    public bool specialControl;
 
     private PlayerMovement mover;
     [SerializeField]private Animator animator;
+    [SerializeField] private Animator animator2;
     private float horizontal = 0;
     private bool jump = false;
     private bool dash = false;
@@ -68,13 +70,13 @@ public class Player : MonoBehaviour
             Time.timeScale = escMenu.isOn? 1:0;
             escMenu.ActivateAll(!escMenu.isOn);
         }
-        if(respawn)
+        if(respawn && !specialControl)
         {
             SpawnController.instance.Respawn();
             transform.position = originPos;
             GetFalseDamage(0.5f);
         }
-        if (canControl && Time.timeScale>0)
+        if (canControl && Time.timeScale>0 && !specialControl)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             jump = Input.GetButtonDown("Jump");
@@ -98,6 +100,7 @@ public class Player : MonoBehaviour
         }
         
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        animator2.SetFloat("Speed", Mathf.Abs(horizontal));
 
         jump = false;
         
@@ -105,7 +108,8 @@ public class Player : MonoBehaviour
 
     public void GetDamage(float duration = 0.8f)
     {
-        mover.FireEnd();
+        if(!fireLock)
+            mover.FireEnd();
         DataAdmin.instance.IncrementData(DataType.deathNum);
         if (!canControl) return;
         canControl = false;
@@ -193,6 +197,7 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         animator.SetTrigger("Die");
+        animator2.SetTrigger("Die");
         //GetComponent<SpriteRenderer>().DOKill();
         //GetComponent<SpriteRenderer>().color = Color.white;
         CanControl(false);
@@ -202,6 +207,7 @@ public class Player : MonoBehaviour
 
         //animator.SetBool("Die", false);
         animator.SetTrigger("Respawn");
+        animator2.SetTrigger("Respawn");
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         StartCoroutine(FadeIn());
         //transform.position = originPos; FadeIn으로 이동함

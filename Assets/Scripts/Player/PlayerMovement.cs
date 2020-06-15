@@ -768,6 +768,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GetScarf()
     {
+        Debug.Log("GEt!");
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }

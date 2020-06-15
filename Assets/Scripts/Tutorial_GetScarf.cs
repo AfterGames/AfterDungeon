@@ -28,6 +28,7 @@ public class Tutorial_GetScarf : MonoBehaviour
             started = true;
             GetComponent<SpriteRenderer>().enabled = false;
             collision.gameObject.GetComponent<Player>().fireLock = false;
+            collision.gameObject.GetComponent<Player>().specialControl = false;
             collision.gameObject.GetComponent<PlayerMovement>().GetScarf();
             fall.enabled = false;
             button.SetActive(true);
@@ -42,6 +43,7 @@ public class Tutorial_GetScarf : MonoBehaviour
             started = true;
             GetComponent<SpriteRenderer>().enabled = false;
             collision.gameObject.GetComponent<Player>().fireLock = false;
+            collision.gameObject.GetComponent<Player>().specialControl = false;
             collision.gameObject.GetComponent<PlayerMovement>().GetScarf();
             fall.enabled = false;
             button.SetActive(true);
