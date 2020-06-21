@@ -11,6 +11,9 @@ public class CameraRegion : MonoBehaviour
     private float height;
     private Vector3 position;
 
+    public bool EnterAccel;
+    public float EnterAccelMagnitude;
+
 
 
 

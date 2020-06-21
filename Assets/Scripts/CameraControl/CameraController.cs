@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
     float inverseMoveTime;
 
     private bool isCameraMoving = false;
-
     public CameraType startType; // 게임 시작때 카메라 정보, 사용하지 않을 수도 있음
     public Vector3 startPosition;
 
@@ -170,6 +169,12 @@ public class CameraController : MonoBehaviour
             // Debug.Log(end);
             //Debug.Log("Move!");
             yield return null;
+        }
+        
+        if(curRegion.EnterAccel)
+        {
+            Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
         }
         Time.timeScale = 1f;
         isCameraMoving = false;
