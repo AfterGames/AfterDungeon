@@ -67,7 +67,7 @@ public class FallingBlock : ContactPlayer
         if(!isFalling)
         {
             isFalling = true;
-            rb2D.velocity = new Vector2(0, -velocity);
+            rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
         }
     }
 

@@ -259,6 +259,23 @@ public class PlayerMovement : MonoBehaviour
         Collider2D[] colls = Physics2D.OverlapBoxAll(WallCheckPos, wallBox, 0, whatIsWall);
         if (colls.Length != 0)
         {
+            List<Collider2D> colliders = new List<Collider2D>();
+
+            foreach (Collider2D coll in colls)
+            {
+                colliders.Add(coll);
+            }
+            for (int i = 0; i < colliders.Count; i++)
+            {
+
+                if (colliders[i].gameObject != gameObject)
+                {
+                    if (colliders[i].GetComponent<ContactPlayer>() != null && wallState != WallState.None)
+                    {
+                        colliders[i].GetComponent<ContactPlayer>().OnPlayerEnter(this.gameObject);
+                    }
+                }
+            }
             lastWallTime = Time.time;
             return IsFacingRight ? 1 : -1;
         }
@@ -652,6 +669,7 @@ public class PlayerMovement : MonoBehaviour
             wallState = WallState.None;
             SetBool("Wall", false);
         }
+
     }
 
     public void ProjectileJump()
