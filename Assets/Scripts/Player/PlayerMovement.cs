@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     //private bool isJumpTrue = false;
 
 
-
+    public bool IsGrounded {  get { return isGrounded; } }
     public bool IsFacingRight { get { return isFacingRight; } }
 
     public float Acceleration
@@ -230,6 +230,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     platformVelocity = new Vector2(0f, 0f);
                     addVelocity = new Vector2(0f, 0f);
+                }
+                if(colliders[i].GetComponent<ContactPlayer>()!=null)
+                {
+                    colliders[i].GetComponent<ContactPlayer>().OnPlayerEnter(this.gameObject);
                 }
                 
                 lastGroundedTime = Time.time;
@@ -779,7 +783,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void GetScarf()
     {
-        Debug.Log("GEt!");
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
