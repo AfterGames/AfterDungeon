@@ -17,7 +17,7 @@ public class FallingBlock : ContactPlayer
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector2(1,1));
+        Gizmos.DrawWireCube(transform.position, new Vector2(0.8f,1f));
 
         
     }
@@ -110,7 +110,7 @@ public class FallingBlock : ContactPlayer
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag=="Player")
+        if(collision.collider.tag=="Player" && Mathf.Abs(collision.collider.transform.position.x-transform.position.x)<0.9f)
         {
             GameObject player = collision.collider.gameObject;
             if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement>().IsGrounded)
@@ -118,7 +118,7 @@ public class FallingBlock : ContactPlayer
                 player.GetComponent<Player>().GetDamage();
             }
         }
-        else
+        else if(collision.collider.tag != "Player")
         {
             Debug.Log("OUCH!");
             if(collision.collider.transform.position.y<transform.position.y-0.2f && rb2D.velocity.y<0)
