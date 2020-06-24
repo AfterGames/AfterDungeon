@@ -7,7 +7,7 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
     private bool isGoingRight;
-    private bool isEnd = false;
+    [HideInInspector]public bool isEnd = false;
     private float speed;
 
     private bool isPlayerThere;

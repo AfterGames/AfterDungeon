@@ -293,6 +293,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (colls[i].gameObject.GetComponent<ContactArrow>() != null)
                 {
+
                     colls[i].gameObject.GetComponent<ContactArrow>().OnLodgingEnterAction(null);
 
                     break;
