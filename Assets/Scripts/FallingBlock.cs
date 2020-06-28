@@ -87,7 +87,7 @@ public class FallingBlock : ContactPlayer
     void Check()
     {
         List<Collider2D> colliders = new List<Collider2D>();
-        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.99f, 0.99f), 0);
+        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.9f, 1f), 0);
         foreach (Collider2D coll in colls)
         {
             colliders.Add(coll);
