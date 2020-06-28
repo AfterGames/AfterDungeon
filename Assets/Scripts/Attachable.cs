@@ -26,11 +26,21 @@ public class Attachable : MonoBehaviour
         downObject = CheckSidePlatform(Down.position);
         leftObject = CheckSidePlatform(Left.position);
         rightObject = CheckSidePlatform(Right.position);
+        if (upObject == null && leftObject == null)
+        {
+            allFather = this.gameObject;
+            allFatherPosition = allFather.transform.position;
+            if (rightObject != null)
+                rightObject.RecursiveParenting(allFather);
+            if (downObject != null)
+                downObject.RecursiveParenting(allFather);
+        }
 
     }
 
     private void Start()
     {
+        /*
         if(upObject == null && leftObject == null)
         {
             allFather = this.gameObject;
@@ -40,6 +50,7 @@ public class Attachable : MonoBehaviour
             if(downObject !=null)
                 downObject.RecursiveParenting(allFather);
         }
+        */
     }
 
     private void RecursiveParenting(GameObject Father)
@@ -47,7 +58,12 @@ public class Attachable : MonoBehaviour
         if (allFather != null)
             return;
 
-        this.transform.parent = Father.transform;
+        upObject = CheckSidePlatform(Up.position);
+        downObject = CheckSidePlatform(Down.position);
+        leftObject = CheckSidePlatform(Left.position);
+        rightObject = CheckSidePlatform(Right.position);
+
+        this.transform.SetParent(Father.transform);
         allFather = Father;
         allFatherPosition = Father.transform.position;
 
