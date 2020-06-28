@@ -3,7 +3,9 @@ guid: 1235bf31ea57efb4094419a1a4a0cb46
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SpeechBubblePrefab: {fileID: 3304709909948881149, guid: 0c64d86b2466e724a9ad785762b2358b,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -8,6 +8,8 @@ public class Dialogue : MonoBehaviour
     [System.Serializable]
     public class SpeeechBubble
     {
+        [Tooltip("'SpeakingObjects'에서 말하는 인물 번호")]
+        public int personNum;
         [Tooltip("말풍선 꼬리의 위치")]
         public TailLoc tailLocation;
         [Tooltip("말풍선에 들어갈 말")]
@@ -18,10 +20,20 @@ public class Dialogue : MonoBehaviour
         public int cameraSize;
     }
 
+    public GameObject SpeechBubblePrefab;
+
     public List<SpeeechBubble> dialogue;
+    [Tooltip("대화에 참여하는 인물들을 끌어다 놓으면 됨.")]
+    public List<GameObject> SpeackingObjects;
+
+    //주인공을 0번에 놓고, 나머지 인물들을 차례대로 놓아서 번호를 할당받게 하는 리스트
 
     private GameObject player;
     private GameObject mainCamera;
+
+    [SerializeField]
+    private bool isStarted;
+    private bool keyPressed;
 
 
     void Start()
@@ -33,7 +45,26 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        
+        if(isStarted)
+        {
+
+        }
+    }
+
+    public void StartTalk()
+    {
+        player.GetComponent<Player>().specialControl = true;
+        isStarted = true;
+    }
+
+    public void NextTalk()
+    {
+
+    }
+
+    public void EndTalk()
+    {
+
     }
 }
 
