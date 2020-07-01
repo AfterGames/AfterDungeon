@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\black\.Rider2018.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\black\.Rider2018.2\config\scratches" t="IncludeRecursive" />
     <e p="C:\Users\black\.Rider2018.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\black\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_AfterDungeon.1177703985.00" t="ExcludeRecursive" />
     <e p="C:\Users\black\Documents\GitHub\AfterDungeon" t="IncludeRecursive">
@@ -97,6 +98,11 @@
             <e p="Unity.2D.Tilemap.Extras.asmdef" t="Include" />
           </e>
         </e>
+        <e p="Artresources" t="Include">
+          <e p="fonts-master" t="Include">
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+        </e>
         <e p="Demigiant" t="Include">
           <e p="DOTween" t="Include">
             <e p="Modules" t="Include">
@@ -113,22 +119,46 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AlphaTestStartScene.cs" t="Include" />
+          <e p="Attachable.cs" t="Include" />
+          <e p="ButtonControl.cs" t="Include" />
           <e p="CameraControl" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="CameraRegion.cs" t="Include" />
           </e>
+          <e p="ContactPlayer.cs" t="Include" />
           <e p="Dangerous.cs" t="Include" />
           <e p="DashGem.cs" t="Include" />
+          <e p="Dialogue.cs" t="Include" />
+          <e p="FadeOutShader.shader" t="Include" />
+          <e p="FallingBlock.cs" t="Include" />
+          <e p="FallingReset.cs" t="Include" />
           <e p="JumpGem.cs" t="Include" />
+          <e p="LightController.cs" t="Include" />
+          <e p="MovingSpike.cs" t="Include" />
           <e p="OneWaySensor.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Player.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="ProjectileController.cs" t="Include" />
+            <e p="TailController.cs" t="Include" />
+            <e p="TutorialControl.cs" t="Include" />
           </e>
           <e p="ResetableObject.cs" t="Include" />
+          <e p="Saver" t="Include">
+            <e p="DataAdmin.cs" t="Include" />
+            <e p="Saver.cs" t="Include" />
+          </e>
           <e p="SceneSctipts" t="Include">
+            <e p="ButtonUI.cs" t="Include" />
+            <e p="InGameMenu.cs" t="Include" />
+            <e p="Main" t="Include">
+              <e p="MainCluster.cs" t="Include" />
+              <e p="SaveSeletion.cs" t="Include" />
+            </e>
+            <e p="SaveSlots.cs" t="Include" />
             <e p="TitleScene.cs" t="Include" />
+            <e p="UICluster.cs" t="Include" />
+            <e p="UIEffect.cs" t="Include" />
           </e>
           <e p="SpawnControl" t="Include">
             <e p="SpawnController.cs" t="Include" />
@@ -146,6 +176,8 @@
             <e p="LeverPlatform.cs" t="Include" />
             <e p="LodgingPlatform.cs" t="Include" />
           </e>
+          <e p="Tutorial_Fall.cs" t="Include" />
+          <e p="Tutorial_GetScarf.cs" t="Include" />
         </e>
         <e p="SelfDestruction.cs" t="Include" />
       </e>

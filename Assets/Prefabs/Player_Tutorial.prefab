@@ -228,7 +228,7 @@ MonoBehaviour:
   allowedJumpTime: 0.02
   dashingTime: 0.2
   mildWallTime: 0.04
-  wallJumpExtortionTime: 0.2
+  wallJumpExtortionTime: 0.11
   animator: {fileID: 7502948887635153046}
   animator2: {fileID: 3291570910232183853}
 --- !u!1 &1512956967031692038
