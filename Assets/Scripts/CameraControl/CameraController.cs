@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
+
     public Camera controlcamera;
     public float moveTime = 0.1f;
     float inverseMoveTime;
@@ -11,6 +13,23 @@ public class CameraController : MonoBehaviour
     private bool isCameraMoving = false;
     public CameraType startType; // 게임 시작때 카메라 정보, 사용하지 않을 수도 있음
     public Vector3 startPosition;
+    private bool Talking;
+    public bool talking
+    {
+        get { return Talking; }
+        set
+        {
+            Talking = value;
+            if (Talking)
+            {
+                originalPos = controlcamera.transform.position;
+                originalSize = controlcamera.orthographicSize;
+            }
+            else
+                StartCoroutine(MoveAndScale(originalPos, originalSize));
+        }
+    }
+
 
     public GameObject player;
 
@@ -27,15 +46,25 @@ public class CameraController : MonoBehaviour
     float x;
     float y; // player의 위치 저장용 변수
 
+    Vector3 originalPos;
+    [SerializeField]
+    float originalSize;
+
 
     CameraRegion curRegion;
 
     private Vector3 offset; // 카메라 이동시 offset
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         controlcamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        originalSize = controlcamera.orthographicSize;
         regionNum = WhichRegion();
         inverseMoveTime = 1f / moveTime;
         x = player.transform.position.x;
@@ -45,6 +74,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (talking) return;
         if (isCameraMoving == false)
         {
             //Debug.Log(offset);
@@ -159,23 +189,53 @@ public class CameraController : MonoBehaviour
     {
         isCameraMoving = true;
         float sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
+
         Time.timeScale = 0f;
         while (sqrRemainingDistance > float.Epsilon)
         {
             Vector3 newPosition = Vector3.MoveTowards(controlcamera.transform.position, end, inverseMoveTime * Time.fixedDeltaTime);
             controlcamera.transform.position = newPosition;
             sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
+
             //Debug.Log(camera.transform.position);
             // Debug.Log(end);
             //Debug.Log("Move!");
             yield return null;
         }
-        
-        if(curRegion.EnterAccel)
+
+
+
+        if (curRegion.EnterAccel)
         {
             Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
         }
+        Time.timeScale = 1f;
+        isCameraMoving = false;
+    }
+
+    private int step = 15;
+    public IEnumerator MoveAndScale(Vector3 endPos, float endSize, bool setBubble = false)
+    {
+        isCameraMoving = true;
+        //Time.timeScale = 0f;
+        float sizeDiff = endSize - controlcamera.orthographicSize;
+        float initialSize = controlcamera.orthographicSize;
+        Vector3 dir = endPos - controlcamera.transform.position;
+
+        for (int i = 0; i < step; i++)
+        {
+            controlcamera.transform.position += dir / step;
+            controlcamera.orthographicSize += sizeDiff / step;
+            yield return new WaitForSeconds(moveTime / step);
+        }
+
+        if (setBubble)
+        {
+            Dialogue.instance.SetBubble();
+        }
+
+
         Time.timeScale = 1f;
         isCameraMoving = false;
     }
