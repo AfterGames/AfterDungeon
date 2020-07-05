@@ -45,7 +45,11 @@ public class Dialogue : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        canvas = FindObjectOfType<Canvas>().transform;
+        Canvas c = FindObjectOfType<Canvas>();
+        c.renderMode = RenderMode.ScreenSpaceCamera;
+        c.sortingLayerID = 1 << 8;
+        c.worldCamera = Camera.main;
+        canvas = c.transform;
     }
 
 
@@ -79,8 +83,10 @@ public class Dialogue : MonoBehaviour
             speechBubble.gameObject.SetActive(false);
             Camera mc = Camera.main;
             currentBubble = dialogue[currentIndex];
-
-            StartCoroutine(CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true));
+            if (currentBubble.cameratarget == null)
+                SetBubble();
+            else
+                StartCoroutine(CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true));
         }
     }
 
@@ -89,11 +95,7 @@ public class Dialogue : MonoBehaviour
         speechBubble.gameObject.SetActive(true);
         speechBubble.SetTail(currentBubble.tailLocation);
         speechBubble.SetText(currentBubble.content);
-        Vector3 pos = SpeakingObjects[currentBubble.personNum].transform.position;
-        Debug.Log(pos);
-        speechBubble.transform.position = pos;
-        Vector3 lp = speechBubble.transform.localPosition;
-        speechBubble.transform.localPosition = new Vector3(lp.x, lp.y, 0);
+        speechBubble.SetLocation(SpeakingObjects[currentBubble.personNum].transform.position);
     }
 
     public void EndTalk()
