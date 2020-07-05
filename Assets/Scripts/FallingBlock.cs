@@ -66,17 +66,28 @@ public class FallingBlock : ContactPlayer
     {
         if(!isFalling)
         {
+            Debug.Log("Enter");
+            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            if (player.GetComponent<Rigidbody2D>().velocity.y > -velocity)
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, -velocity);
             isFalling = true;
+            
             rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
         }
     }
 
     public override void OnPlayerExit(GameObject player)
     {
+        Debug.Log("Exit");
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        //rb2D.gameObject.GetComponent<SliderJoint2D>().connectedBody = null;
     }
 
     public override void OnPlayerStay(GameObject player)
     {
+        Debug.Log("Stay");
+        if (player.GetComponent<Rigidbody2D>().velocity.y > -velocity)
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, -velocity);
     }
 
     public override void OnWallEnter(GameObject player)
