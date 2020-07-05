@@ -105,6 +105,7 @@ public class Dialogue : MonoBehaviour
     public void EndTalk()
     {
         player.specialControl = false;
+        player.CanControl(true);
         isStarted = false;
         CameraController.instance.talking = false;
         Destroy(speechBubble.gameObject);
