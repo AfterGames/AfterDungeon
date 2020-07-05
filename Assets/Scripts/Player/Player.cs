@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public int stageNum;
 
     private InGameMenu escMenu;
+    Rigidbody2D rb;
 
 
     private void Awake()
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
             FadeObject.transform.localPosition = new Vector3(0, 0, 10);
         }
         FadeObject.SetActive(false);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -223,4 +225,8 @@ public class Player : MonoBehaviour
         fire = false;
     }
 
+    public void StopMoving()
+    {
+        rb.velocity = Vector3.zero;
+    }
 }
