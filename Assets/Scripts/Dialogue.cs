@@ -45,7 +45,9 @@ public class Dialogue : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        canvas = FindObjectOfType<Canvas>().transform;
+        Canvas c = FindObjectOfType<Canvas>();
+        c.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas = c.transform;
     }
 
 
@@ -79,8 +81,10 @@ public class Dialogue : MonoBehaviour
             speechBubble.gameObject.SetActive(false);
             Camera mc = Camera.main;
             currentBubble = dialogue[currentIndex];
-
-            StartCoroutine(CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true));
+            if (currentBubble.cameratarget == null)
+                SetBubble();
+            else
+                StartCoroutine(CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true));
         }
     }
 
