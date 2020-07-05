@@ -47,6 +47,7 @@ public class Dialogue : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Canvas c = FindObjectOfType<Canvas>();
         c.renderMode = RenderMode.ScreenSpaceCamera;
+        c.sortingLayerID = 1 << 8;
         c.worldCamera = Camera.main;
         canvas = c.transform;
     }
