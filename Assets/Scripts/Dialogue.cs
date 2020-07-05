@@ -58,7 +58,7 @@ public class Dialogue : MonoBehaviour
     {
         if (isStarted)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0)) NextTalk();
+            if (Input.GetKeyDown(KeyCode.Mouse0)||Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return)) NextTalk();
         }
     }
 
