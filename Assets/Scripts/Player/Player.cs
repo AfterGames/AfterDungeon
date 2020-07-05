@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     private InGameMenu escMenu;
     Rigidbody2D rb;
-
+    public bool dialogueReady = false;
 
     private void Awake()
     {
