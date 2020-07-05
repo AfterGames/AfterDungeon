@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7025181728350823975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7025181728350823973}
+  - component: {fileID: 7025181728350823972}
+  m_Layer: 0
+  m_Name: DialogueTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7025181728350823973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025181728350823975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7025181728350823972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025181728350823975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1235bf31ea57efb4094419a1a4a0cb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeechBubblePrefab: {fileID: 8912801602285950503, guid: 0c64d86b2466e724a9ad785762b2358b,
+    type: 3}
+  dialogue:
+  - personNum: 0
+    tailLocation: 0
+    content: "\uD55C\uBC88\uB3C4 \uBABB\uD588\uB358 \uB9D0NEWLINE\uC6B8\uBA74\uC11C
+      \uD560 \uC904\uC740 \uB098 \uBAB0\uB790\uB358 \uB9D0NEWLINE\uB098\uB294\uC694
+      \uC624\uBE60\uAC00 \uC88B\uC740\uAC78 \uC5B4\uB5A1\uD574 "
+    cameratarget: {fileID: 0}
+    cameraSize: 6
+  - personNum: 0
+    tailLocation: -1
+    content: "\uADF8\uB300 \uAE30\uC5B5\uC774 \uC9C0\uB09C \uC0AC\uB791\uC774NEWLINE\uB0B4
+      \uC548\uC744 \uD30C\uACE0\uB4DC\uB294 \uAC00\uC2DC\uAC00 \uB418\uC5B4"
+    cameratarget: {fileID: 0}
+    cameraSize: 8
+  - personNum: 1
+    tailLocation: 1
+    content: "\uB108\uB294 \uBCC4\uC744 \uBCF4\uC790\uBA70 \uB0B4 \uBAB8\uC744 \uB2F9\uACA8\uC11CNEWLINE\uB2E8
+      \uD55C \uBC88\uC5D0 \uB2EC\uBE5B\uC744 \uB0B4 \uB208\uC5D0 \uB2F4\uC558\uC5B4"
+    cameratarget: {fileID: 0}
+    cameraSize: 10
+  SpeakingObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  canvas: {fileID: 0}
+  isStarted: 0
