@@ -45,6 +45,7 @@ public class Dialogue : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        canvas = FindObjectOfType<Canvas>().transform;
     }
 
 
