@@ -40,16 +40,20 @@ public class Dialogue : MonoBehaviour
     private bool isStarted;
     //private bool keyPressed;
 
-
+    Canvas c;
     void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Canvas c = FindObjectOfType<Canvas>();
+        c = FindObjectOfType<Canvas>();
         c.renderMode = RenderMode.ScreenSpaceCamera;
-        c.sortingLayerID = 1 << 8;
         c.worldCamera = Camera.main;
         canvas = c.transform;
+    }
+
+    private void Start()
+    {
+        c.sortingLayerName = "UI";
     }
 
 
