@@ -247,6 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Time.time - lastGroundedTime <= mildJumpTime)
         {
+            GroundChange(lastGround);
             if (isGrounded == false) GroundingEvent();
             //projumped = false;
             return true;
@@ -259,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void GroundChange(GameObject Ground)
+    public void GroundChange(GameObject Ground)
     {
         if(Ground==null && lastGround!=null)
         {
@@ -307,7 +308,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (colliders[i].GetComponent<ContactPlayer>() != null && wallState != WallState.None)
                     {
-                        colliders[i].GetComponent<ContactPlayer>().OnPlayerEnter(this.gameObject);
+                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this.gameObject);
                     }
                 }
             }

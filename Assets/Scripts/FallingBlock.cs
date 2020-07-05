@@ -13,6 +13,8 @@ public class FallingBlock : ContactPlayer
 
     private float elapsed = 0;
 
+    public GameObject curPlayer;
+
 
     private void OnDrawGizmos()
     {
@@ -42,7 +44,7 @@ public class FallingBlock : ContactPlayer
     {
         Check();
 
-        if (rb2D!=null &&rb2D.velocity.magnitude > Mathf.Epsilon)
+        if (rb2D != null && rb2D.velocity.magnitude > Mathf.Epsilon)
         {
             isFalling = true;
         }
@@ -66,33 +68,36 @@ public class FallingBlock : ContactPlayer
     {
         if(!isFalling)
         {
-            Debug.Log("Enter");
-            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            if (player.GetComponent<Rigidbody2D>().velocity.y > -velocity)
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, -velocity);
-            isFalling = true;
-            
+            rb2D.GetComponent<FallingBlock>().curPlayer = player;
+            isFalling = true;           
             rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
+            //player.GetComponent<Rigidbody2D>().isKinematic = true;
+            //player.transform.parent = rb2D.transform;
+
         }
     }
 
     public override void OnPlayerExit(GameObject player)
     {
-        Debug.Log("Exit");
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        //rb2D.gameObject.GetComponent<SliderJoint2D>().connectedBody = null;
+        rb2D.GetComponent<FallingBlock>().curPlayer = null;
+        //player.GetComponent<Rigidbody2D>().velocity = player.GetComponent<Rigidbody2D>().velocity + rb2D.velocity;
+        //player.GetComponent<Rigidbody2D>().isKinematic = false;
+        //player.transform.parent = null;
+
     }
 
     public override void OnPlayerStay(GameObject player)
     {
-        Debug.Log("Stay");
-        if (player.GetComponent<Rigidbody2D>().velocity.y > -velocity)
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, -velocity);
     }
 
     public override void OnWallEnter(GameObject player)
     {
-        OnPlayerEnter(player);
+        if (!isFalling)
+        {
+            rb2D.GetComponent<FallingBlock>().curPlayer = player;
+            isFalling = true;
+            rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
+        }
     }
 
     void Check()
@@ -107,16 +112,28 @@ public class FallingBlock : ContactPlayer
         for (int i = 0; i < colliders.Count; i++)
         {
             if (colliders[i].gameObject != this.gameObject && colliders[i].gameObject.tag!="Player")
-            {   
-                if(colliders[i].GetComponent<Attachable>()!=null)
+            {
+                if (colliders[i].GetComponent<Attachable>() != null)
                 {
-                    if(colliders[i].GetComponent<Attachable>().allFather!=GetComponent<Attachable>().allFather)
-                        rb2D.velocity = new Vector2(0, 0);
+                    if (colliders[i].GetComponent<Attachable>().allFather != GetComponent<Attachable>().allFather)
+                        EndFalling();
                 }
-                else if(colliders[i].tag!="Dangerous")
-                    rb2D.velocity = new Vector2(0, 0);
+                else if (colliders[i].tag != "Dangerous")
+                    EndFalling();
             }
         }
+    }
+
+    private void EndFalling()
+    {
+        rb2D.velocity = new Vector2(0, 0);
+        if(rb2D.GetComponent<FallingBlock>().curPlayer !=null)
+        {
+            rb2D.GetComponent<FallingBlock>().curPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
+            rb2D.GetComponent<FallingBlock>().curPlayer.transform.parent = null;
+        }
+        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -124,7 +141,7 @@ public class FallingBlock : ContactPlayer
         if(collision.collider.tag=="Player" && Mathf.Abs(collision.collider.transform.position.x-transform.position.x)<0.9f)
         {
             GameObject player = collision.collider.gameObject;
-            if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement>().IsGrounded)
+            if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement>().IsGrounded && isFalling)
             {
                 player.GetComponent<Player>().GetDamage();
             }
@@ -135,6 +152,13 @@ public class FallingBlock : ContactPlayer
             if(collision.collider.transform.position.y<transform.position.y-0.2f && rb2D.velocity.y<0)
             {
                 rb2D.velocity = new Vector2(0, 0);
+                /*
+                if (curPlayer != null)
+                {
+                    curPlayer.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                    curPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
+                }
+                */
             }
         }
     }
