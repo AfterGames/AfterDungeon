@@ -124,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded {  get { return isGrounded; } }
     public bool IsFacingRight { get { return isFacingRight; } }
 
+    private GameObject lastGround;
+
     public float Acceleration
     {
         get
@@ -231,14 +233,16 @@ public class PlayerMovement : MonoBehaviour
                     platformVelocity = new Vector2(0f, 0f);
                     addVelocity = new Vector2(0f, 0f);
                 }
-                if(colliders[i].GetComponent<ContactPlayer>()!=null)
+                if(colliders[i].gameObject != lastGround)
                 {
-                    colliders[i].GetComponent<ContactPlayer>().OnPlayerEnter(this.gameObject);
+                    GroundChange(colliders[i].gameObject);
                 }
-                
+
+                lastGround = colliders[i].gameObject;
                 lastGroundedTime = Time.time;
                 break;
             }
+
         }
 
         if (Time.time - lastGroundedTime <= mildJumpTime)
@@ -249,9 +253,40 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            GroundChange(null);
             SetBool("IsGrounded", false);
             return false;
         }
+    }
+
+    private void GroundChange(GameObject Ground)
+    {
+        if(Ground==null && lastGround!=null)
+        {
+            if (lastGround.GetComponent<ContactPlayer>() != null)
+                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+        }
+        else if(Ground != null && lastGround==null)
+        {
+            if (Ground.GetComponent<ContactPlayer>() != null)
+                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+        }
+        else if(Ground !=null && lastGround != null)
+        {
+            if(Ground == lastGround)
+            {
+                if (lastGround.GetComponent<ContactPlayer>() != null)
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(gameObject);
+            }
+            else
+            {
+                if (lastGround.GetComponent<ContactPlayer>() != null)
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+                if (Ground.GetComponent<ContactPlayer>() != null)
+                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+            }
+        }
+        lastGround = Ground;
     }
 
     private int? WallChecking()
@@ -609,7 +644,7 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
 
-
+        GroundChange(null);
         rb2D.velocity = new Vector2(x, y);
         Flip(x);
 
