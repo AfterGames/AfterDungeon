@@ -228,5 +228,8 @@ public class Player : MonoBehaviour
     public void StopMoving()
     {
         rb.velocity = Vector3.zero;
+        specialControl = true;
+        animator.SetFloat("Speed", -1);
+
     }
 }
