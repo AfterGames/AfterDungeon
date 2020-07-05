@@ -232,15 +232,22 @@ public class CameraController : MonoBehaviour
         //Time.timeScale = 0f;
         float sizeDiff = endSize - controlcamera.orthographicSize;
         float initialSize = controlcamera.orthographicSize;
-        Vector3 dir = endPos - controlcamera.transform.position;
+        Vector3 initialPosition = controlcamera.transform.position;
+
+        Vector3 dir = endPos - initialPosition;
 
         for (int i = 0; i < step; i++)
         {
-            controlcamera.transform.position += dir / step;
-            controlcamera.orthographicSize += sizeDiff / step;
+            if (Vector3.Distance(controlcamera.transform.position, endPos) < float.Epsilon &&
+                sizeDiff < float.Epsilon)
+                break;
+
+            controlcamera.transform.position = initialPosition + dir *  SmoothCurve(((float)i+1) / step);
+            //Debug.Log(i);
+            //Debug.Log(SmoothCurve(i + 1 / step));
             yield return new WaitForSeconds(moveTime / step);
         }
-        Debug.Log(d);
+
         if (setBubble && d != null)
         {
             d.SetBubble();
@@ -249,6 +256,12 @@ public class CameraController : MonoBehaviour
 
         Time.timeScale = 1f;
         isCameraMoving = false;
+    }
+
+    private float SmoothCurve(float x)
+    {
+        Debug.Log(x);
+        return -2 * x * x * x + 3 * x * x;
     }
 }
 
