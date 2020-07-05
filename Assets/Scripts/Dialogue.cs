@@ -47,6 +47,7 @@ public class Dialogue : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Canvas c = FindObjectOfType<Canvas>();
         c.renderMode = RenderMode.ScreenSpaceCamera;
+        c.worldCamera = Camera.main;
         canvas = c.transform;
     }
 
@@ -93,11 +94,7 @@ public class Dialogue : MonoBehaviour
         speechBubble.gameObject.SetActive(true);
         speechBubble.SetTail(currentBubble.tailLocation);
         speechBubble.SetText(currentBubble.content);
-        Vector3 pos = SpeakingObjects[currentBubble.personNum].transform.position;
-        Debug.Log(pos);
-        speechBubble.transform.position = pos;
-        Vector3 lp = speechBubble.transform.localPosition;
-        speechBubble.transform.localPosition = new Vector3(lp.x, lp.y, 0);
+        speechBubble.SetLocation(SpeakingObjects[currentBubble.personNum].transform.position);
     }
 
     public void EndTalk()
