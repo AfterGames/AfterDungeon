@@ -1178,6 +1178,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 705452037a5f9c64880ae511bb1fca1f, type: 3}
+--- !u!1 &691286212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 321050127085783398, guid: b16ee92664fdb97488d14da99c9beeef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1242545072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &696606599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 601242230335454391, guid: 2c54f4d62f4c0514990fb63606dd3d83,
@@ -6194,6 +6200,11 @@ PrefabInstance:
     - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
         type: 3}
       propertyPath: dialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
+        type: 3}
+      propertyPath: SpeakingObjects.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
@@ -6225,7 +6236,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogue.Array.data[1].cameratarget
       value: 
-      objectReference: {fileID: 217345779}
+      objectReference: {fileID: 691286212}
     - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
         type: 3}
       propertyPath: SpeechBubblePrefab
@@ -6235,13 +6246,35 @@ PrefabInstance:
     - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
         type: 3}
       propertyPath: dialogue.Array.data[0].content
-      value: "\uAC08\uBE44\uCC1C\uC744 \uBC25 \uC704\uC5D0NEWLINE\uC5B9\uC5B4\uC8FC\uC138\uC694"
+      value: crucioNEWLINEpetrificus totalusNEWLINEaccioNEWLINEwingardium leviosaNEWLINEavada
+        kedabraNEWLINEaguamentiNEWLINElumos maximaNEWLINEstupefyNEWLINEobiliate
       objectReference: {fileID: 0}
     - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
         type: 3}
       propertyPath: dialogue.Array.data[1].content
-      value: "\uB0B4\uAC00 \uC81C\uC77C \uC88B\uC544\uD558\uB294NEWLINE\uAC08\uBE44\uCC1C
-        \uB36E\uBC25"
+      value: "\uAC08\uBE44\uCC1C\uC744 \uBC25 \uC704\uC5D0 \uC5B9\uC5B4\uC8FC\uC138\uC694NEWLINE\uB0B4\uAC00
+        \uC81C\uC77C \uC88B\uC544\uD558\uB294 \uAC08\uBE44\uCC1C \uB36E\uBC25"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
+        type: 3}
+      propertyPath: SpeakingObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 691286212}
+    - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].content
+      value: i don't want a lot for christmasNEWLINEthere is just one thing i needNEWLINEi
+        don't care about the presentsNEWLINEunderneath the christmas tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].cameratarget
+      value: 
+      objectReference: {fileID: 691286212}
+    - target: {fileID: 3597992421907115885, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].cameraSize
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7073493765881590160, guid: 8c2353c664cf1ea4d8d6fca8a6cab605,
         type: 3}

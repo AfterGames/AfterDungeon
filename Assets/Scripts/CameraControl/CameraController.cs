@@ -260,7 +260,6 @@ public class CameraController : MonoBehaviour
 
     private float SmoothCurve(float x)
     {
-        Debug.Log(x);
         return -2 * x * x * x + 3 * x * x;
     }
 }

@@ -44,16 +44,38 @@ public class SpeechBubbleCtrl : MonoBehaviour
         content.fontSize = Screen.width / 40;
         txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
         currentCharId = 0;
+        talking = true;
+        delayStarted = false;
     }
 
     private int currentCharId = 0;
     //private float 
-
+    bool delayStarted = false;
     private void FixedUpdate()
     {
         if (currentCharId < txtArray.Length)
         {
             content.text += txtArray[currentCharId++];
         }
+
+        else if (!delayStarted)
+            StartCoroutine(DelayBetweenSpeehces());
+    }
+
+    private bool talking;
+    public bool Talking
+    {
+        get
+        {
+            return talking || currentCharId < txtArray.Length;
+        }
+    }
+
+
+    IEnumerator DelayBetweenSpeehces()
+    {
+        delayStarted = true;
+        yield return new WaitForSeconds(0.5f);
+        talking = false;
     }
 }
