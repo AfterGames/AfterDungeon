@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 5527754576675507860
-    second: world0,1 tile_0
+    second: world0,1 tile_11_010
   - first:
       213: 1389895681974501687
     second: world0,1 tile_1
@@ -1047,6 +1047,27 @@ TextureImporter:
       bones: []
       spriteID: cbd56ecdf58542243be428f0add63a6b
       internalID: 5783788355308918216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world0,1 tile_11_010
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 71
+        width: 20
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5, y: 0.47368422}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020835de2fe545f438fef7c29c9a3bb2
+      internalID: 5527754576675507860
       vertices: []
       indices: 
       edges: []
