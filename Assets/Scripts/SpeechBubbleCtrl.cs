@@ -8,6 +8,7 @@ public class SpeechBubbleCtrl : MonoBehaviour
     private RectTransform rt;
     public RectTransform tail;
     public Text content;
+    public GameObject tailEnd;
 
     public void Awake()
     {
@@ -28,9 +29,19 @@ public class SpeechBubbleCtrl : MonoBehaviour
     }
 
     private char[] txtArray = { };
+    public void SetLocation(Vector3 location)
+    {
+        transform.position = location;
+        Vector3 v = transform.position - tailEnd.transform.position;
+        transform.position += v;
+        Vector3 l = transform.localPosition;
+        l.z = 0;
+        transform.localPosition = l;        
+    }
     public void SetText(string text)
     {
         content.text = "";
+        content.fontSize = Screen.width / 40;
         txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
         currentCharId = 0;
     }
