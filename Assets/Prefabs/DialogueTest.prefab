@@ -48,21 +48,17 @@ MonoBehaviour:
   dialogue:
   - personNum: 0
     tailLocation: 0
-    content: "\uD55C\uBC88\uB3C4 \uBABB\uD588\uB358 \uB9D0NEWLINE\uC6B8\uBA74\uC11C
-      \uD560 \uC904\uC740 \uB098 \uBAB0\uB790\uB358 \uB9D0NEWLINE\uB098\uB294\uC694
-      \uC624\uBE60\uAC00 \uC88B\uC740\uAC78 \uC5B4\uB5A1\uD574 "
+    content: 111NEWLINE111
     cameratarget: {fileID: 0}
     cameraSize: 6
   - personNum: 0
     tailLocation: -1
-    content: "\uADF8\uB300 \uAE30\uC5B5\uC774 \uC9C0\uB09C \uC0AC\uB791\uC774NEWLINE\uB0B4
-      \uC548\uC744 \uD30C\uACE0\uB4DC\uB294 \uAC00\uC2DC\uAC00 \uB418\uC5B4"
+    content: 222NEWLINE222
     cameratarget: {fileID: 0}
     cameraSize: 8
-  - personNum: 1
+  - personNum: 0
     tailLocation: 1
-    content: "\uB108\uB294 \uBCC4\uC744 \uBCF4\uC790\uBA70 \uB0B4 \uBAB8\uC744 \uB2F9\uACA8\uC11CNEWLINE\uB2E8
-      \uD55C \uBC88\uC5D0 \uB2EC\uBE5B\uC744 \uB0B4 \uB208\uC5D0 \uB2F4\uC558\uC5B4"
+    content: 333NEWLINE333
     cameratarget: {fileID: 0}
     cameraSize: 10
   SpeakingObjects:
