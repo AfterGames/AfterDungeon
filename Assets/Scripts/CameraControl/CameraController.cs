@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
                 originalSize = controlcamera.orthographicSize;
             }
             else
-                StartCoroutine(MoveAndScale(originalPos, originalSize));
+                MoveAndScale(originalPos, originalSize);
         }
     }
 
@@ -74,7 +74,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (talking) return;
+        if (talking)
+        {
+            return;
+            //if(!isCameraMoving)
+
+        }
         if (isCameraMoving == false)
         {
             //Debug.Log(offset);
@@ -215,7 +220,13 @@ public class CameraController : MonoBehaviour
     }
 
     private int step = 15;
-    public IEnumerator MoveAndScale(Vector3 endPos, float endSize, bool setBubble = false)
+    public void MoveAndScale(Vector3 endPos, float endSize, bool setBubble = false)
+    {
+        StartCoroutine(IMoveAndScale(endPos, endSize, setBubble));
+    }
+
+    public Dialogue d;
+    private IEnumerator IMoveAndScale(Vector3 endPos, float endSize, bool setBubble = false)
     {
         isCameraMoving = true;
         //Time.timeScale = 0f;
@@ -229,10 +240,10 @@ public class CameraController : MonoBehaviour
             controlcamera.orthographicSize += sizeDiff / step;
             yield return new WaitForSeconds(moveTime / step);
         }
-
-        if (setBubble)
+        Debug.Log(d);
+        if (setBubble && d != null)
         {
-            Dialogue.instance.SetBubble();
+            d.SetBubble();
         }
 
 

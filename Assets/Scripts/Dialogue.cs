@@ -20,8 +20,6 @@ public class Dialogue : MonoBehaviour
         public int cameraSize;
     }
 
-    public static Dialogue instance;
-
     public SpeechBubbleCtrl SpeechBubblePrefab;
     private SpeechBubbleCtrl speechBubble;
     private int currentIndex = -1;
@@ -34,22 +32,25 @@ public class Dialogue : MonoBehaviour
 
     private Player player;
     //private Camera mainCamera;
-    public Transform canvas;
+    private Transform canvas;
 
     [SerializeField]
     private bool isStarted;
     //private bool keyPressed;
 
-
+    private Canvas c;
     void Awake()
     {
-        instance = this;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Canvas c = FindObjectOfType<Canvas>();
+        c = FindObjectOfType<Canvas>();
         c.renderMode = RenderMode.ScreenSpaceCamera;
-        c.sortingLayerID = 1 << 8;
         c.worldCamera = Camera.main;
         canvas = c.transform;
+    }
+
+    private void Start()
+    {
+        c.sortingLayerName = "UI";
     }
 
 
@@ -59,7 +60,6 @@ public class Dialogue : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0)) NextTalk();
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1)) StartTalk();
     }
 
     public void StartTalk()
@@ -86,7 +86,12 @@ public class Dialogue : MonoBehaviour
             if (currentBubble.cameratarget == null)
                 SetBubble();
             else
-                StartCoroutine(CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true));
+            {
+                CameraController.instance.d = this;
+                CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true);
+            }
+
+
         }
     }
 
@@ -101,9 +106,26 @@ public class Dialogue : MonoBehaviour
     public void EndTalk()
     {
         player.specialControl = false;
+        player.CanControl(true);
         isStarted = false;
         CameraController.instance.talking = false;
         Destroy(speechBubble.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.GetComponent<Player>().StopMoving();
+            Debug.Log("대화 트리거");
+            StartCoroutine(DelayedTalk());
+        }
+    }
+
+    IEnumerator DelayedTalk()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartTalk();
     }
 }
 
