@@ -229,6 +229,7 @@ public class Player : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         specialControl = true;
+        CanControl(false);
         animator.SetFloat("Speed", -1);
 
     }
