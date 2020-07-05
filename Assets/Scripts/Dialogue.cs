@@ -19,7 +19,7 @@ public class Dialogue : MonoBehaviour
         [Tooltip("카메라 크기")]
         public int cameraSize;
     }
-
+    public bool skippable;
     public SpeechBubbleCtrl SpeechBubblePrefab;
     private SpeechBubbleCtrl speechBubble;
     private int currentIndex = -1;
@@ -53,21 +53,24 @@ public class Dialogue : MonoBehaviour
         c.sortingLayerName = "UI";
     }
 
-
     void Update()
     {
         if (isStarted)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0)||Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return)) NextTalk();
+            if (Input.GetKeyDown(KeyCode.Mouse0)||Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return))
+                if (!speechBubble.Talking || skippable)
+                    NextTalk();
         }
     }
+
 
     public void StartTalk()
     {
         player.specialControl = true;
         isStarted = true;
         CameraController.instance.talking = true;
-        speechBubble = Instantiate(SpeechBubblePrefab, canvas);
+        if(speechBubble == null)
+            speechBubble = Instantiate(SpeechBubblePrefab, canvas);
         NextTalk();
     }
 
@@ -105,12 +108,19 @@ public class Dialogue : MonoBehaviour
 
     public void EndTalk()
     {
-        player.specialControl = false;
-        player.CanControl(true);
+        StartCoroutine(DelayedPlayerCanControl());
         isStarted = false;
         CameraController.instance.talking = false;
-        Destroy(speechBubble.gameObject);
+        Destroy(GetComponent<BoxCollider2D>());
+        speechBubble.gameObject.SetActive(false);
     }
+    IEnumerator DelayedPlayerCanControl()
+    {
+        yield return new WaitForSeconds(0.2f);
+        player.CanControl(true);
+        player.specialControl = false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
