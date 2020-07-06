@@ -169,6 +169,7 @@ MonoBehaviour:
   FadeObjectPrefab: {fileID: 410562717421112242, guid: 6335fa76957120141929cfb0eb1cf446,
     type: 3}
   stageNum: 0
+  dialogueReady: 0
 --- !u!114 &2664189598708974036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +489,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: aafe50f6c0894f8469f0c464a1952792, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -588,7 +589,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: aafe50f6c0894f8469f0c464a1952792, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
