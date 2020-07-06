@@ -228,11 +228,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (colliders[i].gameObject != gameObject)
             {
+                if (colliders[i].gameObject.layer == LayerMask.NameToLayer("HalfPlatform") && GetComponent<Rigidbody2D>().velocity.y>0.1f)
+                    continue;
                 if (colliders[i].gameObject.layer != LayerMask.NameToLayer("MovingPlatform"))
                 {
                     platformVelocity = new Vector2(0f, 0f);
                     addVelocity = new Vector2(0f, 0f);
                 }
+                
                 if(colliders[i].gameObject != lastGround)
                 {
                     GroundChange(colliders[i].gameObject);
@@ -361,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
     private void GroundingEvent()
     {
         SetBool("IsGrounded", true);
+        SetBool("IsJumping", false);
         Stamina = totalStamina;
         isDashed = false;
     }
