@@ -14,7 +14,7 @@ public class Lamp : MonoBehaviour
 
     float period = 5f;
     float elapsedTime = 0;
-    float amplitude = 0.25f;
+    public float amplitude = 0.25f;
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +26,7 @@ public class Lamp : MonoBehaviour
         else
         {
             elapsedTime += Time.deltaTime;
-            light.intensity = originalIntensity * (1 + amplitude * Mathf.Sin(2 * Mathf.PI* elapsedTime / period));
+            light.intensity = originalIntensity * (1 + amplitude * Mathf.Sin(2 * Mathf.PI* elapsedTime / period)/2);
         }
     }
 }
