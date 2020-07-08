@@ -572,6 +572,8 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 closestWall = null;
+               // if(wallState != WallState.None)
+                //    Debug.Log("반대방향 눌러서 벽 떨어짐");
                 wallState = WallState.None;
                 Flip(dir);
                 SetBool("Wall", false);
@@ -666,7 +668,7 @@ public class PlayerMovement : MonoBehaviour
         else if (horizontal < 0) goRight = false;
         
 
-        if (Stamina <= 0 || (isGrounded && rb2D.velocity.y <= 0))
+        if (isGrounded && rb2D.velocity.y <= 0)
         {
             wallState = WallState.None;
             SetBool("Wall", false);
@@ -707,6 +709,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else 
         {
+           // if (wallState != WallState.None)
+            //    Debug.Log("반대방향 눌러서 벽 떨어짐");
             wallState = WallState.None;
             SetBool("Wall", false);
         }
@@ -859,6 +863,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void SetBool(string name, bool number)
     {
+        if(name.Equals("Wall"))
+        {
+            if (number == true)
+                rb2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            else
+                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
         animator.SetBool(name, number);
         animator2.SetBool(name, number);
     }
