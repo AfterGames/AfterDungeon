@@ -17,7 +17,7 @@ public class Dialogue : MonoBehaviour
         [Tooltip("카메라가 따라갈 게임오브젝트. 따라갈 오브젝트가 딱히 없다면 비워둬야함")]
         public GameObject cameratarget;
         [Tooltip("카메라 크기")]
-        public int cameraSize;
+        public float cameraSize;
     }
     public bool skippable;
     public SpeechBubbleCtrl SpeechBubblePrefab;
