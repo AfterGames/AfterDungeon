@@ -539,6 +539,7 @@ public class PlayerMovement : MonoBehaviour
     private void WallJump()
     {
         wallState = WallState.None;
+        SetTrigger("WallJump");
         SetBool("Wall", false);
         if (closestWall == 1)
         {
