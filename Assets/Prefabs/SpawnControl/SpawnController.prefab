@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5784073344270558136}
   - component: {fileID: 7681435010870565227}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpawnController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5784073344270558136}
     m_Modifications:
+    - target: {fileID: 5104982544691197798, guid: 911954ef008340745823cd5d8c129545,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5104982544866683342, guid: 911954ef008340745823cd5d8c129545,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,6 +117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnRegion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104982544866683343, guid: 911954ef008340745823cd5d8c129545,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 911954ef008340745823cd5d8c129545, type: 3}
