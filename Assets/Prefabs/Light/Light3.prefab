@@ -240,6 +240,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3086981343884226257, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086981344334482188, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3086981344585192016, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
         type: 3}
       propertyPath: m_Enabled
