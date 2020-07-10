@@ -66,16 +66,22 @@
 				distance = (i.worldPos.x - _CenterX) * (i.worldPos.x - _CenterX) + (i.worldPos.y - _CenterY) * (i.worldPos.y - _CenterY);
 
 				//fixed4 col = tex2D(_MainTex, i.clipPos);
-				fixed4 col = tex2Dproj(_Savior, i.grabPos);
-				fixed4 col2 = tex2Dproj(_GrabTexture, i.grabPos);
-				fixed4 result = fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1);
+				fixed4 col = tex2Dproj(_Savior, i.grabPos); // 원래 것
+				fixed4 col2 = tex2Dproj(_GrabTexture, i.grabPos); //다른 라이트가 있었다면 그것이 적용된 것
+				fixed4 result = fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1); // 해당 라이트만 있을때 밝아지는 정도
 
 				if (distance <= _Radius * _Radius)
 				{
-					if (result.x < col2.x)
-						return fixed4(col2.xyz, 1);
-					else
-						return result;
+					/*
+					if (distance <= _Radius * _Radius * 0.81)
+					{
+						if (result.x < col2.x) // 다른 라이트가 있어서 지금것보다 밝은 경우
+							return fixed4(col2.xyz, 1);
+						else
+							return result;
+					}
+					else*/
+						return fixed4(result.xyz - col.xyz + col2.xyz, 1);				
 				}
 				else
 					return fixed4(col2.xyz, 1);
