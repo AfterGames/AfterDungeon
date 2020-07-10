@@ -72,16 +72,11 @@
 
 				if (distance <= _Radius * _Radius)
 				{
-					/*
-					if (distance <= _Radius * _Radius * 0.81)
-					{
 						if (result.x < col2.x) // 다른 라이트가 있어서 지금것보다 밝은 경우
 							return fixed4(col2.xyz, 1);
 						else
 							return result;
-					}
-					else*/
-						return fixed4(result.xyz - col.xyz + col2.xyz, 1);				
+	
 				}
 				else
 					return fixed4(col2.xyz, 1);
