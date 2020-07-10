@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6178933872625350228}
   - component: {fileID: 5887461210275923554}
-  - component: {fileID: 4119153854001789244}
   m_Layer: 0
   m_Name: Light1
   m_TagString: Untagged
@@ -83,20 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4119153854001789244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885178106118168492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdf4b0c785925843b173bf0b1c2a1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Brightness: 0
-  lightRadius: 0
 --- !u!1 &5802168950575627727
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +219,16 @@ PrefabInstance:
       propertyPath: scalingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3086981344657448356, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086981344657448356, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3086981344670808828, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
         type: 3}
       propertyPath: m_Enabled
@@ -243,6 +238,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086981344913289988, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086981344913289988, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1e-45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ee4a169f1e4d2c40a12c33cfcb9150b, type: 3}
