@@ -11,6 +11,7 @@
 		SubShader
 		{
 			Tags { "RenderType" = "Opaque" }
+			GrabPass{"_Savior"}
 			GrabPass{}
 			LOD 100
 
@@ -42,6 +43,7 @@
 
 			sampler2D _MainTex;
 			sampler2D _GrabTexture;
+			sampler2D _Savior;
 			float4 _MainTex_ST;
 			float _Radius;
 			float _Bright;
@@ -63,15 +65,20 @@
 			{
 				distance = (i.worldPos.x - _CenterX) * (i.worldPos.x - _CenterX) + (i.worldPos.y - _CenterY) * (i.worldPos.y - _CenterY);
 
-			//fixed4 col = tex2D(_MainTex, i.clipPos);
-			fixed4 col = tex2Dproj(_GrabTexture, i.grabPos);
+				//fixed4 col = tex2D(_MainTex, i.clipPos);
+				fixed4 col = tex2Dproj(_Savior, i.grabPos);
+				fixed4 col2 = tex2Dproj(_GrabTexture, i.grabPos);
+				fixed4 result = fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1);
 
-			if (distance <= _Radius * _Radius)
-			{
-				return fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1);
-			}
-			else
-				return fixed4(col.xyz, 1);
+				if (distance <= _Radius * _Radius)
+				{
+					if (result.x < col2.x)
+						return fixed4(col2.xyz, 1);
+					else
+						return result;
+				}
+				else
+					return fixed4(col2.xyz, 1);
 			}
 		ENDCG
 			}
