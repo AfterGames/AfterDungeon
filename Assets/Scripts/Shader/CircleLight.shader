@@ -68,10 +68,11 @@
 				//fixed4 col = tex2D(_MainTex, i.clipPos);
 				fixed4 col = tex2Dproj(_Savior, i.grabPos); // 원래 것
 				fixed4 col2 = tex2Dproj(_GrabTexture, i.grabPos); //다른 라이트가 있었다면 그것이 적용된 것
-				fixed4 result = fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1); // 해당 라이트만 있을때 밝아지는 정도
-
+				//fixed4 result = fixed4(col.xyz * ((_Bright - 1)*(_Radius * _Radius - distance) / (_Radius * _Radius) + 1), 1); // 해당 라이트만 있을때 밝아지는 정도
+				fixed4 result = fixed4(col.xyz * ((_Bright - 1) / (1.0 + 25.0*distance/(_Radius * _Radius))  * saturate((1 - distance / (_Radius * _Radius)) * 5.0) + 1), 1);
 				if (distance <= _Radius * _Radius)
 				{
+					
 
 					/* 예전버전
 						if (result.x < col2.x) // 다른 라이트가 있어서 지금것보다 밝은 경우
