@@ -648,6 +648,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2664189598708974033}
     m_Modifications:
+    - target: {fileID: 2522879794918447580, guid: 2aec15a6c11f6944cb4378712efdc549,
+        type: 3}
+      propertyPath: Brightness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522879794918447580, guid: 2aec15a6c11f6944cb4378712efdc549,
+        type: 3}
+      propertyPath: lightRadius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4568163325208121854, guid: 2aec15a6c11f6944cb4378712efdc549,
         type: 3}
       propertyPath: m_LocalPosition.x
