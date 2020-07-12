@@ -61,6 +61,7 @@ public class SpeechBubbleCtrl : MonoBehaviour
     private int currentCharId = 0;
     //private float 
     bool delayStarted = false;
+    public float delayTime = 0.5f;
     private void FixedUpdate()
     {
         if (currentCharId < txtArray.Length)
@@ -69,7 +70,7 @@ public class SpeechBubbleCtrl : MonoBehaviour
         }
 
         else if (!delayStarted)
-            StartCoroutine(DelayBetweenSpeehces());
+            StartCoroutine(DelayBetweenSpeehces(delayTime));
     }
 
     private bool talking;
@@ -82,10 +83,10 @@ public class SpeechBubbleCtrl : MonoBehaviour
     }
 
 
-    IEnumerator DelayBetweenSpeehces()
+    IEnumerator DelayBetweenSpeehces(float dt)
     {
         delayStarted = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(dt);
         talking = false;
     }
 }
