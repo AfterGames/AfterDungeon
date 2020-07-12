@@ -66,8 +66,9 @@
 			{
 				if (0.5 - _Thickness < i.uv.y && i.uv.y < 0.5 + _Thickness)
 				{	
+					float multi = _Brightness;
 					//float multi = 1 + (_Thickness * _Thickness - (i.uv.y - 0.5) * (i.uv.y - 0.5)) / (_Thickness * _Thickness) * (_Brightness - 1);
-					float multi = 1 + (((i.uv.y - 0.5) * (i.uv.y - 0.5) - 2 * sqrt((i.uv.y - 0.5) * (i.uv.y - 0.5)) * _Thickness) / (_Thickness * _Thickness) + 1) * (_Brightness - 1);
+					//float multi = 1 + (((i.uv.y - 0.5) * (i.uv.y - 0.5) - 2 * sqrt((i.uv.y - 0.5) * (i.uv.y - 0.5)) * _Thickness) / (_Thickness * _Thickness) + 1) * (_Brightness - 1);
 					return fixed4(col.xyz * multi, 1);					
 				}
 				else
