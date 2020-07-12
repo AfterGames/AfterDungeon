@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 2354602317882470028}
   - component: {fileID: 2354602317882470029}
   - component: {fileID: 3770111078373842571}
+  - component: {fileID: 4970111806498620668}
   m_Layer: 8
   m_Name: Friend
   m_TagString: Player
@@ -227,9 +228,9 @@ MonoBehaviour:
   groundDecel: 200
   airAccel: 40
   airDecel: 80
-  horizontalSpeed: 10
+  horizontalSpeed: 6
   originGravity: 6
-  jumpVelocity: {x: 14, y: 20.5}
+  jumpVelocity: {x: 12, y: 20.5}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 2257856707936233169}
   tailPosition: {fileID: 5859055918197962878}
@@ -283,6 +284,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4970111806498620668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354602317882470066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aaa9d770df3884189304c40471aeba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 0}
 --- !u!1 &2354602318849934720
 GameObject:
   m_ObjectHideFlags: 0
