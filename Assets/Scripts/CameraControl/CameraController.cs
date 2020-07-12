@@ -228,6 +228,7 @@ public class CameraController : MonoBehaviour
     public Dialogue d;
     private IEnumerator IMoveAndScale(Vector3 endPos, float endSize, bool setBubble = false)
     {
+        Debug.Log(setBubble);
         isCameraMoving = true;
         //Time.timeScale = 0f;
         float sizeDiff = endSize - controlcamera.orthographicSize;
@@ -241,7 +242,7 @@ public class CameraController : MonoBehaviour
             if (Vector3.Distance(controlcamera.transform.position, endPos) < float.Epsilon &&
                 sizeDiff < float.Epsilon)
                 break;
-
+            Debug.Log(i);
             controlcamera.transform.position = initialPosition + dir *  SmoothCurve(((float)i+1) / step);
             //Debug.Log(i);
             //Debug.Log(SmoothCurve(i + 1 / step));
