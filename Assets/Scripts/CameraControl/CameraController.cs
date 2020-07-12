@@ -242,8 +242,8 @@ public class CameraController : MonoBehaviour
             if (Vector3.Distance(controlcamera.transform.position, endPos) < float.Epsilon &&
                 sizeDiff < float.Epsilon)
                 break;
-            Debug.Log(i);
             controlcamera.transform.position = initialPosition + dir *  SmoothCurve(((float)i+1) / step);
+            controlcamera.orthographicSize = initialSize + sizeDiff * SmoothCurve(((float)i + 1) / step);
             //Debug.Log(i);
             //Debug.Log(SmoothCurve(i + 1 / step));
             yield return new WaitForSeconds(moveTime / step);
