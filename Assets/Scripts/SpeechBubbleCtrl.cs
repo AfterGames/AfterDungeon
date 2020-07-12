@@ -9,10 +9,12 @@ public class SpeechBubbleCtrl : MonoBehaviour
     public RectTransform tail;
     public Text content;
     public GameObject tailEnd;
+    public HorizontalLayoutGroup hlg;
 
     public void Awake()
     {
         rt = GetComponent<RectTransform>();
+        hlg = GetComponent<HorizontalLayoutGroup>();
     }
 
     public void SetTail(TailLoc loc)
@@ -42,8 +44,14 @@ public class SpeechBubbleCtrl : MonoBehaviour
     }
     public void SetText(string text)
     {
+        int pad = Screen.width / 40;
+        hlg.padding.bottom = pad;
+        hlg.padding.top = pad;
+        pad = (int) (1.5f * pad);
+        hlg.padding.left = pad;
+        hlg.padding.right = pad;
         content.text = "";
-        content.fontSize = Screen.width / 40;
+        content.fontSize = Screen.width / 50;
         txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
         currentCharId = 0;
         talking = true;

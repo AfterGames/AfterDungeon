@@ -87,12 +87,14 @@ public class Dialogue : MonoBehaviour
             speechBubble.gameObject.SetActive(false);
             Camera mc = Camera.main;
             currentBubble = dialogue[currentIndex];
+            if (currentBubble.content == "") NextTalk();
             if (currentBubble.cameratarget == null)
                 SetBubble();
             else
             {
                 CameraController.instance.d = this;
-                CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, currentBubble.cameraSize, true);
+                float cs = currentBubble.cameraSize;
+                CameraController.instance.MoveAndScale(currentBubble.cameratarget.transform.position + Vector3.back * 10, cs, cs != 0);
             }
 
 
