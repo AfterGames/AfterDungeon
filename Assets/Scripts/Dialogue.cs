@@ -68,6 +68,17 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    public void NextTalkAfterDelay(float delay)
+    {
+        speechBubble.gameObject.SetActive(false);
+        StartCoroutine(NTAD(delay));
+    }
+    IEnumerator NTAD(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        NextTalk();
+    }
+
 
     public void StartTalk()
     {
