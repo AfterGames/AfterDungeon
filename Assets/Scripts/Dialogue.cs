@@ -53,6 +53,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         c.sortingLayerName = "UI";
+        SpeakingObjects[0] = player.transform.Find("BubblePoint").gameObject;
     }
 
     void Update()
@@ -90,12 +91,15 @@ public class Dialogue : MonoBehaviour
             {
                 int previousTalker = dialogue[currentIndex - 1].personNum;
                 int currentTalker = dialogue[currentIndex].personNum;
+                if(Animators.Count != 0)
                 if (Animators[previousTalker] != null && previousTalker != currentTalker)
                 {
                     Animators[previousTalker].SetTrigger("StopTalking");
                 }
             }
-            if (Animators[currentBubble.personNum] != null)
+            if (Animators.Count != 0)
+
+                if (Animators[currentBubble.personNum] != null)
             {
                 Animators[currentBubble.personNum].SetTrigger("TalkingMotion");
             }
