@@ -29,14 +29,16 @@ public class SpeechBubbleCtrl : MonoBehaviour
     }
 
     private char[] txtArray = { };
-    public void SetLocation(Vector3 location)
+    public void SetLocation(Vector3 location, ref Canvas c)
     {
+        c.renderMode = RenderMode.ScreenSpaceCamera;
         transform.position = location;
         Vector3 v = transform.position - tailEnd.transform.position;
         transform.position += v;
         Vector3 l = transform.localPosition;
         l.z = 0;
-        transform.localPosition = l;        
+        transform.localPosition = l;
+        c.renderMode = RenderMode.ScreenSpaceOverlay;
     }
     public void SetText(string text)
     {
