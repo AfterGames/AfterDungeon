@@ -51,4 +51,9 @@ public class StraightLight_0 : MonoBehaviour
             }
         }
     }
+
+    public void LightStart()
+    {
+        start = true;
+    }
 }
