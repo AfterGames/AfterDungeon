@@ -9,12 +9,15 @@ public class LineLightController : MonoBehaviour
     [SerializeField] private float Thickness;
     [Range(0,1)]
     [SerializeField] private float Proportion;
+    //[Range(0, 1)]
+    //[SerializeField] private float Alpha;
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Renderer>().material.SetFloat("_Brightness", Brightness);
         GetComponent<Renderer>().material.SetFloat("_Thickness", Thickness);
         GetComponent<Renderer>().material.SetFloat("_Proportion", Proportion);
+      //  GetComponent<Renderer>().material.SetFloat("_Proportion", Alpha);
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class LineLightController : MonoBehaviour
         GetComponent<Renderer>().material.SetFloat("_Brightness", Brightness);
         GetComponent<Renderer>().material.SetFloat("_Thickness", Thickness);
         GetComponent<Renderer>().material.SetFloat("_Proportion", Proportion);
+      //  GetComponent<Renderer>().material.SetFloat("_Alpha", Alpha);
     }
 
     public void SetBright(float Bright)

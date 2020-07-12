@@ -5,7 +5,8 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Thickness("Thickness", Range(0,1)) = 0.15
 		_Proportion("Proportion", Range(0,1)) = 0.5
-		_Brightness("Brightness", Range(0,3)) = 2
+		_Brightness("Brightness", float) = 2
+		//_Alpha("Alpha", Range(0,1)) = 0.5
     }
     SubShader
     {
@@ -15,6 +16,7 @@
 
         Pass
         {
+			Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -43,6 +45,7 @@
 			float _Proportion;
 			half _Thickness;
 			float _Brightness;
+			//float _Alpha;
 
             v2f vert (appdata v)
             {
@@ -63,9 +66,9 @@
 			else
 			{
 				if (0.5 - _Thickness < i.uv.y && i.uv.y < 0.5 + _Thickness)
-				{
+				{	
 					float multi = 1 + (((i.uv.y - 0.5) * (i.uv.y - 0.5) - 2 * sqrt((i.uv.y - 0.5) * (i.uv.y - 0.5)) * _Thickness) / (_Thickness * _Thickness) + 1) * (_Brightness - 1);
-					return fixed4(col.xyz * multi, 1);
+					return fixed4(col.xy * multi, 0, 1);					
 				}
 				else
 					return col;
