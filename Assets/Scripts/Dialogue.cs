@@ -27,6 +27,7 @@ public class Dialogue : MonoBehaviour
     public List<SpeechBubble> dialogue;
     [Tooltip("대화에 참여하는 인물들의 BubblePoint를 끌어다 놓으면 됨.")]
     public List<GameObject> SpeakingObjects;
+    public List<Animator> Animators;
 
     //주인공을 0번에 놓고, 나머지 인물들을 차례대로 놓아서 번호를 할당받게 하는 리스트
 
@@ -84,9 +85,22 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            currentBubble = dialogue[currentIndex];
+            if (currentIndex > 0)
+            {
+                int previousTalker = dialogue[currentIndex - 1].personNum;
+                int currentTalker = dialogue[currentIndex].personNum;
+                if (Animators[previousTalker] != null && previousTalker != currentTalker)
+                {
+                    Animators[previousTalker].SetTrigger("StopTalking");
+                }
+            }
+            if (Animators[currentBubble.personNum] != null)
+            {
+                Animators[currentBubble.personNum].SetTrigger("TalkingMotion");
+            }
             speechBubble.gameObject.SetActive(false);
             Camera mc = Camera.main;
-            currentBubble = dialogue[currentIndex];
             if (currentBubble.content == "") NextTalk();
             if (currentBubble.cameratarget == null)
                 SetBubble();
