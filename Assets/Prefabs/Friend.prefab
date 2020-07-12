@@ -105,9 +105,9 @@ GameObject:
   - component: {fileID: 2354602317882470029}
   - component: {fileID: 3770111078373842571}
   - component: {fileID: 4970111806498620668}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Friend
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
