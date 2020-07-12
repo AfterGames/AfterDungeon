@@ -37,6 +37,8 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField]
     private bool isStarted;
+
+    [SerializeField] private bool specialControl;
     //private bool keyPressed;
 
     private Canvas c;
@@ -58,7 +60,7 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (isStarted)
+        if (isStarted && !specialControl)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0)||Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return))
                 if (!speechBubble.Talking || skippable)
@@ -127,19 +129,19 @@ public class Dialogue : MonoBehaviour
         speechBubble.SetText(currentBubble.content);
     }
 
-    public void EndTalk()
+    public void EndTalk(bool setup = false)
     {
-        StartCoroutine(DelayedPlayerCanControl());
+        StartCoroutine(DelayedPlayerCanControl(setup));
         isStarted = false;
         CameraController.instance.talking = false;
         Destroy(GetComponent<BoxCollider2D>());
         speechBubble.gameObject.SetActive(false);
     }
-    IEnumerator DelayedPlayerCanControl()
+    IEnumerator DelayedPlayerCanControl(bool setup)
     {
         yield return new WaitForSeconds(0.2f);
         player.CanControl(true);
-        player.specialControl = false;
+        player.specialControl = setup;
     }
 
 

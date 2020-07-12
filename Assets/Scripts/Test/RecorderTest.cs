@@ -9,6 +9,7 @@ public class RecorderTest : MonoBehaviour
 
     private GameObjectRecorder m_Recorder;
 
+
     void Start()
     {
         // Create recorder and record the script GameObject.
