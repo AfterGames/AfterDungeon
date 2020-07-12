@@ -46,6 +46,7 @@ public class Dialogue : MonoBehaviour
         c.renderMode = RenderMode.ScreenSpaceCamera;
         c.worldCamera = Camera.main;
         canvas = c.transform;
+        c.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
     private void Start()
@@ -102,8 +103,8 @@ public class Dialogue : MonoBehaviour
     {
         speechBubble.gameObject.SetActive(true);
         speechBubble.SetTail(currentBubble.tailLocation);
+        speechBubble.SetLocation(SpeakingObjects[currentBubble.personNum].transform.position, ref c);
         speechBubble.SetText(currentBubble.content);
-        speechBubble.SetLocation(SpeakingObjects[currentBubble.personNum].transform.position);
     }
 
     public void EndTalk()
