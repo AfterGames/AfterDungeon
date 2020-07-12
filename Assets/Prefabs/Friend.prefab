@@ -227,9 +227,9 @@ MonoBehaviour:
   groundDecel: 200
   airAccel: 40
   airDecel: 80
-  horizontalSpeed: 12
+  horizontalSpeed: 10
   originGravity: 6
-  jumpVelocity: {x: 12, y: 20.5}
+  jumpVelocity: {x: 14, y: 20.5}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 2257856707936233169}
   tailPosition: {fileID: 5859055918197962878}
@@ -456,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8904140955494151951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: -0.007, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2354602317882470024}
