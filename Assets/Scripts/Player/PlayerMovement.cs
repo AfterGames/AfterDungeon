@@ -202,10 +202,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void VelocityLimit()
     {
+        if (wallState == WallState.Slide)
+            rb2D.velocity = new Vector2(rb2D.velocity.x, slidingVelocity);
         if(rb2D.velocity.y<(-1)*jumpVelocity.y + 1.1772f*rb2D.gravityScale/6)
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, (-1) * jumpVelocity.y + 1.1772f * rb2D.gravityScale / 6);
         }
+
     }
 
     private bool GroundChecking()
