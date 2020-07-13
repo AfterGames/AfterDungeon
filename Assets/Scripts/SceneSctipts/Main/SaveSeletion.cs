@@ -44,6 +44,11 @@ public class SaveSeletion : UICluster
         for (int i = 0; i < transform.childCount; i++)
         {
             isthereData = transform.GetChild(i).GetComponent<SaveSlots>().HasData || isthereData;
+            if(isthereData)
+            {
+                transform.parent.GetComponent<MainCluster>().GoNextCluster();
+                break;
+            }
         }
         if (!isthereData)
         {
