@@ -56,6 +56,13 @@ public class Dialogue : MonoBehaviour
     {
         c.sortingLayerName = "UI";
         SpeakingObjects[0] = player.transform.Find("BubblePoint").gameObject;
+        for(int i = 0; i < SpeakingObjects.Count; i++)
+        {
+            if(SpeakingObjects[i] != null)
+            if (!SpeakingObjects[i].name.Contains("BubblePoint"))
+                SpeakingObjects[i] = SpeakingObjects[i].transform.Find("BubblePoint").gameObject;
+            
+        }
     }
 
     void Update()
