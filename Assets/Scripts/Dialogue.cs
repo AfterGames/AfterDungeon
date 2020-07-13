@@ -70,6 +70,7 @@ public class Dialogue : MonoBehaviour
     {
         if (isStarted && !specialControl)
         {
+            if(!ignoreInputs)
             if (Input.GetKeyDown(KeyCode.Mouse0)||Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return))
                 if (!speechBubble.Talking || skippable)
                     NextTalk();
