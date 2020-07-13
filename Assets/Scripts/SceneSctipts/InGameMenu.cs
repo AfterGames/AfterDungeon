@@ -32,7 +32,13 @@ public class InGameMenu : UICluster
     public void SaveAndExit()
     {
         Saver.SaveData(DataAdmin.instance.GetData(DataType.slotNum));
+        StartCoroutine(DelayedSceneChange());
+    }
+    IEnumerator DelayedSceneChange()
+    {
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene("Main");
+
     }
 
     public void ChapterRestart()

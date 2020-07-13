@@ -12,5 +12,6 @@ public class MainCluster : UICluster
         //Debug.Log(PlayerPrefs.GetInt("worldNum_1"));
         ActivateAll(false);
         saveCluster.ActivateAll(true);
+        Debug.Log("nextCluster");
     }
 }

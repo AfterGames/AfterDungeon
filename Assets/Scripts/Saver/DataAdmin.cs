@@ -48,7 +48,7 @@ public class DataAdmin : MonoBehaviour
         InGameData.Add(DataType.slotNum, 1);
         InGameData.Add(DataType.deathNum, 0);
 
-        WorldNum.Add("0_1", 0);
+        WorldNum.Add("0", 0);
         WorldNum.Add("1", 1);
         WorldNum.Add("2-1", 2);
         WorldNum.Add("2-2", 3);

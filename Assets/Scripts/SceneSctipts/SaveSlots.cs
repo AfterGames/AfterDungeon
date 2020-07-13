@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveSlots : UIEffect
 {
-    public GameObject highlightBox;
+    //public GameObject highlightBox;
     public GameObject slotImage;
     public int slotNum;
     public GameObject noDataText;
@@ -70,11 +70,11 @@ public class SaveSlots : UIEffect
 
     public override void Activate()
     {
-            highlightBox.SetActive(true);
+            //highlightBox.SetActive(true);
     }
     public override void DeActivate()
     {
-            highlightBox.SetActive(false);
+            //highlightBox.SetActive(false);
     }
     public override void Select()
     {

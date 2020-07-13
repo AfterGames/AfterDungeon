@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519c427f3ac473345a4dfa7e9c26fa16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: {fileID: 0}
+  bgm: {fileID: 8293093119102268736}
   sfx: {fileID: 1629627112665743721}
   sounds:
   - {fileID: 8300000, guid: d598f7f5e0dc70c4cbfc1745fbdf5f44, type: 3}
