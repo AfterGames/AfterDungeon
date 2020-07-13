@@ -232,7 +232,7 @@ MonoBehaviour:
   stamina: 0
   wallSlideStatmina: 0
   mildJumpTime: 0.04
-  allowedJumpTime: 0.02
+  allowedJumpTime: 0.04
   dashingTime: 0.2
   mildWallTime: 0.04
   wallJumpExtortionTime: 0.11
