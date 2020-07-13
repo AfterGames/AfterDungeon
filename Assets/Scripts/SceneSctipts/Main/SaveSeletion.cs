@@ -53,7 +53,7 @@ public class SaveSeletion : UICluster
             isthereData = transform.GetChild(i).GetComponent<SaveSlots>().HasData || isthereData;
             if(isthereData)
             {
-                transform.parent.GetComponent<MainCluster>().GoNextCluster();
+                FindObjectOfType<MainCluster>().GoNextCluster();
                 break;
             }
         }
