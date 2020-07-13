@@ -56,14 +56,14 @@
             <state relative-caret-position="165">
               <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding>
-                <marker date="1594637081953" expanded="false" signature="6:100" ph="..." />
-                <marker date="1594637081953" expanded="true" signature="139:5413" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="197:584" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="5018:5025" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="5083:5300" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="5139:5294" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="5331:5411" ph="{...}" />
-                <marker date="1594637081953" expanded="true" signature="5434:5467" ph="{...}" />
+                <marker date="1594667868715" expanded="false" signature="6:100" ph="..." />
+                <marker date="1594667868715" expanded="true" signature="139:5443" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="197:584" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="5048:5055" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="5113:5330" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="5169:5324" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="5361:5441" ph="{...}" />
+                <marker date="1594667868715" expanded="true" signature="5464:5497" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -156,10 +156,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Test/RecorderTest.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
+            <state relative-caret-position="129">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
-                <marker date="1594667232083" expanded="true" signature="0:971" ph="/* using System.Collections; ... */" />
+                <marker date="1594667848880" expanded="true" signature="0:967" ph="/* using System.Collections; ... */" />
               </folding>
             </state>
           </provider>
@@ -413,7 +413,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14999000" />
+    <option name="totallyTimeSpent" value="15608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
