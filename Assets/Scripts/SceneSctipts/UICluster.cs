@@ -73,6 +73,7 @@ public class UICluster : MonoBehaviour
         {
             for (int i = 0; i < otherUI.Count; i++)
             {
+                Debug.Log(gameObject.name);
                 otherUI[i].gameObject.SetActive(On);
             }
         }
