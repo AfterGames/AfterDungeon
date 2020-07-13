@@ -56,6 +56,7 @@ public class CameraController : MonoBehaviour
     CameraRegion curRegion;
 
     private Vector3 offset; // 카메라 이동시 offset
+    public SpriteRenderer backGround;
 
     private void Awake()
     {
@@ -221,9 +222,16 @@ public class CameraController : MonoBehaviour
         while (sqrRemainingDistance > float.Epsilon)
         {
             Vector3 newPosition = Vector3.MoveTowards(controlcamera.transform.position, end, inverseMoveTime * Time.fixedDeltaTime);
+            Vector3 offSet = newPosition - controlcamera.transform.position;
             controlcamera.transform.position = newPosition;
             sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
 
+            if(backGround != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            {
+                Debug.Log(offSet);
+                offSet.y = 0;
+                backGround.transform.localPosition = backGround.transform.localPosition - offSet/40;
+            }
             //Debug.Log(camera.transform.position);
             // Debug.Log(end);
             //Debug.Log("Move!");
