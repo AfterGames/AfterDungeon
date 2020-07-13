@@ -184,7 +184,7 @@ public class CameraController : MonoBehaviour
                 break;
             }
         }
-        Debug.Log(i);
+        Debug.Log("region: "+i);
         return i;
     }
 
