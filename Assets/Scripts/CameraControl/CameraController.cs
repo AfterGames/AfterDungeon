@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CameraController : MonoBehaviour
 
     private bool isCameraMoving = false;
     public CameraType startType; // 게임 시작때 카메라 정보, 사용하지 않을 수도 있음
+    public int rn;
     public Vector3 startPosition;
     private bool Talking;
     public bool talking
@@ -114,8 +116,10 @@ public class CameraController : MonoBehaviour
                     controlcamera.transform.position = next;
                 }
             }
-            else if ((num = WhichRegion()) != transform.childCount)
+            //else if ((num = WhichRegion()) != transform.childCount)
+            else if ((num = WhichRegion()) < rn)
             {
+                Debug.Log(num);
                 Debug.Log("region changed");
                 if (curRegion.cameratype == CameraType.Center)
                 {
@@ -132,11 +136,28 @@ public class CameraController : MonoBehaviour
                     StartCoroutine(Move(curRegion.MaxPoint + new Vector3(0f, 0f, -10f)));
                 }
             }
+            else if(y < curDown)
+            {
+                Player.instance.GetDamage();
+            }
             else
             {
-                player.GetComponent<Player>().GetDamage();
+                //player.GetComponent<Player>().GetDamage();
+                StartCoroutine(NextStage());
             }
         }
+    }
+
+    IEnumerator NextStage()
+    {
+        Player.instance.FadeOut();
+        Player.instance.StopMoving();
+        yield return new WaitForSeconds(0.5f);
+        SceneChange();
+    }
+    void SceneChange() {
+        if (SceneManager.GetActiveScene().name == "0")
+            SceneManager.LoadScene("1");
     }
 
     int WhichRegion()
@@ -163,6 +184,7 @@ public class CameraController : MonoBehaviour
                 break;
             }
         }
+        Debug.Log(i);
         return i;
     }
 

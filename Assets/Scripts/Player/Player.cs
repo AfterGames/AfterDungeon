@@ -119,8 +119,18 @@ public class Player : MonoBehaviour
         canControl = false;
 
         StartCoroutine(Die(duration));
-        StartCoroutine(FadeOut());
+        StartCoroutine(IFadeOut());
     }
+    public void FadeOut()
+    {
+        StartCoroutine(IFadeOut());
+    }
+    public void FadeInAfterDelay()
+    {
+        StartCoroutine(IDelayFadeIn());
+    }
+
+
     public void GetFalseDamage(float duration = 0.8f)
     {
         if (!canControl) return;
@@ -139,7 +149,7 @@ public class Player : MonoBehaviour
             stageNum = num;
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator IFadeOut()
     {
         float rad = 30;
 
@@ -165,7 +175,22 @@ public class Player : MonoBehaviour
         //FadeObject.SetActive(false);
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator ICompleteFadeOut()
+    {
+        float rad = 30;
+
+        FadeObject.SetActive(true);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_CenterY", transform.position.y);
+        while (rad > 0)
+        {
+            FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", rad);
+            rad -= 60 * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator IFadeIn()
     {
         float rad = 0;
         transform.position = originPos;
@@ -182,18 +207,42 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        while (rad < 30)
+        while (rad < 50)
         {
             FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", rad);
-            rad += 50 * Time.deltaTime;
+            rad += 100 * Time.deltaTime;
             yield return null;
         }
 
-
-
-        FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", 30);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", 50);
         FadeObject.SetActive(false);
         CanControl(true);
+    }
+
+    private IEnumerator IDelayFadeIn()
+    {
+        specialControl = true;
+        transform.position = originPos;
+        FadeObject.SetActive(true);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_CenterY", transform.position.y);
+        FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", 5);
+        int steps = 80;
+        for(int i = 0; i < steps; i++)
+        {
+            FadeObject.GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
+            yield return new WaitForSeconds(1.2f / steps);
+        }
+        float rad = 5;
+        Debug.Log("rad=0");
+        while (rad < 100)
+        {
+            FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", rad);
+            rad += 50 * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        FadeObject.SetActive(false);
+        specialControl = false;
     }
 
     private IEnumerator Die(float duration)
@@ -214,7 +263,7 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Respawn");
         animator2.SetTrigger("Respawn");
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        StartCoroutine(FadeIn());
+        StartCoroutine(IFadeIn());
         //transform.position = originPos; FadeIn으로 이동함
         //CanControl(true); FadeIn으로 이동함
     }
