@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public bool fireLock;
     [SerializeField] private bool canControl = true;
     public bool specialControl;
+    public static Player instance;
 
     private PlayerMovement mover;
     [SerializeField]private Animator animator;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         }
         FadeObject.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
+        if (tag == "Player") instance = this;
     }
 
     private void Start()
@@ -220,6 +222,7 @@ public class Player : MonoBehaviour
     public void CanControl(bool canControl)
     {
         this.canControl = canControl;
+        if (canControl) specialControl = false;
         horizontal = 0;
         jump = false;
         fire = false;
@@ -231,6 +234,5 @@ public class Player : MonoBehaviour
         specialControl = true;
         CanControl(false);
         animator.SetFloat("Speed", -1);
-
     }
 }

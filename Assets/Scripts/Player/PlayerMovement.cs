@@ -852,6 +852,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Player.instance.fireLock = false;
     }
 
     public void LoseScarf()
