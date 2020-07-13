@@ -220,7 +220,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16896
   wallChecker: {fileID: 1512956965600725791}
-  slidingVelocity: 4
+  slidingVelocity: -4
   wallGravityFactor: 0.71428573
   detachWallTime: 0.1
   slidingJumpVelocity: {x: 12, y: 17}
