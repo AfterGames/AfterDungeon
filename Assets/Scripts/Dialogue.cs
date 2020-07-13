@@ -20,6 +20,7 @@ public class Dialogue : MonoBehaviour
         public float cameraSize;
     }
     public bool skippable;
+    public bool ignoreInputs;
     public SpeechBubbleCtrl SpeechBubblePrefab;
     private SpeechBubbleCtrl speechBubble;
     private int currentIndex = -1;
