@@ -64,6 +64,7 @@ public class UICluster : MonoBehaviour
 
     public virtual void ActivateAll(bool On)
     {
+        Debug.Log(On);
         isOn = On;
         for(int i=0;i<uiList.Count;i++)
         {

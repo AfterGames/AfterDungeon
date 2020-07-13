@@ -8,6 +8,11 @@ public class InGameMenu : UICluster
 {
     private bool Esc;
 
+    protected override void Start()
+    {
+        ActivateAll(isOn);
+    }
+
     protected override void Update()
     {
         base.Update();
