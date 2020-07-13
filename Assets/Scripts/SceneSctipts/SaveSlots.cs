@@ -15,6 +15,8 @@ public class SaveSlots : UIEffect
     public Text WorldNumText;
     public Text deathNumText;
 
+    public Sprite filledSprite;
+
     [SerializeField]private bool hasData;
     public bool HasData
     {
@@ -65,6 +67,7 @@ public class SaveSlots : UIEffect
             slotNumText.text = "Save " + slotNum.ToString();
             WorldNumText.text = "World " + PlayerPrefs.GetInt("worldNum_" + slotNum.ToString()).ToString();
             deathNumText.text = "Death: " + PlayerPrefs.GetInt("deathNum_" + slotNum.ToString()).ToString();
+            GetComponent<Image>().sprite = filledSprite;
         }
     }
 

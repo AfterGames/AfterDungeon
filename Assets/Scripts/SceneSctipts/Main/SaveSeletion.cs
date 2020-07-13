@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveSeletion : UICluster
 {
+    public GameObject blurBG;
     bool pressC;
     bool back;
     [SerializeField] private UICluster mainCluster;
@@ -32,7 +33,13 @@ public class SaveSeletion : UICluster
             }
         }
     }
-    
+
+    public override void ActivateAll(bool On)
+    {
+        base.ActivateAll(On);
+        blurBG.SetActive(On);
+    }
+
     public static void LoadGame()
     {
         SceneManager.LoadScene("0");
