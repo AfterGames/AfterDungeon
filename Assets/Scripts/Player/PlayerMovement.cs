@@ -366,6 +366,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundingEvent()
     {
+        SoundManager.instance.Play(SoundManager.Clip.jumpLand);
         SetBool("IsGrounded", true);
         SetBool("IsJumping", false);
         Stamina = totalStamina;
@@ -420,6 +421,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFired == false&&FireChecking())
         {
+            SoundManager.instance.Play(SoundManager.Clip.shoot);
             SetTrigger("Fire");
             isFired = true;
             
@@ -654,6 +656,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         #endregion
+        Debug.Log(x + ", " + y);
+        if(x - 10 > float.Epsilon)
+            SoundManager.instance.Play(SoundManager.Clip.jump);
 
         GroundChange(null);
         rb2D.velocity = new Vector2(x, y);
