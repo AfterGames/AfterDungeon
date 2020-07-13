@@ -11,11 +11,11 @@ public class ButtonUI : UIEffect
     [SerializeField] int onFontSize;
     [SerializeField] int offFontSize;
 
-    //[SerializeField] Text text;
+    [SerializeField] Text text;
     // Start is called before the first frame update
     private void Awake()
     {
-        //text = transform.GetChild(0).GetComponent<Text>();
+        text = transform.GetChild(0).GetComponent<Text>();
     }
     void Start()
     {
@@ -27,17 +27,17 @@ public class ButtonUI : UIEffect
         
     }
 
-    //public override void Activate()
-    //{
-    //    text.color = onTextColor;
-    //    text.fontSize = onFontSize;
-    //}
+    public override void Activate()
+    {
+        text.color = onTextColor;
+        text.fontSize = onFontSize;
+    }
 
-    //public override void DeActivate()
-    //{
-    //    text.color = offTextColor;
-    //    text.fontSize = offFontSize;
-    //}
+    public override void DeActivate()
+    {
+        text.color = offTextColor;
+        text.fontSize = offFontSize;
+    }
 
     public override void Select()
     {
