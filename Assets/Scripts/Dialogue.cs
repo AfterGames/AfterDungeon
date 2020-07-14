@@ -149,9 +149,9 @@ public class Dialogue : MonoBehaviour
         speechBubble.SetText(currentBubble.content);
     }
 
-    public void EndTalk(bool setup = false)
+    public void EndTalk(bool hold = false)
     {
-        StartCoroutine(DelayedPlayerCanControl(setup));
+        StartCoroutine(DelayedPlayerCanControl(hold));
         isStarted = false;
         CameraController.instance.talking = false;
         Destroy(GetComponent<BoxCollider2D>());
@@ -160,7 +160,7 @@ public class Dialogue : MonoBehaviour
     IEnumerator DelayedPlayerCanControl(bool setup)
     {
         yield return new WaitForSeconds(0.2f);
-        player.CanControl(true);
+        player.CanControl(!setup);
         player.specialControl = setup;
     }
 
