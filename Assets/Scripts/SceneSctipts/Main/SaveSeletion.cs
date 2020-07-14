@@ -47,19 +47,20 @@ public class SaveSeletion : UICluster
 
     public void Startbutton()
     {
-        bool isthereData = false;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            isthereData = transform.GetChild(i).GetComponent<SaveSlots>().HasData || isthereData;
-            if(isthereData)
-            {
-                FindObjectOfType<MainCluster>().GoNextCluster();
-                break;
-            }
-        }
-        if (!isthereData)
-        {
-            LoadGame();
-        }
+        //bool isthereData = false;
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    isthereData = transform.GetChild(i).GetComponent<SaveSlots>().HasData || isthereData;
+        //    if(isthereData)
+        //    {
+        //        FindObjectOfType<MainCluster>().GoNextCluster();
+        //        break;
+        //    }
+        //}
+        //if (!isthereData)
+        //{
+        //    LoadGame();
+        //}
+        LoadGame();
     }
 }
