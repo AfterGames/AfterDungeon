@@ -87,7 +87,7 @@ public class SaveSlots : UIEffect
         else
         {
             DataAdmin.instance.SetData(DataType.slotNum, slotNum);
-            SceneManager.LoadScene("0_1");
+            SceneManager.LoadScene("0");
         }
         //GetComponent<Button>().onClick.Invoke();
     }
