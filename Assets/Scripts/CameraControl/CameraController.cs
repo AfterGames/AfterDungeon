@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     private bool isCameraMoving = false;
     public CameraType startType; // 게임 시작때 카메라 정보, 사용하지 않을 수도 있음
-    public int rn;
+    public int numberOfRegions;
     public Vector3 startPosition;
     private bool Talking;
     public bool talking
@@ -118,7 +118,7 @@ public class CameraController : MonoBehaviour
                 }
             }
             //else if ((num = WhichRegion()) != transform.childCount)
-            else if ((num = WhichRegion()) < rn)
+            else if ((num = WhichRegion()) < numberOfRegions)
             {
                 Debug.Log(num);
                 Debug.Log("region changed");
@@ -185,7 +185,6 @@ public class CameraController : MonoBehaviour
                 break;
             }
         }
-        Debug.Log("region: "+i);
         return i;
     }
 
