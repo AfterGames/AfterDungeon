@@ -52,33 +52,36 @@ public class SpeechBubbleCtrl : MonoBehaviour
         hlg.padding.right = pad;
         content.text = "";
         content.fontSize = Screen.width / 50;
-        txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
-        currentCharId = 0;
-        talking = true;
-        delayStarted = false;
+        //txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
+        //currentCharId = 0;
+        //talking = true;
+        //delayStarted = false;
+        content.text = text.Replace("NEWLINE", "\n");
+        StartCoroutine(DelayBetweenSpeehces(delayTime));
     }
 
     private int currentCharId = 0;
     //private float 
     bool delayStarted = false;
     public float delayTime = 0.5f;
-    private void FixedUpdate()
-    {
-        if (currentCharId < txtArray.Length)
-        {
-            content.text += txtArray[currentCharId++];
-        }
+    //private void FixedUpdate()
+    //{
+    //    if (currentCharId < txtArray.Length)
+    //    {
+    //        content.text += txtArray[currentCharId++];
+    //    }
 
-        else if (!delayStarted)
-            StartCoroutine(DelayBetweenSpeehces(delayTime));
-    }
+    //    else if (!delayStarted)
+    //        StartCoroutine(DelayBetweenSpeehces(delayTime));
+    //}
 
     private bool talking;
     public bool Talking
     {
         get
         {
-            return talking || currentCharId < txtArray.Length;
+            //return talking || currentCharId < txtArray.Length;
+            return talking;
         }
     }
 
