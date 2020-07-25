@@ -2,16 +2,17 @@
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerMovement_parent))]
 public class Player : MonoBehaviour
 {
+    public bool beKinematic;
     [Header("Control State")]
     public bool fireLock;
     [SerializeField] private bool canControl = true;
     public bool specialControl;
     public static Player instance;
 
-    private PlayerMovement mover;
+    public PlayerMovement_parent mover { get; private set; }
     [SerializeField]private Animator animator;
     [SerializeField] private Animator animator2;
     private float horizontal = 0;
@@ -36,10 +37,26 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public bool dialogueReady = false;
 
+
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         fireButtonTime = 0f;
-        mover = GetComponent<PlayerMovement>();
+        if (beKinematic)
+        {
+            mover = GetComponent<PlayerMovement_Kinematic>();
+            Destroy(GetComponent<PlayerMovement>());
+            rb.gravityScale = 0;
+            //rb.bodyType = RigidbodyType2D.Kinematic;
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll ;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            rb.freezeRotation = true;
+        }
+        else
+        {
+            mover = GetComponent<PlayerMovement>();
+            Destroy(GetComponent<PlayerMovement_Kinematic>());
+        }
         FadeObject = GameObject.FindGameObjectWithTag("FadeObject");
         if(FadeObject==null)
         {
@@ -279,7 +296,7 @@ public class Player : MonoBehaviour
 
     public void StopMoving()
     {
-        rb.velocity = Vector3.zero;
+        mover.Stop();
         specialControl = true;
         CanControl(false);
         animator.SetFloat("Speed", -1);

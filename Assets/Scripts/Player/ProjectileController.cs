@@ -15,10 +15,10 @@ public class ProjectileController : MonoBehaviour
     private float endX;
 
     private float elapsedtime;
-    private PlayerMovement player;
+    private PlayerMovement_parent player;
     public float limitTime = 999f;
 
-    public void Initialize(bool isGoingRight, float speed, float distance, PlayerMovement person)
+    public void Initialize(bool isGoingRight, float speed, float distance, PlayerMovement_parent person)
     {
         this.isGoingRight = isGoingRight;
         this.speed = speed;
@@ -103,10 +103,10 @@ public class ProjectileController : MonoBehaviour
 
         if(coll.tag == "Player")
         {
-            
+            Debug.Log("tail player contact");
             if (!isPlayerThere && !isEnd)
             {
-                coll.gameObject.GetComponent<PlayerMovement>().ProjectileJump();
+                coll.gameObject.GetComponent<PlayerMovement_parent>().ProjectileJump();
                 ArrowEnd();
             }           
         }
@@ -134,7 +134,7 @@ public class ProjectileController : MonoBehaviour
         {
             if (!isPlayerThere)
             {
-                collision.collider.gameObject.GetComponent<PlayerMovement>().ProjectileJump();
+                collision.collider.gameObject.GetComponent<PlayerMovement_parent>().ProjectileJump();
                 ArrowEnd();
             }
         }

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1239509712133819262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748830457842185644}
+  m_Layer: 0
+  m_Name: PenetrateChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1748830457842185644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239509712133819262}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1512956965600725791}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512956965600725784
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +56,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1748830457842185644}
   m_Father: {fileID: 1512956966128775182}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,6 +107,7 @@ GameObject:
   - component: {fileID: 4707235765576071502}
   - component: {fileID: 1629627112665743721}
   - component: {fileID: 4538872860511273360}
+  - component: {fileID: 9004369557473961146}
   m_Layer: 8
   m_Name: Player_Tutorial
   m_TagString: Player
@@ -104,6 +136,7 @@ Transform:
   - {fileID: 2189663317765052307}
   - {fileID: 4884036455888424840}
   - {fileID: 6700935967259565969}
+  - {fileID: 2709669572944130810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2878f23912f2eb444bfde3d13f19b199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beKinematic: 1
   fireLock: 1
   canControl: 1
   specialControl: 0
@@ -193,6 +227,7 @@ MonoBehaviour:
   isFired: 0
   isPlatform: 0
   spr: {fileID: 4149253611494791460}
+  spr2: {fileID: 0}
   movingPlatform: {fileID: 0}
   platformVelocity: {x: 0, y: 0}
   addVelocity: {x: 0, y: 0}
@@ -211,6 +246,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 25088
   groundChecker: {fileID: 1512956967031692037}
+  buryChecker: {fileID: 0}
+  ceilingChecker: {fileID: 0}
+  whatIsCeiling:
+    serializedVersion: 2
+    m_Bits: 0
   fireChecker: {fileID: 1512956965875450166}
   projectilePrefab: {fileID: 2480807860061347004, guid: 65eb601f96614e34bbffcb36f1fec34a,
     type: 3}
@@ -228,6 +268,7 @@ MonoBehaviour:
   wallGravityFactor: 0.71428573
   detachWallTime: 0.1
   slidingJumpVelocity: {x: 12, y: 17}
+  penetrateChecker: {fileID: 1748830457842185644}
   totalStamina: 100
   stamina: 0
   wallSlideStatmina: 0
@@ -391,6 +432,78 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &9004369557473961146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512956966128775220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c122f5642ef91f14884491d3366a80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isJumping: 0
+  isDashed: 0
+  isFired: 0
+  isPlatform: 0
+  spr: {fileID: 4149253611494791460}
+  spr2: {fileID: 423973332723952847}
+  movingPlatform: {fileID: 0}
+  platformVelocity: {x: 0, y: 0}
+  addVelocity: {x: 0, y: 0}
+  wallState: 0
+  groundAccel: 80
+  groundDecel: 200
+  airAccel: 40
+  airDecel: 80
+  horizontalSpeed: 12
+  originGravity: 6
+  jumpVelocity: {x: 12, y: 20.5}
+  dashVelocity: {x: 40, y: 5}
+  Tail: {fileID: 3100627993957595223}
+  tailPosition: {fileID: 7286169290362463992}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 25088
+  groundChecker: {fileID: 1512956967031692037}
+  buryChecker: {fileID: 970106131010058209}
+  ceilingChecker: {fileID: 2709669572944130810}
+  whatIsCeiling:
+    serializedVersion: 2
+    m_Bits: 16896
+  fireChecker: {fileID: 1512956965875450166}
+  projectilePrefab: {fileID: 2480807860061347004, guid: 65eb601f96614e34bbffcb36f1fec34a,
+    type: 3}
+  maxDistance: 6
+  fireVelocity: 40
+  fireJumpVelocity: {x: 5, y: 10}
+  projJumpVelocity: {x: 0, y: 20}
+  shortFireTime: 1
+  longFireTime: 2.5
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 16896
+  wallChecker: {fileID: 1512956965600725791}
+  slidingVelocity: -4
+  wallGravityFactor: 0.7142857
+  detachWallTime: 0.1
+  slidingJumpVelocity: {x: 12, y: 17}
+  penetrateChecker: {fileID: 1748830457842185644}
+  totalStamina: 100
+  stamina: 0
+  wallSlideStatmina: 0
+  mildJumpTime: 0.04
+  allowedJumpTime: 0.04
+  dashingTime: 0.2
+  mildWallTime: 0.04
+  wallJumpExtortionTime: 0.11
+  animator: {fileID: 7502948887635153046}
+  animator2: {fileID: 3291570910232183853}
+  velocity: {x: 0, y: 0}
+  gravityScaleFactor: 9.81
 --- !u!1 &1512956967031692038
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,9 +530,40 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 970106131010058209}
   m_Father: {fileID: 1512956966128775182}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2095258640719264317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2709669572944130810}
+  m_Layer: 0
+  m_Name: CeilingChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2709669572944130810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095258640719264317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1512956966128775182}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2813502197811030510
 GameObject:
@@ -924,6 +1068,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1512956966128775182}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8935159191513633638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 970106131010058209}
+  m_Layer: 0
+  m_Name: BuryChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &970106131010058209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935159191513633638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1512956967031692037}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2379694426338985581
 PrefabInstance:

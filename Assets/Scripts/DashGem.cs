@@ -40,7 +40,7 @@ public class DashGem : MonoBehaviour
             if (collision.tag == "Player")
             {
                 Debug.Log("player used");
-                collision.GetComponent<PlayerMovement>().DashRefill();
+                collision.GetComponent<PlayerMovement_parent>().DashRefill();
                 isActivated = false;
                 spr.sprite = deActivated;
             }

@@ -40,7 +40,7 @@ public class JumpGem : MonoBehaviour
             if (collision.tag == "Player")
             {
                 Debug.Log("player used");
-                collision.GetComponent<PlayerMovement>().ProjectileJump();
+                collision.GetComponent<PlayerMovement_parent>().ProjectileJump();
                 isActivated = false;
                 spr.sprite = deActivated;
             }
