@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         }
         FadeObject.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         if (tag == "Player") instance = this;
     }
 
