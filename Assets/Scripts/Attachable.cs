@@ -35,7 +35,6 @@ public class Attachable : MonoBehaviour
             if (downObject != null)
                 downObject.RecursiveParenting(allFather);
         }
-
     }
 
     private void Start()

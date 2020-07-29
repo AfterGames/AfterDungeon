@@ -38,12 +38,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             velocity.y -= g * Time.fixedDeltaTime;
         //if (velocity.y > 0)
 
-        Block(ref velocity);
-        //if(velocity.y != 0)   Debug.Log("after g"+velocity);
-        transform.Translate(velocity * Time.deltaTime);
+        Block();
+        transform.Translate(velocity * Time.fixedDeltaTime);
     }
 
-    private void Block(ref Vector2 velocity)
+    private void Block()
     {
 
         if (closestWall != null)
@@ -70,6 +69,22 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             {
                 velocity.y = 0;
                 Debug.Log("천장에 막힘");
+
+                if (IsGrounded)
+                {
+                    Player.instance.GetDamage();
+                    Debug.Log("압사");
+                }
+            }
+        }   
+
+        if(lastGround != null && !isJumping)
+        {
+            ContactPlayer cp = lastGround.GetComponent<ContactPlayer>();
+            if (cp != null && (velocity.y <= 0 || cp.currentVelocity.y >= 0))
+            {
+
+                velocity += cp.currentVelocity;
             }
         }
     }
@@ -174,26 +189,26 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (Ground == null && lastGround != null)
         {
             if (lastGround.GetComponent<ContactPlayer>() != null)
-                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
         }
         else if (Ground != null && lastGround == null)
         {
             if (Ground.GetComponent<ContactPlayer>() != null)
-                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
         }
         else if (Ground != null && lastGround != null)
         {
             if (Ground == lastGround)
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(gameObject);
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(this);
             }
             else
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
                 if (Ground.GetComponent<ContactPlayer>() != null)
-                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
             }
         }
         lastGround = Ground;
@@ -217,7 +232,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 {
                     if (colliders[i].GetComponent<ContactPlayer>() != null && wallState != WallState.None)
                     {
-                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this.gameObject);
+                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this);
                     }
                 }
             }

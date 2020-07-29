@@ -7,14 +7,22 @@ public class FallingBlock : ContactPlayer
 {
     [SerializeField]private Rigidbody2D rb2D;
     public Vector3 origin;
-    public float velocity;
+    public float fallSpeed;
 
+    public bool intact = true;
     public bool isFalling = false;
+    public bool fallEnded = false;
 
     private float elapsed = 0;
 
-    public GameObject curPlayer;
+    public PlayerMovement_parent curPlayer;
 
+
+    public bool logger;
+    Attachable attachable;
+    [SerializeField]FallingBlock father;
+    [SerializeField]List<FallingBlock> cluster;
+    public Animator animator;
 
     private void OnDrawGizmos()
     {
@@ -25,32 +33,65 @@ public class FallingBlock : ContactPlayer
     }
     private void Start()
     {
-
         origin = transform.position;
-        if (GetComponent<Attachable>() != null)
+
+        attachable = GetComponent<Attachable>();
+        if (attachable != null)
         {
-            if (GetComponent<Attachable>().allFather != null)
+            if (attachable.allFather != null)
             {
-                rb2D = GetComponent<Attachable>().allFather.GetComponent<Rigidbody2D>();
+                rb2D = attachable.allFather.GetComponent<Rigidbody2D>();
+                father = attachable.allFather.GetComponent<FallingBlock>();
             }
             if (rb2D == null)
                 StartCoroutine(WaitFather());
         }
         else
+        {
             rb2D = GetComponent<Rigidbody2D>();
-    }
+            father = attachable.allFather.GetComponent<FallingBlock>();
+        }
 
-    private void Update()
+        if(this == father)
+        {
+            gameObject.name = "FallingBlockFather";
+            cluster = new List<FallingBlock>();
+            cluster.Add(this);
+            int j = 0;
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                var fb = transform.GetChild(i).GetComponent<FallingBlock>();
+                if (fb != null)
+                {
+                    cluster.Add(fb);
+                    fb.gameObject.name = "FallingBlock" + j;
+                    j++;
+                }
+            }
+            //if(logger)
+        }
+    }
+    //public bool debug;
+    Vector2 prev;
+    private void FixedUpdate()
     {
         Check();
 
-        if (rb2D != null && rb2D.velocity.magnitude > Mathf.Epsilon)
+        //if (rb2D != null && currentVelocity.magnitude > Mathf.Epsilon)
+        //{
+        //    isFalling = true;
+        //}
+        if (father != null)
         {
-            isFalling = true;
+            currentVelocity = father.currentVelocity;
         }
 
-        
-
+        if (currentVelocity.magnitude > Mathf.Epsilon && !fallEnded)
+        {
+            isFalling = true;
+            prev = transform.position;
+            if(father ==this)transform.position = prev + currentVelocity * Time.fixedDeltaTime;
+        }
     }
 
     private IEnumerator WaitFather()
@@ -58,45 +99,75 @@ public class FallingBlock : ContactPlayer
         while (rb2D == null)
         {
             yield return new WaitForSeconds(0.08f);
-            if(GetComponent<Attachable>().allFather!=null)
-                rb2D = GetComponent<Attachable>().allFather.GetComponent<Rigidbody2D>();
+            if(attachable.allFather !=null)
+                rb2D = attachable.allFather.GetComponent<Rigidbody2D>();
+                father = attachable.allFather.GetComponent<FallingBlock>(); 
         }
 
     }
 
-    public override void OnPlayerEnter(GameObject player)
+    public override void OnPlayerEnter(PlayerMovement_parent player)
     {
-        if(!isFalling)
+        curPlayer = player;
+
+        if (intact)
         {
-            rb2D.GetComponent<FallingBlock>().curPlayer = player;
-            isFalling = true;           
-            rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
-            //player.GetComponent<Rigidbody2D>().isKinematic = true;
-            //player.transform.parent = rb2D.transform;
-
+            Debug.Log("player enter " + gameObject.name);
+            //rb2D.GetComponent<FallingBlock>().curPlayer = player;
+            StartCoroutine(father.DelayedFall());
         }
     }
-
-    public override void OnPlayerExit(GameObject player)
+    private IEnumerator DelayedFall()
     {
-        rb2D.GetComponent<FallingBlock>().curPlayer = null;
-        //player.GetComponent<Rigidbody2D>().velocity = player.GetComponent<Rigidbody2D>().velocity + rb2D.velocity;
+        if (intact)
+        {
+            //Debug.Log("delayed fall " + gameObject.name);
+            foreach (FallingBlock fb in cluster)
+            {
+                fb.animator.SetTrigger("Shake");
+                fb.intact = false;
+                //Debug.Log(fb.intact);
+            }
+            yield return new WaitForSeconds(1);
+
+            foreach (FallingBlock fb in cluster)
+            {
+                fb.StartFall();
+                fb.animator.SetTrigger("Fall");
+            }
+        }
+        else yield return null;
+    }
+
+    private void StartFall()
+    {
+
+        if (isFalling || fallEnded) return;
+        isFalling = true;
+        currentVelocity = new Vector2(0, -fallSpeed);
+    }
+
+
+    public override void OnPlayerExit(PlayerMovement_parent player)
+    {
+        curPlayer = null;
+        //player.GetComponent<Rigidbody2D>().velocity = player.GetComponent<Rigidbody2D>().velocity + currentVelocity;
         //player.GetComponent<Rigidbody2D>().isKinematic = false;
         //player.transform.parent = null;
 
     }
 
-    public override void OnPlayerStay(GameObject player)
+    public override void OnPlayerStay(PlayerMovement_parent player)
     {
     }
 
-    public override void OnWallEnter(GameObject player)
+    public override void OnWallEnter(PlayerMovement_parent player)
     {
-        if (!isFalling)
+        if (intact)
         {
-            rb2D.GetComponent<FallingBlock>().curPlayer = player;
+            curPlayer = player;
             isFalling = true;
-            rb2D.velocity = new Vector2(0, -rb2D.GetComponent<FallingBlock>().velocity);
+            StartCoroutine(father.DelayedFall());
         }
     }
 
@@ -111,13 +182,15 @@ public class FallingBlock : ContactPlayer
 
         for (int i = 0; i < colliders.Count; i++)
         {
-            if (colliders[i].gameObject != this.gameObject && colliders[i].gameObject.tag!="Player")
+            if (colliders[i].gameObject != gameObject && colliders[i].gameObject.tag!="Player")
             {
-                if (colliders[i].GetComponent<Attachable>() != null)
+                var a = colliders[i].GetComponent<Attachable>();
+                if (a != null)
                 {
-                    if (colliders[i].GetComponent<Attachable>().allFather != GetComponent<Attachable>().allFather)
+                    if (a.allFather != GetComponent<Attachable>().allFather)
                         EndFalling();
                 }
+                
                 else if (colliders[i].tag != "Dangerous")
                     EndFalling();
             }
@@ -126,14 +199,28 @@ public class FallingBlock : ContactPlayer
 
     private void EndFalling()
     {
-        rb2D.velocity = new Vector2(0, 0);
-        if(rb2D.GetComponent<FallingBlock>().curPlayer !=null)
+        currentVelocity = new Vector2(0, 0);
+        if(curPlayer != null)
         {
-            rb2D.GetComponent<FallingBlock>().curPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
-            rb2D.GetComponent<FallingBlock>().curPlayer.transform.parent = null;
-        }
-        
 
+            if (!Player.instance.beKinematic)
+            {
+                curPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
+                curPlayer.transform.parent = null;
+            }
+
+        }
+        fallEnded = true;
+
+        if (this != father)
+            father.EndFalling();
+        else
+        {
+            foreach(FallingBlock fb in cluster)
+            {
+                if(!fb.fallEnded)    fb.EndFalling();
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -149,16 +236,22 @@ public class FallingBlock : ContactPlayer
         else if(collision.collider.tag != "Player")
         {
             Debug.Log("OUCH!");
-            if(collision.collider.transform.position.y<transform.position.y-0.2f && rb2D.velocity.y<0)
+            if(collision.collider.transform.position.y<transform.position.y-0.2f && currentVelocity.y<0)
             {
-                rb2D.velocity = new Vector2(0, 0);
-                /*
+                currentVelocity = new Vector2(0, 0);
+
                 if (curPlayer != null)
                 {
-                    curPlayer.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                    curPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
+                    curPlayer.Stop();
+                    if(!Player.instance.beKinematic)
+                    {
+                        curPlayer.movingPlatform = null;
+                        curPlayer.rb2D.isKinematic = false;
+
+                    }
+
                 }
-                */
+
             }
         }
     }

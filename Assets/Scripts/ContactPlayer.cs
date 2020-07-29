@@ -4,12 +4,14 @@ using UnityEngine;
 
 public abstract class ContactPlayer : MonoBehaviour
 {
-    public abstract void OnPlayerEnter(GameObject player);
+    public Vector2 currentVelocity;
 
-    public abstract void OnPlayerStay(GameObject player);
+    public abstract void OnPlayerEnter(PlayerMovement_parent player);
 
-    public abstract void OnPlayerExit(GameObject player);
+    public abstract void OnPlayerStay(PlayerMovement_parent player);
 
-    public abstract void OnWallEnter(GameObject player);
+    public abstract void OnPlayerExit(PlayerMovement_parent player);
+
+    public abstract void OnWallEnter(PlayerMovement_parent player);
 
 }
