@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DashGem : MonoBehaviour
 {
+    Animator animator;
     SpriteRenderer spr;
     public Sprite activated;
     public Sprite deActivated;
@@ -12,8 +13,10 @@ public class DashGem : MonoBehaviour
 
     float elapsedTime;
     // Start is called before the first frame update
+
     void Start()
     {
+        animator = transform.GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         isActivated = true;
         elapsedTime = 0;
@@ -30,6 +33,7 @@ public class DashGem : MonoBehaviour
                 elapsedTime = 0;
                 isActivated = true;
                 spr.sprite = activated;
+                animator.enabled = true;
             }
         }
     }
@@ -43,6 +47,7 @@ public class DashGem : MonoBehaviour
                 collision.GetComponent<PlayerMovement_parent>().DashRefill();
                 isActivated = false;
                 spr.sprite = deActivated;
+                animator.enabled = false;
             }
         }
     }
