@@ -27,7 +27,7 @@ public class FallingBlock : ContactPlayer
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector2(0.8f,1f));
+        Gizmos.DrawWireCube(transform.position - Vector3.up * 0.05f, new Vector2(0.8f,0.9f));
 
         
     }
@@ -88,7 +88,7 @@ public class FallingBlock : ContactPlayer
 
         if (currentVelocity.magnitude > Mathf.Epsilon && !fallEnded)
         {
-            isFalling = true;
+            //isFalling = true;
             prev = transform.position;
             if(father ==this)transform.position = prev + currentVelocity * Time.fixedDeltaTime;
         }
@@ -141,10 +141,12 @@ public class FallingBlock : ContactPlayer
 
     private void StartFall()
     {
-
+        Debug.Log(isFalling + " " + fallEnded + " " + gameObject.name);
         if (isFalling || fallEnded) return;
+        Debug.Log("start fall " + gameObject.name);
         isFalling = true;
-        currentVelocity = new Vector2(0, -fallSpeed);
+        currentVelocity = new Vector2(0, -father.fallSpeed);
+        //Debug.Log(currentVelocity);
     }
 
 
@@ -166,7 +168,6 @@ public class FallingBlock : ContactPlayer
         if (intact)
         {
             curPlayer = player;
-            isFalling = true;
             StartCoroutine(father.DelayedFall());
         }
     }
@@ -174,7 +175,7 @@ public class FallingBlock : ContactPlayer
     void Check()
     {
         List<Collider2D> colliders = new List<Collider2D>();
-        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.9f, 1f), 0);
+        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position - Vector3.up * 0.05f, new Vector2(0.9f, 0.9f), 0);
         foreach (Collider2D coll in colls)
         {
             colliders.Add(coll);
@@ -187,11 +188,13 @@ public class FallingBlock : ContactPlayer
                 var a = colliders[i].GetComponent<Attachable>();
                 if (a != null)
                 {
-                    if (a.allFather != GetComponent<Attachable>().allFather)
+                    if (a.allFather != GetComponent<Attachable>().allFather && a.transform.position.y > transform.position.y)
                         EndFalling();
                 }
-                
-                else if (colliders[i].tag != "Dangerous")
+
+                //else if (colliders[i].tag != "Dangerous")
+                //    EndFalling();
+                else
                     EndFalling();
             }
         }
@@ -199,6 +202,8 @@ public class FallingBlock : ContactPlayer
 
     private void EndFalling()
     {
+        if (fallEnded) return;
+        if(logger)Debug.Log("end " +gameObject.name);
         currentVelocity = new Vector2(0, 0);
         if(curPlayer != null)
         {
@@ -238,7 +243,7 @@ public class FallingBlock : ContactPlayer
             Debug.Log("OUCH!");
             if(collision.collider.transform.position.y<transform.position.y-0.2f && currentVelocity.y<0)
             {
-                currentVelocity = new Vector2(0, 0);
+                //currentVelocity = new Vector2(0, 0);
 
                 if (curPlayer != null)
                 {

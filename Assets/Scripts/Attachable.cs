@@ -20,6 +20,8 @@ public class Attachable : MonoBehaviour
 
     private Vector2 checkBox = new Vector2(0.5f, 0.5f);
 
+    public bool IsFather { get { Debug.Log((gameObject == allFather) + " " + gameObject.name); return gameObject == allFather; } }
+
     private void Awake()
     {
         upObject = CheckSidePlatform(Up.position);

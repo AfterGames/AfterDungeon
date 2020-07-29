@@ -27,7 +27,8 @@ public class FallingReset : ResetableObject
         //}
 
         fallingBlock.currentVelocity = Vector2.zero;
-        transform.position = fallingBlock.origin;
-
+        if(attachable.IsFather)
+            transform.position = fallingBlock.origin;
+        Debug.Log("reset");
     }
 }
