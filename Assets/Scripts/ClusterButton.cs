@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ClusterButton : ContactArrow
 {
+    [HideInInspector]
     public ClusterButtonGate gate;
-    public bool turnedOn; 
+    public bool turnedOn;
     private bool TurnedOn
     {
         get { return turnedOn; }
@@ -17,12 +18,12 @@ public class ClusterButton : ContactArrow
         }
     }
 
-    public SpriteRenderer spr;
+    private SpriteRenderer spr;
     public Sprite onImage;
     public Sprite offImage;
     private void Awake()
     {
-        //mover
+        spr = GetComponent<SpriteRenderer>();
     }
 
     public override void OnLodgingEnterAction(GameObject arrow)
