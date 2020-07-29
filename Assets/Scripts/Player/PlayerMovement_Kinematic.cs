@@ -378,6 +378,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
     }
 
+    public void SpringJump()
+    {
+        ApplyJumpVelocity(0, 1.414f * jumpVelocity.y);
+    }
+
 
     protected override void Dash(float horizontal)
     {
