@@ -9,12 +9,14 @@ using DG.Tweening;
 
 public class PlayerMovement_Kinematic : PlayerMovement_parent
 {
+    public static PlayerMovement_Kinematic instance;
     public Vector2 velocity = Vector2.zero;
     float g = 0;
     [SerializeField] public float gravityScaleFactor;
 
     protected override void Awake()
     {
+        instance = this;
         rb2D = GetComponent<Rigidbody2D>();
         elapsed = 0f;
 
@@ -70,11 +72,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 velocity.y = 0;
                 Debug.Log("천장에 막힘");
 
-                if (IsGrounded)
-                {
-                    Player.instance.GetDamage();
-                    Debug.Log("압사");
-                }
+                //if (IsGrounded)
+                //{
+                //    Player.instance.GetDamage();
+                //    Debug.Log("압사");
+                //}
             }
         }   
 
