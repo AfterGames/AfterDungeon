@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9009775260775215556}
-  - component: {fileID: 5245221435549254584}
+  - component: {fileID: 7643982282302203457}
   - component: {fileID: 5090876201422594095}
   - component: {fileID: 2536723450452129556}
+  - component: {fileID: 7485651590065192381}
+  - component: {fileID: 2130287556947628719}
+  - component: {fileID: 7395614464965704651}
   m_Layer: 0
   m_Name: DashGem
   m_TagString: Item
@@ -34,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5245221435549254584
+--- !u!212 &7643982282302203457
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,13 +74,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e4f8a96be7e0834cb460b97d6304847, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: b0a8fb2921f5f4a489c8c6ca50316be2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.3125, y: 0.3125}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb5ecea43b89814d8bed623b10d17f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activated: {fileID: 21300000, guid: 5e4f8a96be7e0834cb460b97d6304847, type: 3}
-  deActivated: {fileID: 21300000, guid: 965bfc9cd65cf654d8924386fabb7066, type: 3}
+  activated: {fileID: 21300000, guid: b0a8fb2921f5f4a489c8c6ca50316be2, type: 3}
+  deActivated: {fileID: 21300000, guid: 7a1a1c65c04e6b24f8ebb5f0ca70fc0b, type: 3}
 --- !u!58 &2536723450452129556
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,6 +116,58 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15624999
+--- !u!50 &7485651590065192381
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129997609592703545}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!95 &2130287556947628719
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129997609592703545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6a6aa9ba8a859040ba8d462ec898fea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7395614464965704651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129997609592703545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deec11a7d678c764ea54c9afe317de51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5457786739875373073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +179,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CircleLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 132679147826687680, guid: 785d90300397a6f4fac6218e6d888df9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132679147826687680, guid: 785d90300397a6f4fac6218e6d888df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 132679147826687681, guid: 785d90300397a6f4fac6218e6d888df9,
         type: 3}

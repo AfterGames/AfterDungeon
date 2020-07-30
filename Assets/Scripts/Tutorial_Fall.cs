@@ -21,6 +21,7 @@ public class Tutorial_Fall : MonoBehaviour
     {
         if (!started && collision.tag == "Player")
         {
+            Debug.Log("player enter");
             started = true;
             Player player = collision.gameObject.GetComponent<Player>();
             player.StopMoving();

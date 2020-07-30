@@ -227,7 +227,7 @@ public class CameraController : MonoBehaviour
 
             if(backGround != null && Mathf.Abs(offSet.x) > float.Epsilon)
             {
-                Debug.Log(offSet);
+                //Debug.Log(offSet);
                 offSet.y = 0;
                 backGround.transform.localPosition = backGround.transform.localPosition - offSet/40;
             }
