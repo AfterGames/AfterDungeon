@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class FallingReset : ResetableObject
 {
-
+    Attachable attachable;
+    FallingBlock fallingBlock;
+    Animator anim;
+    private void Awake()
+    {
+        attachable = GetComponent<Attachable>();
+        fallingBlock = GetComponent<FallingBlock>();
+        anim = GetComponent<Animator>();
+    }
     public override void Reset()
     {
-        GetComponent<FallingBlock>().isFalling = false;
-        if(GetComponent<Attachable>() != null)
-        {
-            GetComponent<Attachable>().allFather.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0f);
-            GetComponent<Attachable>().allFather.transform.position = GetComponent<Attachable>().allFatherPosition;
-        }
+        fallingBlock.intact = true;
+        fallingBlock.fallEnded = false;
+        fallingBlock.isFalling = false;
+        //anim.SetTrigger("fall");
+        
+        //if(attachable != null)
+        //{
+        //    GetComponent<Attachable>().allFather.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0f);
+        //    GetComponent<Attachable>().allFather.transform.position = GetComponent<Attachable>().allFatherPosition;
+        //}
 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        transform.position = GetComponent<FallingBlock>().origin;
-
+        fallingBlock.currentVelocity = Vector2.zero;
+        if(attachable.IsFather)
+            transform.position = fallingBlock.origin;
+        Debug.Log("reset");
     }
 }

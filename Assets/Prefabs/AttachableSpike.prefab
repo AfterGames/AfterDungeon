@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8071257040594641021}
   - component: {fileID: 2550907517693089890}
   - component: {fileID: 7288982643644374497}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttachableSpike
   m_TagString: Dangerous
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916534810243461131}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772156869491065040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8401885308235146973}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7779982169875599052}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

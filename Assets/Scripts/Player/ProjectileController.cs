@@ -29,6 +29,8 @@ public class ProjectileController : MonoBehaviour
         isPlayerThere = true;
         isFlying = true;
         endX = transform.position.x + (isGoingRight ? distance : -distance);
+
+
     }
     /*
     private void OnDrawGizmos()
