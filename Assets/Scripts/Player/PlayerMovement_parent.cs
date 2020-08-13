@@ -113,7 +113,11 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     protected Vector2 wallBox = new Vector2(0.2f, 1.2f);
     protected Vector2 penetrateBox = new Vector2(0.2f, 1.2f);
     protected Vector2 fireBox = new Vector3(1f, 0.4f);
+<<<<<<< HEAD
+    protected Rigidbody2D rb2D;
+=======
     public Rigidbody2D rb2D { get; protected set; }
+>>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
     [SerializeField] protected Animator animator;
     [SerializeField] protected Animator animator2;
 
@@ -181,7 +185,11 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     protected abstract void Awake();
 
 
+<<<<<<< HEAD
+    protected abstract void FixedUpdate();
+=======
     protected abstract void Update();
+>>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
 
     protected abstract void OnDrawGizmos();
 
@@ -300,7 +308,11 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     public void GetScarf()
     {
+<<<<<<< HEAD
+        Debug.Log("get scarf");
+=======
         //Debug.Log("get scarf");
+>>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         if (Player.instance != null) if (Player.instance.fireLock) Player.instance.fireLock = false;
