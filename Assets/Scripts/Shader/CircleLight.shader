@@ -4,7 +4,7 @@
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_Radius("Radius", float) = 2
-		_Bright("Brightness", float) = 1.5	
+		_Bright("Brightness", float) = 1.5
 		_CenterX("x coordinate of center", float) = 0
 		_CenterY("y coordinate of center", float) = 0
 	}
