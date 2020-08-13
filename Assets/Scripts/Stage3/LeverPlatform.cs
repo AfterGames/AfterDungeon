@@ -15,10 +15,11 @@ public class LeverPlatform : MonoBehaviour
             else Activate();
     }
 
-    private void Activate()
+    public void Activate()
     {
+        Debug.Log("activate");
         targetState = true;
-        if(gameObject.tag=="Lever Platform")
+        if(gameObject.tag=="Lever Platform" || gameObject.tag == "Lever PlatformB")
             StartCoroutine(TryToActivate());
         else
         {
@@ -28,10 +29,10 @@ public class LeverPlatform : MonoBehaviour
 
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         targetState = false;
-        if (gameObject.tag == "Lever Platform")
+        if (gameObject.tag == "Lever Platform" || gameObject.tag == "Lever PlatformB")
         {
             GetComponent<SpriteRenderer>().sprite = deactivateSprite;
             GetComponent<Collider2D>().enabled = false;

@@ -100,7 +100,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
 
         var dangerousObjects = Physics2D.OverlapBoxAll(transform.position + colliderOffset, colliderBox, 0, dangerousLayer);
-        Debug.Log(dangerousObjects.Length);
         if (dangerousObjects.Length > 0)
         {
             Player.instance.GetDamage();
