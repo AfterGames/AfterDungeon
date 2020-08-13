@@ -657,6 +657,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     public override void ProjectileJump()
     {
         //projumped = true;
+        transform.position = projectile.transform.position;
         float x = projJumpVelocity.x;
         float y = projJumpVelocity.y;
         Debug.Log("projectile jump x: " + x + " y: " + y);
