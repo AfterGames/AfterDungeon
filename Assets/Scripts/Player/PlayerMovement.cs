@@ -20,7 +20,7 @@ public class PlayerMovement : PlayerMovement_parent
         isDashing = false;
     }
 
-    protected override void FixedUpdate()
+    protected override void Update()
     {
         VelocityLimit();
         isGrounded = GroundChecking();

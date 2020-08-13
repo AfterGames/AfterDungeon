@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public bool dialogueReady = false;
 
+    [HideInInspector]
+    public bool damaged_temp = false;
+
 
     private void Awake()
     {

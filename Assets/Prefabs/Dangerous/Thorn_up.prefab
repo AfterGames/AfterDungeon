@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1096539724690616964}
   - component: {fileID: 4416040307859221986}
   - component: {fileID: 3121745160958920123}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thorn_up
   m_TagString: Dangerous
   m_Icon: {fileID: 0}

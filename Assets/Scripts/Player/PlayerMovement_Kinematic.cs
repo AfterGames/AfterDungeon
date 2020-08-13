@@ -14,6 +14,10 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     float g = 0;
     [SerializeField] public float gravityScaleFactor;
 
+    public LayerMask dangerousLayer;
+    public Vector3 colliderOffset;
+    public Vector2 colliderBox;
+
     protected override void Awake()
     {
         instance = this;
@@ -23,6 +27,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         //g = originGravity;
         isFired = false;
         isDashing = false;
+
+        BoxCollider2D bc = GetComponent<BoxCollider2D>();
+
+        colliderOffset = bc.offset;
+        colliderBox = bc.size + (Vector2.one * 0.1f);
     }
 
     private void Start()
@@ -30,7 +39,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         whatIsGround += 1 << 16;
     }
 
-    protected override void FixedUpdate()
+    protected override void Update()
     {
         VelocityLimit();
         isGrounded = GroundChecking();
@@ -88,6 +97,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
                 velocity += cp.currentVelocity;
             }
+        }
+
+        var dangerousObjects = Physics2D.OverlapBoxAll(transform.position + colliderOffset, colliderBox, 0, dangerousLayer);
+        Debug.Log(dangerousObjects.Length);
+        if (dangerousObjects.Length > 0)
+        {
+            Player.instance.GetDamage();
         }
     }
 

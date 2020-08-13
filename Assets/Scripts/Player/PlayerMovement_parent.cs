@@ -181,7 +181,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     protected abstract void Awake();
 
 
-    protected abstract void FixedUpdate();
+    protected abstract void Update();
 
     protected abstract void OnDrawGizmos();
 
