@@ -17,7 +17,6 @@ public class LeverPlatform : MonoBehaviour
 
     public void Activate()
     {
-        Debug.Log("activate");
         targetState = true;
         if(gameObject.tag=="Lever Platform" || gameObject.tag == "Lever PlatformB")
             StartCoroutine(TryToActivate());

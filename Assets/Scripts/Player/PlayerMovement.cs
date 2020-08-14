@@ -20,7 +20,7 @@ public class PlayerMovement : PlayerMovement_parent
         isDashing = false;
     }
 
-    protected override void FixedUpdate()
+    protected override void Update()
     {
         VelocityLimit();
         isGrounded = GroundChecking();
@@ -112,26 +112,26 @@ public class PlayerMovement : PlayerMovement_parent
         if (Ground == null && lastGround != null)
         {
             if (lastGround.GetComponent<ContactPlayer>() != null)
-                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
         }
         else if (Ground != null && lastGround == null)
         {
             if (Ground.GetComponent<ContactPlayer>() != null)
-                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
         }
         else if (Ground != null && lastGround != null)
         {
             if (Ground == lastGround)
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(gameObject);
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(this);
             }
             else
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
+                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
                 if (Ground.GetComponent<ContactPlayer>() != null)
-                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
+                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
             }
         }
         lastGround = Ground;
@@ -155,7 +155,7 @@ public class PlayerMovement : PlayerMovement_parent
                 {
                     if (colliders[i].GetComponent<ContactPlayer>() != null && wallState != WallState.None)
                     {
-                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this.gameObject);
+                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this);
                     }
                 }
             }

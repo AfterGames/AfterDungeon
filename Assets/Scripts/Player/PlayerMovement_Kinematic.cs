@@ -9,18 +9,13 @@ using DG.Tweening;
 
 public class PlayerMovement_Kinematic : PlayerMovement_parent
 {
-<<<<<<< HEAD
-=======
+
     public static PlayerMovement_Kinematic instance;
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
     public Vector2 velocity = Vector2.zero;
     float g = 0;
     [SerializeField] public float gravityScaleFactor;
 
-<<<<<<< HEAD
-    protected override void Awake()
-    {
-=======
+
     public LayerMask dangerousLayer;
     public Vector3 colliderOffset;
     public Vector2 colliderBox;
@@ -28,21 +23,17 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     protected override void Awake()
     {
         instance = this;
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         rb2D = GetComponent<Rigidbody2D>();
         elapsed = 0f;
 
         //g = originGravity;
         isFired = false;
         isDashing = false;
-<<<<<<< HEAD
-=======
 
         BoxCollider2D bc = GetComponent<BoxCollider2D>();
 
         colliderOffset = bc.offset;
         colliderBox = bc.size + (Vector2.one * 0.1f);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
     }
 
     private void Start()
@@ -50,18 +41,14 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         whatIsGround += 1 << 16;
     }
 
-<<<<<<< HEAD
-    protected override void FixedUpdate()
-=======
+
     protected override void Update()
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
     {
         VelocityLimit();
         isGrounded = GroundChecking();
         closestWall = WallChecking();
         g = GravityControl() * gravityScaleFactor;
-        if(!isDashing)
-<<<<<<< HEAD
+        if (!isDashing)
             velocity.y -= g * Time.fixedDeltaTime;
         //if (velocity.y > 0)
 
@@ -71,16 +58,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     }
 
     private void Block(ref Vector2 velocity)
-=======
-            velocity.y -= g * Time.deltaTime;
-        //if (velocity.y > 0)
-
-        Block();
-        transform.Translate(velocity * Time.deltaTime);
-    }
-
-    private void Block()
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
     {
 
         if (closestWall != null)
@@ -89,13 +66,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             else if (!IsFacingRight && velocity.x < 0) velocity.x = 0;
             while (Physics2D.OverlapBoxAll(penetrateChecker.position, wallBox, 0, whatIsWall).Length > 0)
             {
-                transform.Translate(Vector3.right * (IsFacingRight? -0.1f : 0.1f));                 
+                transform.Translate(Vector3.right * (IsFacingRight ? -0.1f : 0.1f));
             }
         }
         if (velocity.y < 0 && IsGrounded)
         {
             velocity.y = 0;
-            while(Physics2D.OverlapBoxAll(buryChecker.position, buryCheckBox, 0, whatIsGround).Length > 0)
+            while (Physics2D.OverlapBoxAll(buryChecker.position, buryCheckBox, 0, whatIsGround).Length > 0)
             {
                 transform.Translate(Vector3.up * 0.1f);
                 //Debug.Log("파묻힌 거 꺼내는 중");
@@ -107,19 +84,15 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             {
                 velocity.y = 0;
                 Debug.Log("천장에 막힘");
-<<<<<<< HEAD
-            }
-=======
-
                 //if (IsGrounded)
                 //{
                 //    Player.instance.GetDamage();
                 //    Debug.Log("압사");
                 //}
             }
-        }   
+        }
 
-        if(lastGround != null && !isJumping)
+        if (lastGround != null && !isJumping)
         {
             ContactPlayer cp = lastGround.GetComponent<ContactPlayer>();
             if (cp != null && (velocity.y <= 0 || cp.currentVelocity.y >= 0))
@@ -133,7 +106,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (dangerousObjects.Length > 0)
         {
             Player.instance.GetDamage();
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         }
     }
 
@@ -158,7 +130,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     protected override void VelocityLimit()
     {
         if (wallState == WallState.Slide)
-            velocity.y =  slidingVelocity;
+            velocity.y = slidingVelocity;
         if (velocity.y < (-1) * jumpVelocity.y + 0.2392f * g / 6)
         {
             velocity = new Vector2(velocity.x, (-1) * jumpVelocity.y + 0.2392f * g / 6);
@@ -237,44 +209,30 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (Ground == null && lastGround != null)
         {
             if (lastGround.GetComponent<ContactPlayer>() != null)
-<<<<<<< HEAD
-                lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
-=======
+
                 lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         }
         else if (Ground != null && lastGround == null)
         {
             if (Ground.GetComponent<ContactPlayer>() != null)
-<<<<<<< HEAD
-                Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
-=======
+
                 Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         }
         else if (Ground != null && lastGround != null)
         {
             if (Ground == lastGround)
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-<<<<<<< HEAD
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerStay(gameObject);
-=======
+
                     lastGround.GetComponent<ContactPlayer>().OnPlayerStay(this);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
             }
             else
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-<<<<<<< HEAD
-                    lastGround.GetComponent<ContactPlayer>().OnPlayerExit(gameObject);
-                if (Ground.GetComponent<ContactPlayer>() != null)
-                    Ground.GetComponent<ContactPlayer>().OnPlayerEnter(gameObject);
-=======
+
                     lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
                 if (Ground.GetComponent<ContactPlayer>() != null)
                     Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
             }
         }
         lastGround = Ground;
@@ -298,11 +256,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 {
                     if (colliders[i].GetComponent<ContactPlayer>() != null && wallState != WallState.None)
                     {
-<<<<<<< HEAD
-                        colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this.gameObject);
-=======
                         colliders[i].GetComponent<ContactPlayer>().OnWallEnter(this);
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
                     }
                 }
             }
@@ -416,7 +370,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             isFired = true;
 
             //GameObject projectile = Instantiate(projectilePrefab, (transform.position + fireChecker.position) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
-            GameObject projectile = Instantiate(projectilePrefab, (transform.position + (Vector3) FireCheckPos) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
+            GameObject projectile = Instantiate(projectilePrefab, (transform.position + (Vector3)FireCheckPos) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
             projectile.GetComponent<ProjectileController>().Initialize(IsFacingRight, fireVelocity, maxDistance, this);
             this.projectile = projectile.GetComponent<ProjectileController>();
             this.projectile.SetLimit(projectileTime);
@@ -448,14 +402,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
     }
 
-<<<<<<< HEAD
-=======
     public void SpringJump()
     {
         ApplyJumpVelocity(0, 1.414f * jumpVelocity.y);
     }
 
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
 
     protected override void Dash(float horizontal)
     {
@@ -727,11 +678,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     public override void ProjectileJump()
     {
-        //projumped = true;
-<<<<<<< HEAD
-=======
         transform.position = projectile.transform.position;
->>>>>>> 0da35a0946b146c3ba893b98479e186625ce8e74
         float x = projJumpVelocity.x;
         float y = projJumpVelocity.y;
         Debug.Log("projectile jump x: " + x + " y: " + y);

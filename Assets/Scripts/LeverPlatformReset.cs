@@ -19,12 +19,10 @@ public class LeverPlatformReset : ResetableObject
         if(A)
         {
             lp.Activate();
-            Debug.Log("activate a");
         }
         else
         {
             lp.Deactivate();
-            Debug.Log("deactivate b");
         }
     }
 }
