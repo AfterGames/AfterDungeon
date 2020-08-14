@@ -105,7 +105,7 @@ public class ProjectileController : MonoBehaviour
 
         if(coll.tag == "Player")
         {
-            Debug.Log("tail player contact");
+            //Debug.Log("tail player contact");
             if (!isPlayerThere && !isEnd)
             {
                 coll.gameObject.GetComponent<PlayerMovement_parent>().ProjectileJump();

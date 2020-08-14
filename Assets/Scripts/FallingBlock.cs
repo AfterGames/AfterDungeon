@@ -143,7 +143,7 @@ public class FallingBlock : ContactPlayer
     private void StartFall()
     {
         if (isFalling || fallEnded) return;
-        Debug.Log("start fall " + gameObject.name);
+        //Debug.Log("start fall " + gameObject.name);
         isFalling = true;
         currentVelocity = new Vector2(0, -father.fallSpeed);
         //Debug.Log(currentVelocity);
@@ -200,7 +200,6 @@ public class FallingBlock : ContactPlayer
                 //    EndFalling();
                 else
                 {
-                    Debug.Log(colliders[i].gameObject.name);
                     EndFalling();
                 }
 

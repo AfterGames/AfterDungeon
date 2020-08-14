@@ -1,12 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Lever : ContactArrow
 {
+    public static event Action transition;
     private List<GameObject> leverPlatforms;
     private List<GameObject> leverPlatformsB;
     private bool isActive = false;
+    public Animator animator;
+    private bool off;
+
+    private void Awake()
+    {
+        transition += Transition;
+        //if (!levers.Contains(this))
+        //    levers.Add(this);
+        
+    }
 
     private void Start()
     {
@@ -25,6 +38,11 @@ public class Lever : ContactArrow
             leverPlatformsB.Add(platform);
         }
         ActivatePlatform();
+        if(leverPlatforms.Count == 0)
+        {
+            animator.SetTrigger("turnOff");
+            //levers.Remove(this);
+        }
     }
 
     public override void OnLodgingEnterAction(GameObject arrow)
@@ -36,6 +54,14 @@ public class Lever : ContactArrow
         if (arrow != null)
             arrow.GetComponent<ProjectileController>().ArrowEnd();
         //arrow.GetComponent<ArrowController>().Disable();
+        //animator.SetBool("On", true);
+        transition();
+    }
+
+    public void Transition()
+    {
+        Debug.Log("lever shot");
+        animator.SetTrigger("Contact");
     }
 
     public override void OnLodgingExitAction(GameObject arrow)
@@ -48,6 +74,7 @@ public class Lever : ContactArrow
 
     private void ActivatePlatform()
     {
+
         foreach (GameObject leverPlatform in leverPlatforms)
         {
             leverPlatform.GetComponent<LeverPlatform>().ChangeState();
