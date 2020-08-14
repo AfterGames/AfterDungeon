@@ -120,7 +120,7 @@ public class CameraController : MonoBehaviour
             //else if ((num = WhichRegion()) != transform.childCount)
             else if ((num = WhichRegion()) < numberOfRegions)
             {
-                Debug.Log(num);
+                //Debug.Log(num);
                 Debug.Log("region changed");
                 if (curRegion.cameratype == CameraType.Center)
                 {
@@ -139,6 +139,7 @@ public class CameraController : MonoBehaviour
             }
             else if(y < curDown)
             {
+                Debug.Log("추락");
                 Player.instance.GetDamage();
             }
             else

@@ -473,6 +473,11 @@ MonoBehaviour:
   animator2: {fileID: 2136960525051770354}
   velocity: {x: 0, y: 0}
   gravityScaleFactor: 9.81
+  dangerousLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  colliderOffset: {x: 0, y: 0, z: 0}
+  colliderBox: {x: 0, y: 0}
 --- !u!1 &2664189599236864711
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,7 +75,8 @@ public class FallingBlock : ContactPlayer
     Vector2 prev;
     private void FixedUpdate()
     {
-        Check();
+        if(!fallEnded && isFalling)
+            Check();
 
         //if (rb2D != null && currentVelocity.magnitude > Mathf.Epsilon)
         //{
@@ -141,7 +142,6 @@ public class FallingBlock : ContactPlayer
 
     private void StartFall()
     {
-        Debug.Log(isFalling + " " + fallEnded + " " + gameObject.name);
         if (isFalling || fallEnded) return;
         Debug.Log("start fall " + gameObject.name);
         isFalling = true;
@@ -189,13 +189,22 @@ public class FallingBlock : ContactPlayer
                 if (a != null)
                 {
                     if (a.allFather != GetComponent<Attachable>().allFather && a.transform.position.y > transform.position.y)
+                    {
+                        Debug.Log(a.allFather != GetComponent<Attachable>().allFather);
+                        Debug.Log(a.allFather.gameObject.name +", "+GetComponent<Attachable>().allFather.gameObject.name);
                         EndFalling();
+                    }
                 }
 
                 //else if (colliders[i].tag != "Dangerous")
                 //    EndFalling();
                 else
+                {
+                    Debug.Log(colliders[i].gameObject.name);
                     EndFalling();
+                }
+
+                break;
             }
         }
     }
