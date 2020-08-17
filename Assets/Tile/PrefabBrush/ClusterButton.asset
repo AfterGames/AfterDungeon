@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ClusterButton
   m_EditorClassIdentifier: 
   m_Cells:
-  - m_Tile: {fileID: 0}
+  - m_Tile: {fileID: 11400000, guid: 6465a964a80f59f46a8662dd8221613a, type: 2}
     m_Matrix:
       e00: 1
       e01: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
   m_Prefabs:
   - {fileID: 2824414879846181191, guid: c6160f017ac8c144badcb9bc7bf608c7, type: 3}
   m_PerlinScale: 0.5
-  m_Anchor: {x: 0.25, y: 0.25, z: 0.5}
+  m_Anchor: {x: 1, y: 1, z: 0.5}
