@@ -20,6 +20,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     public Vector3 colliderOffset;
     public Vector2 colliderBox;
 
+    private LayerMask projectileMask;
+
     protected override void Awake()
     {
         instance = this;
@@ -39,6 +41,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     private void Start()
     {
         whatIsGround += 1 << 16;
+        projectileMask = LayerMask.NameToLayer("Projectile");
     }
 
 
@@ -426,8 +429,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
         #endregion
     }
+
+    private Vector3 dashStartPos;
     protected override IEnumerator DashMove(float x, float y, float dashingTime)
     {
+        dashStartPos = transform.position;
         SetTrigger("Dash");
         SetBool("isDashing", true);
         float startTime = Time.time;
@@ -460,6 +466,16 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         SetBool("isDashing", false);
 
         isDashing = false;
+
+        if(transform.position.y < dashStartPos.y + float.Epsilon)
+        {
+            float length = transform.position.x - dashStartPos.x;
+            if (Physics2D.OverlapBox(dashStartPos + Vector3.right * length / 2, new Vector2(Mathf.Abs(length), 0.2f), 0, projectileMask).gameObject != null);
+            {
+                ProjectileJump();
+            }
+        }
+
         if (isGrounded)
             isDashed = false;
     }
