@@ -72,6 +72,7 @@ public class CameraController : MonoBehaviour
         inverseMoveTime = 1f / moveTime;
         x = player.transform.position.x;
         y = player.transform.position.y;
+        if (numberOfRegions > transform.childCount) numberOfRegions = transform.childCount;
     }
 
     // Update is called once per frame
@@ -85,7 +86,6 @@ public class CameraController : MonoBehaviour
         }
         if (isCameraMoving == false)
         {
-            //Debug.Log(offset);
             x = player.transform.position.x;
             y = player.transform.position.y;
             int num;
@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
             // Debug.Log("Down: " + curDown);
             if ((x >= curLeft) && (x < curRight) && (y >= curDown) && (y < curUp))
             {
-                 //Debug.Log("here!");
+                Debug.Log("here!");
                 if (curRegion.cameratype == CameraType.XFreeze)
                 {
                     Vector3 next = offset + new Vector3(controlcamera.transform.position.x, y, -10f);
@@ -137,11 +137,11 @@ public class CameraController : MonoBehaviour
                     StartCoroutine(Move(curRegion.MaxPoint + new Vector3(0f, 0f, -10f)));
                 }
             }
-            else if(y < curDown)
-            {
-                Debug.Log("추락");
-                Player.instance.GetDamage();
-            }
+                else if(y < curDown)
+                {
+                    Debug.Log("추락");
+                    Player.instance.GetDamage();
+                }
             else
             {
                 //player.GetComponent<Player>().GetDamage();
@@ -183,9 +183,15 @@ public class CameraController : MonoBehaviour
                 curDown = regiony - height;
                 regionNum = i;
                 curRegion = region;
+                Debug.Log(curUp);
+                Debug.Log(curDown);
+                Debug.Log(curLeft);
+                Debug.Log(curRight);
                 break;
             }
         }
+
+        Debug.Log(i);
         return i;
     }
 
