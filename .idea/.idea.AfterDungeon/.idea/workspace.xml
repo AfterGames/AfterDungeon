@@ -12,7 +12,7 @@
     <session id="-1498331200">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
@@ -56,14 +56,14 @@
             <state relative-caret-position="165">
               <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding>
-                <marker date="1594683917425" expanded="false" signature="6:100" ph="..." />
-                <marker date="1594683917425" expanded="true" signature="139:5473" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="197:584" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="5078:5085" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="5143:5360" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="5199:5354" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="5391:5471" ph="{...}" />
-                <marker date="1594683917425" expanded="true" signature="5494:5527" ph="{...}" />
+                <marker date="1594690357296" expanded="false" signature="6:100" ph="..." />
+                <marker date="1594690357296" expanded="true" signature="139:5473" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="197:584" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="5078:5085" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="5143:5360" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="5199:5354" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="5391:5471" ph="{...}" />
+                <marker date="1594690357296" expanded="true" signature="5494:5527" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -335,10 +335,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="77" />
-    <option name="y" value="186" />
-    <option name="width" value="1440" />
-    <option name="height" value="765" />
+    <option name="x" value="62" />
+    <option name="y" value="149" />
+    <option name="width" value="1152" />
+    <option name="height" value="612" />
   </component>
   <component name="ProjectView">
     <navigator currentView="UnityExplorer" proportions="" version="1">
@@ -413,7 +413,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16616000" />
+    <option name="totallyTimeSpent" value="16863000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -426,7 +426,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="62" y="149" width="1152" height="612" extended-state="1" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.05656934" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
