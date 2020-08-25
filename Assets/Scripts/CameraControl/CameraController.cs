@@ -95,7 +95,6 @@ public class CameraController : MonoBehaviour
             // Debug.Log("Down: " + curDown);
             if ((x >= curLeft) && (x < curRight) && (y >= curDown) && (y < curUp))
             {
-                Debug.Log("here!");
                 if (curRegion.cameratype == CameraType.XFreeze)
                 {
                     Vector3 next = offset + new Vector3(controlcamera.transform.position.x, y, -10f);

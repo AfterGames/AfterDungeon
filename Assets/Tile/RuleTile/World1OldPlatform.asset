@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Platform
+  m_Name: World1OldPlatform
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 5527754576675507860, guid: 2b82f3e0ac3be704a991110c4c5601c7,
     type: 3}
