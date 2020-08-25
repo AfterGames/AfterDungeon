@@ -56,7 +56,10 @@ public class CameraController : MonoBehaviour
     CameraRegion curRegion;
 
     private Vector3 offset; // 카메라 이동시 offset
-    public SpriteRenderer backGround;
+    public SpriteRenderer fara1;
+    public SpriteRenderer fara2;
+    public SpriteRenderer mid1;
+    public SpriteRenderer mid2;
 
     private void Awake()
     {
@@ -182,10 +185,10 @@ public class CameraController : MonoBehaviour
                 curDown = regiony - height;
                 regionNum = i;
                 curRegion = region;
-                Debug.Log(curUp);
-                Debug.Log(curDown);
-                Debug.Log(curLeft);
-                Debug.Log(curRight);
+                //Debug.Log(curUp);
+                //Debug.Log(curDown);
+                //Debug.Log(curLeft);
+                //Debug.Log(curRight);
                 break;
             }
         }
@@ -231,15 +234,23 @@ public class CameraController : MonoBehaviour
             controlcamera.transform.position = newPosition;
             sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
 
-            if(backGround != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            if(mid1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            {
+                offSet.y = 0;
+                mid1.transform.localPosition = mid1.transform.localPosition - offSet * 0.025f;
+            }
+            if (mid2 != null && Mathf.Abs(offSet.x) > float.Epsilon)
             {
                 //Debug.Log(offSet);
                 offSet.y = 0;
-                backGround.transform.localPosition = backGround.transform.localPosition - offSet/40;
+                mid2.transform.localPosition = mid2.transform.localPosition - offSet * 0.055f;
             }
-            //Debug.Log(camera.transform.position);
-            // Debug.Log(end);
-            //Debug.Log("Move!");
+            if (fara1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            {
+                //Debug.Log(offSet);
+                offSet.y = 0;
+                fara1.transform.localPosition = fara1.transform.localPosition - offSet * 0.008f;
+            }
             yield return null;
         }
 
