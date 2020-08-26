@@ -245,11 +245,11 @@ public class CameraController : MonoBehaviour
                 offSet.y = 0;
                 mid2.transform.localPosition = mid2.transform.localPosition - offSet * 0.055f;
             }
-            if (fara1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            if (fara2 != null && Mathf.Abs(offSet.x) > float.Epsilon)
             {
                 //Debug.Log(offSet);
                 offSet.y = 0;
-                fara1.transform.localPosition = fara1.transform.localPosition - offSet * 0.008f;
+                fara2.transform.localPosition = fara1.transform.localPosition - offSet * 0.008f;
             }
             yield return null;
         }
