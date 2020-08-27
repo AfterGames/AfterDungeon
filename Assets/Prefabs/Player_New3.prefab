@@ -430,7 +430,7 @@ MonoBehaviour:
   airDecel: 80
   horizontalSpeed: 12
   originGravity: 6
-  jumpVelocity: {x: 12, y: 20.5}
+  jumpVelocity: {x: 12, y: 22}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 1946017592969873800}
   tailPosition: {fileID: 6132684805356263207}
@@ -459,7 +459,7 @@ MonoBehaviour:
   slidingVelocity: -4
   wallGravityFactor: 0.7142857
   detachWallTime: 0.1
-  slidingJumpVelocity: {x: 12, y: 17}
+  slidingJumpVelocity: {x: 12, y: 19}
   penetrateChecker: {fileID: 101682980980165536}
   totalStamina: 100
   stamina: 0
