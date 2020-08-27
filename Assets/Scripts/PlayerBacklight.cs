@@ -6,7 +6,7 @@ public class PlayerBacklight : CircleLightController
 {
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.localScale = new Vector3(2 * lightRadius * transform.parent.localScale.x, 2 * lightRadius, 1);
         GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
