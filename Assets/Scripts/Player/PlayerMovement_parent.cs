@@ -302,7 +302,9 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     public void GetScarf()
     {
+        SetBool("scarf", true);
         SetTrigger("FireEnd");
+        animator.ResetTrigger("Fire");
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         if (Player.instance != null) if (Player.instance.fireLock) Player.instance.fireLock = false;
@@ -310,6 +312,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     public void LoseScarf()
     {
+        SetBool("scarf", false);
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
