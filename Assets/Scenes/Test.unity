@@ -31726,7 +31726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88f1386dd63147198d003daff00d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenResolution: {x: 940, y: 528}
+  screenResolution: {x: 856, y: 481}
   internalResolution: {x: 769, y: 432}
   upscaledResolution: {x: 0, y: 0}
   smooth: 0
@@ -32254,7 +32254,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5422c524b895c02458d08d0f82acf168, type: 3}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
