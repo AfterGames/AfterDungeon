@@ -141,6 +141,7 @@ public class Player : MonoBehaviour
     }
     public void FadeOut()
     {
+        Debug.Log("fadeout");
         StartCoroutine(IFadeOut());
     }
     public void FadeInAfterDelay()
