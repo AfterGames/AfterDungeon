@@ -464,6 +464,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
         Tail.End(tailPosition.position);
         SetBool("isDashing", false);
+        SetTrigger("DashEnd");
 
         isDashing = false;
 
@@ -477,7 +478,10 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
 
         if (isGrounded)
+        {
             isDashed = false;
+            SetTrigger("DashEnd");
+        }
     }
 
     protected override void Jump(float horizontal)

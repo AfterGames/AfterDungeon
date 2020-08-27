@@ -350,10 +350,14 @@ public class PlayerMovement : PlayerMovement_parent
         }
         Tail.End(tailPosition.position);
         SetBool("isDashing", false);
+        SetTrigger("DashEnd");
 
         isDashing = false;
-        if (isGrounded)
+        if(isGrounded)
+        {
             isDashed = false;
+            SetTrigger("DashEnd");
+        }
     }
 
     protected override void Jump(float horizontal)
