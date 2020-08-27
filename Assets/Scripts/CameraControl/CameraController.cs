@@ -121,11 +121,11 @@ public class CameraController : MonoBehaviour
                     else if (next.x > curRegion.Max)
                         next.x = curRegion.Max;
                     
-                    if (mid2 != null)// && )
-                    {
-                        Vector3 transition = next - controlcamera.transform.position;
-                        mid2.transform.localPosition -= transition * offsets[3];
-                    }
+                    //if (mid2 != null)// && )
+                    //{
+                    //    Vector3 transition = next - controlcamera.transform.position;
+                    //    mid2.transform.localPosition -= transition * offsets[3];
+                    //}
 
                     controlcamera.transform.position = next;
 
