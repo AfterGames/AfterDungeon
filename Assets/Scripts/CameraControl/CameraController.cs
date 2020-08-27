@@ -61,6 +61,8 @@ public class CameraController : MonoBehaviour
     public SpriteRenderer mid1;
     public SpriteRenderer mid2;
 
+    public float[] offsets = new float[4];
+
     private void Awake()
     {
         instance = this;
@@ -107,6 +109,9 @@ public class CameraController : MonoBehaviour
                         next.y = curRegion.Max;
 
                     controlcamera.transform.position = next;
+                    Debug.Log(next);
+
+
                 }
                 else if (curRegion.cameratype == CameraType.YFreeze)
                 {
@@ -115,8 +120,15 @@ public class CameraController : MonoBehaviour
                         next.x = curRegion.Min;
                     else if (next.x > curRegion.Max)
                         next.x = curRegion.Max;
+                    
+                    if (mid2 != null)// && )
+                    {
+                        Vector3 transition = next - controlcamera.transform.position;
+                        mid2.transform.localPosition -= transition * offsets[3];
+                    }
 
                     controlcamera.transform.position = next;
+
                 }
             }
             //else if ((num = WhichRegion()) != transform.childCount)
@@ -154,6 +166,7 @@ public class CameraController : MonoBehaviour
 
     IEnumerator NextStage()
     {
+        Debug.Log("next stage");
         Player.instance.FadeOut();
         Player.instance.StopMoving();
         yield return new WaitForSeconds(0.5f);
@@ -233,24 +246,30 @@ public class CameraController : MonoBehaviour
             Vector3 offSet = newPosition - controlcamera.transform.position;
             controlcamera.transform.position = newPosition;
             sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
-
-            if(mid1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
-            {
-                offSet.y = 0;
-                mid1.transform.localPosition = mid1.transform.localPosition - offSet * 0.025f;
-            }
-            if (mid2 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            if (fara1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
             {
                 //Debug.Log(offSet);
                 offSet.y = 0;
-                mid2.transform.localPosition = mid2.transform.localPosition - offSet * 0.055f;
+                fara2.transform.localPosition = fara1.transform.localPosition - offSet * offsets[0];
             }
             if (fara2 != null && Mathf.Abs(offSet.x) > float.Epsilon)
             {
                 //Debug.Log(offSet);
                 offSet.y = 0;
-                fara2.transform.localPosition = fara1.transform.localPosition - offSet * 0.008f;
+                fara2.transform.localPosition = fara1.transform.localPosition - offSet * offsets[1];
             }
+            if (mid1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            {
+                offSet.y = 0;
+                mid1.transform.localPosition = mid1.transform.localPosition - offSet * offsets[2];
+            }
+            if (mid2 != null && Mathf.Abs(offSet.x) > float.Epsilon)
+            {
+                //Debug.Log(offSet);
+                offSet.y = 0;
+                mid2.transform.localPosition = mid2.transform.localPosition - offSet * offsets[3];
+            }
+
             yield return null;
         }
 
