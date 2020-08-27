@@ -302,6 +302,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     public void GetScarf()
     {
+        SetTrigger("FireEnd");
         animator.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         animator2.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         if (Player.instance != null) if (Player.instance.fireLock) Player.instance.fireLock = false;
