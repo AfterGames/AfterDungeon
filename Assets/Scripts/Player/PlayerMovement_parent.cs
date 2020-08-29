@@ -329,4 +329,6 @@ public abstract class PlayerMovement_parent : MonoBehaviour
         animator2.SetTrigger(name);
     }
 
+    public abstract void Rise();
+
 }

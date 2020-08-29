@@ -9,6 +9,10 @@ public class DashGem : MonoBehaviour
     public Sprite activated;
     public Sprite deActivated;
 
+    public AudioSource source;
+    public AudioClip regen;
+    public AudioClip get;
+
     bool isActivated;
 
     float elapsedTime;
@@ -34,6 +38,8 @@ public class DashGem : MonoBehaviour
                 isActivated = true;
                 spr.sprite = activated;
                 animator.enabled = true;
+                source.clip = regen;
+                source.Play();
             }
         }
     }
@@ -41,6 +47,8 @@ public class DashGem : MonoBehaviour
     {
         if (isActivated)
         {
+            source.clip = get;
+            source.Play();
             if (collision.tag == "Player")
             {
                 Debug.Log("player used");

@@ -49,6 +49,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     {
         VelocityLimit();
         isGrounded = GroundChecking();
+        if (isGrounded) rising = false;
+
         closestWall = WallChecking();
         g = GravityControl() * gravityScaleFactor;
         if (!isDashing)
@@ -57,12 +59,12 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
         Block(ref velocity);
         //if(velocity.y != 0)   Debug.Log("after g"+velocity);
+        //if (rising) velocity.y = 4;
         transform.Translate(velocity * Time.deltaTime);
     }
 
     private void Block(ref Vector2 velocity)
     {
-
         if (closestWall != null)
         {
             if (IsFacingRight && velocity.x > 0) velocity.x = 0;
@@ -86,7 +88,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             if (CeilingCheck())
             {
                 velocity.y = 0;
-                Debug.Log("천장에 막힘");
+                //Debug.Log("천장에 막힘");
                 //if (IsGrounded)
                 //{
                 //    Player.instance.GetDamage();
@@ -104,12 +106,16 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 velocity += cp.currentVelocity;
             }
         }
-
-        var dangerousObjects = Physics2D.OverlapBoxAll(transform.position + colliderOffset, colliderBox, 0, dangerousLayer);
-        if (dangerousObjects.Length > 0)
+        if (!Player.instance.dead)
         {
-            Player.instance.GetDamage();
+            var dangerousObjects = Physics2D.OverlapBoxAll(transform.position + colliderOffset, colliderBox, 0, dangerousLayer);
+            if (dangerousObjects.Length > 0)
+            {
+                SoundManager.instance.Play(SoundManager.Clip.spike);
+                Player.instance.GetDamage();
+            }
         }
+
     }
 
     protected override void OnDrawGizmos()
@@ -351,14 +357,14 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     protected override void JumpingMovement(float horizontal)
     {
         SetBool("IsJumping", true);
-        Debug.Log("Is Ground = " + isGrounded
-            + " Closest Wall = " + closestWall
-            + " Wall State = " + wallState
-            + " Horizontal = " + horizontal);
+        //Debug.Log("Is Ground = " + isGrounded
+        //    + " Closest Wall = " + closestWall
+        //    + " Wall State = " + wallState
+        //    + " Horizontal = " + horizontal);
 
         if (wallState == WallState.None) Jump(horizontal);
         else if (!isGrounded && closestWall.HasValue) WallJump();
-        Debug.Log(wallState);
+        //Debug.Log(wallState);
 
 
         lastJumpInputTime = -999f;
@@ -433,9 +439,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     private Vector3 dashStartPos;
     protected override IEnumerator DashMove(float x, float y, float dashingTime)
     {
+        SoundManager.instance.Play(SoundManager.Clip.dash);
         dashStartPos = transform.position;
         SetTrigger("Dash");
         SetBool("isDashing", true);
+        isDashing = true;
         float startTime = Time.time;
         while ((Time.time - startTime < dashingTime) && !isJumping && !WallChecking().HasValue)
         {
@@ -496,7 +504,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             else if (horizontal < 0) ApplyJumpVelocity(-x, y);
             else ApplyJumpVelocity(0, y);
 
-            Debug.Log("Normal Jump : " + velocity);
+            //Debug.Log("Normal Jump : " + velocity);
         }
         #endregion
     }
@@ -594,8 +602,14 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
 
         velocity = new Vector2(nowV, velocity.y);
+        if(!isDashing)
+        {
+            if (Mathf.Abs(nowV) > float.Epsilon)
+                SoundManager.instance.Play(SoundManager.Clip.walk);
+            else
+                SoundManager.instance.Stop();
+        }
     }
-
     protected override void ApplyJumpVelocity(float x, float y, float duration = 0f)
     {
         #region MovingPlatform
@@ -626,10 +640,9 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             }
         }
         #endregion
-        Debug.Log(x + ", " + y);
-        if (x - 10 > float.Epsilon)
-            SoundManager.instance.Play(SoundManager.Clip.jump);
+        //Debug.Log(x + ", " + y);
 
+        SoundManager.instance.Play(SoundManager.Clip.jump);
         GroundChange(null);
         velocity = new Vector2(x, y);
         Flip(x);
@@ -662,6 +675,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 velocity = new Vector2(0, 0);
                 wallState = WallState.Slide;
                 SetBool("Wall", true);
+                SoundManager.instance.Play(SoundManager.Clip.wallSlide);
             }
             else if (velocity.y > 0 && (goRight == isFacingRight))
             {
@@ -675,6 +689,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             {
                 SetBool("Wall", true);
                 wallState = WallState.Slide;
+                SoundManager.instance.Play(SoundManager.Clip.wallSlide);
             }
 
             if (goRight == null)
@@ -690,6 +705,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         {
             // if (wallState != WallState.None)
             //    Debug.Log("반대방향 눌러서 벽 떨어짐");
+            SoundManager.instance.Stop();
             wallState = WallState.None;
             SetBool("Wall", false);
         }
@@ -773,4 +789,10 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         animator2.SetBool(name, number);
     }
 
+    public override void Rise()
+    {
+        rising = true;
+        Debug.Log("rising");
+    }
+    bool rising;
 }

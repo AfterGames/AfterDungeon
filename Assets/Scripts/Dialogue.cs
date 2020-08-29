@@ -30,6 +30,13 @@ public class Dialogue : MonoBehaviour
     public List<GameObject> SpeakingObjects;
     public List<Animator> Animators;
 
+    AudioSource source;
+
+    public AudioClip dialogueSound;
+    public AudioClip squeak;
+
+
+
     //주인공을 0번에 놓고, 나머지 인물들을 차례대로 놓아서 번호를 할당받게 하는 리스트
 
     private Player player;
@@ -51,6 +58,7 @@ public class Dialogue : MonoBehaviour
         c.worldCamera = Camera.main;
         canvas = c.transform;
         c.renderMode = RenderMode.ScreenSpaceOverlay;
+        source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -108,17 +116,30 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+           
             currentBubble = dialogue[currentIndex];
+            int currentTalker = dialogue[currentIndex].personNum;
             if (currentIndex > 0)
             {
                 int previousTalker = dialogue[currentIndex - 1].personNum;
-                int currentTalker = dialogue[currentIndex].personNum;
+                
                 if(Animators.Count != 0)
                 if (Animators[previousTalker] != null && previousTalker != currentTalker)
                 {
                     Animators[previousTalker].SetTrigger("StopTalking");
                 }
+               
             }
+            if (SpeakingObjects[currentTalker].tag == "Mouse")
+            {
+                source.clip = squeak;
+            }
+            else
+            {
+                source.clip = dialogueSound;
+            }
+            source.Play();
+            Debug.Log(source.clip);
             if (Animators.Count != 0)
 
                 if (Animators[currentBubble.personNum] != null)

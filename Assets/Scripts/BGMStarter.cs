@@ -8,7 +8,7 @@ public class BGMStarter : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            SoundManager.instance.StartBGM();
+            BGMPlayer.instance.StartBGM();
             Destroy(GetComponent<BoxCollider2D>());
         }
     }

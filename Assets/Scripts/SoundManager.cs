@@ -9,27 +9,50 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource bgm;
     public AudioSource sfx;
-    public List<AudioClip> sounds;
-    public float[] volumes;
+    public SoundDictionary soundDictionary;
+    [Header("볼륨이 1이 아닌 클립들을 넣고 볼륨을 입력해주세요")]
+    public VolumeDictionary volumeDictionary;
 
-    public enum Clip {click1, click2, jump, jumpLand, shoot, walk}
+    public AudioSource spikeSound;
+    public AudioSource continuous;
+
+    public enum Clip {esc, menuCursor, jump, jumpLand, shoot, wallSlide, getGem, dash, gameOver, spike, dashGemRegen, dialogue, mouseSqueak, sizzle, walk }
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name != "0")
-            StartBGM();
         instance = this;
     }
 
     public void Play(Clip clip)
     {
-        sfx.clip = sounds[(int)clip];
-        sfx.volume = volumes[(int)clip];
-        sfx.Play();
+        if(clip == Clip.spike)
+        {
+            spikeSound.Play();
+        }
+        else if(clip == Clip.walk || clip == Clip.wallSlide)
+        {
+            continuous.clip = soundDictionary[clip];
+            continuous.Play();
+        }
+        else
+        {
+            sfx.Stop();
+            sfx.loop = clip == Clip.wallSlide;
+            sfx.clip = soundDictionary[clip];
+            //if (volumeDictionary.ContainsKey(clip))
+            //{
+            //    sfx.volume = volumeDictionary[clip];
+            //}
+            //else
+            //{
+                sfx.volume = 1;
+            //}
+            sfx.Play();
+        }
     }
 
-    public void StartBGM()
+    public void Stop()
     {
-        bgm.enabled = true;
+        continuous.Stop();
     }
 }

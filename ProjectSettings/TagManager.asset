@@ -15,6 +15,7 @@ TagManager:
   - FadeObject
   - Camera
   - Dangerous
+  - Mouse
   layers:
   - Default
   - TransparentFX

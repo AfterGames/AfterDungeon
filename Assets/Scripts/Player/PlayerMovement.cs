@@ -654,5 +654,8 @@ public class PlayerMovement : PlayerMovement_parent
         animator.SetBool(name, number);
         animator2.SetBool(name, number);
     }
-
+    public override void Rise()
+    {
+            
+    }
 }

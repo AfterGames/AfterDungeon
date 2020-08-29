@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        //치트키 와드
         respawn = Input.GetButtonDown("Respawn");
         esc = Input.GetKeyDown(KeyCode.Escape);
         if (esc && escMenu != null)
@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
            // Debug.Log("esc pressed");
             Time.timeScale = escMenu.isOn? 1:0;
             escMenu.ActivateAll(!escMenu.isOn);
+            SoundManager.instance.Play(SoundManager.Clip.esc);
         }
         if(respawn && !specialControl)
         {
@@ -130,6 +131,8 @@ public class Player : MonoBehaviour
 
     public void GetDamage(float duration = 0.8f)
     {
+        if (dead) return;
+        SoundManager.instance.Play(SoundManager.Clip.gameOver);
         if(!fireLock)
             mover.FireEnd();
         DataAdmin.instance.IncrementData(DataType.deathNum);
@@ -264,8 +267,10 @@ public class Player : MonoBehaviour
         specialControl = false;
     }
 
+    public bool dead = false;
     private IEnumerator Die(float duration)
     {
+        dead = true;
         gameObject.transform.parent = null;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
@@ -285,6 +290,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IFadeIn());
         //transform.position = originPos; FadeIn으로 이동함
         //CanControl(true); FadeIn으로 이동함
+        dead = false;
     }
 
     public void CanControl(bool canControl)

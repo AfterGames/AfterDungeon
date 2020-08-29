@@ -206,7 +206,7 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        Debug.Log(i);
+        //Debug.Log(i);
         return i;
     }
 
