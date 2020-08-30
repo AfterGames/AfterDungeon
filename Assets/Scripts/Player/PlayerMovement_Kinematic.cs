@@ -47,6 +47,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     protected override void Update()
     {
+
         VelocityLimit();
         isGrounded = GroundChecking();
         if (isGrounded) rising = false;
@@ -60,6 +61,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         Block(ref velocity);
         //if(velocity.y != 0)   Debug.Log("after g"+velocity);
         //if (rising) velocity.y = 4;
+        if(!Player.instance.dead)
         transform.Translate(velocity * Time.deltaTime);
     }
 
@@ -602,13 +604,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         }
 
         velocity = new Vector2(nowV, velocity.y);
-        if(!isDashing)
-        {
-            if (Mathf.Abs(nowV) > float.Epsilon)
-                SoundManager.instance.Play(SoundManager.Clip.walk);
-            else
-                SoundManager.instance.Stop();
-        }
+        //if(!isDashing)
+        //{
+        //    if (Mathf.Abs(nowV) > float.Epsilon)
+        //        SoundManager.instance.Play(SoundManager.Clip.walk);
+        //    else
+        //        SoundManager.instance.Stop();
+        //}
     }
     protected override void ApplyJumpVelocity(float x, float y, float duration = 0f)
     {

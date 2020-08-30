@@ -26,6 +26,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     protected bool isDashing;
     [SerializeField] protected WallState wallState;
+    public WallState wallStateP { get { return wallState; } }
 
     [Header("Basic Movement")]
     [Tooltip("지면 수평 가속도")]

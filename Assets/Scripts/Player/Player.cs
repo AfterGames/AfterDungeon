@@ -124,8 +124,10 @@ public class Player : MonoBehaviour
         
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         animator2.SetFloat("Speed", Mathf.Abs(horizontal));
-        if (Mathf.Abs(horizontal) < 0.05f)
+        if (Mathf.Abs(horizontal) < 0.05f && mover.wallStateP == PlayerMovement_parent.WallState.None)
             SoundManager.instance.Stop();
+        else if(mover.IsGrounded)
+            SoundManager.instance.Play(SoundManager.Clip.walk);
 
         jump = false;
         

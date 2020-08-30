@@ -30,13 +30,18 @@ public class SoundManager : MonoBehaviour
         }
         else if(clip == Clip.walk || clip == Clip.wallSlide || clip == Clip.sizzle)
         {
+            if (soundDictionary[clip] == continuous.clip && continuous.isPlaying)
+            {
+                //Debug.Log("이미 재생중 " + clip);
+                return;
+            }
             continuous.clip = soundDictionary[clip];
             continuous.Play();
+            Debug.Log(continuous.clip);
         }
         else
         {
             sfx.Stop();
-            sfx.loop = clip == Clip.wallSlide;
             sfx.clip = soundDictionary[clip];
             //if (volumeDictionary.ContainsKey(clip))
             //{
@@ -47,11 +52,14 @@ public class SoundManager : MonoBehaviour
                 sfx.volume = 1;
             //}
             sfx.Play();
+            
         }
     }
 
     public void Stop()
     {
+        if (!continuous.isPlaying) return;
+        Debug.Log("stop");
         continuous.Stop();
     }
 

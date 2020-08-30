@@ -241,6 +241,7 @@ public class FallingBlock : ContactPlayer
         if(collision.collider.tag=="Player" && Mathf.Abs(collision.collider.transform.position.x-transform.position.x)<0.9f)
         {
             GameObject player = collision.collider.gameObject;
+            if(player != null)
             if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement>().IsGrounded && isFalling)
             {
                 player.GetComponent<Player>().GetDamage();
