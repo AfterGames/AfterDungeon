@@ -124,6 +124,8 @@ public class Player : MonoBehaviour
         
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         animator2.SetFloat("Speed", Mathf.Abs(horizontal));
+        if (Mathf.Abs(horizontal) < 0.05f)
+            SoundManager.instance.Stop();
 
         jump = false;
         
@@ -304,6 +306,7 @@ public class Player : MonoBehaviour
 
     public void StopMoving()
     {
+        SoundManager.instance.Stop();
         mover.Stop();
         specialControl = true;
         CanControl(false);

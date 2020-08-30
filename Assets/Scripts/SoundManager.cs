@@ -7,7 +7,6 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    public AudioSource bgm;
     public AudioSource sfx;
     public SoundDictionary soundDictionary;
     [Header("볼륨이 1이 아닌 클립들을 넣고 볼륨을 입력해주세요")]
@@ -29,7 +28,7 @@ public class SoundManager : MonoBehaviour
         {
             spikeSound.Play();
         }
-        else if(clip == Clip.walk || clip == Clip.wallSlide)
+        else if(clip == Clip.walk || clip == Clip.wallSlide || clip == Clip.sizzle)
         {
             continuous.clip = soundDictionary[clip];
             continuous.Play();
@@ -54,5 +53,10 @@ public class SoundManager : MonoBehaviour
     public void Stop()
     {
         continuous.Stop();
+    }
+
+    public void Sizzle()
+    {
+        Play(Clip.sizzle);
     }
 }
