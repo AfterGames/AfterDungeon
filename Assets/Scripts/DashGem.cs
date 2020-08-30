@@ -38,8 +38,12 @@ public class DashGem : MonoBehaviour
                 isActivated = true;
                 spr.sprite = activated;
                 animator.enabled = true;
-                source.clip = regen;
-                source.Play();
+                if(spr.isVisible)
+                {
+                    source.clip = regen;
+                    source.Play();
+                }
+
             }
         }
     }

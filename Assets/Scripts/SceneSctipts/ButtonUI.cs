@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ButtonUI : UIEffect
 {
@@ -12,7 +13,8 @@ public class ButtonUI : UIEffect
     [SerializeField] int offFontSize;
 
     [SerializeField] Text text;
-    // Start is called before the first frame update
+
+
     private void Awake()
     {
         text = transform.GetChild(0).GetComponent<Text>();
@@ -43,4 +45,10 @@ public class ButtonUI : UIEffect
     {
         GetComponent<Button>().onClick.Invoke();
     }
+
+    //public new void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    base.OnPointerEnter(eventData);
+        
+    //}
 }
