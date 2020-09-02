@@ -41,6 +41,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     {
         whatIsGround += 1 << 16;
         projectileMask = LayerMask.NameToLayer("Projectile");
+        
     }
 
 
@@ -480,7 +481,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if(transform.position.y < dashStartPos.y + float.Epsilon)
         {
             float length = transform.position.x - dashStartPos.x;
-            if (Physics2D.OverlapBox(dashStartPos + Vector3.right * length / 2, new Vector2(Mathf.Abs(length), 0.2f), 0, projectileMask) != null)
+            if (Physics2D.OverlapBox(dashStartPos + Vector3.right * length / 2, new Vector2(Mathf.Abs(length), colliderBox.y), 0, projectileMask) != null)
             {
                 ProjectileJump();
             }
