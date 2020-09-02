@@ -37,7 +37,6 @@ public class SoundManager : MonoBehaviour
             }
             continuous.clip = soundDictionary[clip];
             continuous.Play();
-            Debug.Log(continuous.clip);
         }
         else
         {
@@ -59,7 +58,6 @@ public class SoundManager : MonoBehaviour
     public void Stop()
     {
         if (!continuous.isPlaying) return;
-        Debug.Log("stop");
         continuous.Stop();
     }
 

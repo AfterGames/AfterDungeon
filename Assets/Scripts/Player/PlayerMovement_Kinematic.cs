@@ -9,7 +9,6 @@ using DG.Tweening;
 
 public class PlayerMovement_Kinematic : PlayerMovement_parent
 {
-
     public static PlayerMovement_Kinematic instance;
     public Vector2 velocity = Vector2.zero;
     float g = 0;
@@ -50,7 +49,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
         VelocityLimit();
         isGrounded = GroundChecking();
-        if (isGrounded) rising = false;
+        
 
         closestWall = WallChecking();
         g = GravityControl() * gravityScaleFactor;
@@ -60,7 +59,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
         Block(ref velocity);
         //if(velocity.y != 0)   Debug.Log("after g"+velocity);
-        //if (rising) velocity.y = 4;
+        if (rising) velocity.y = 4;
         if(!Player.instance.dead)
         transform.Translate(velocity * Time.deltaTime);
     }
@@ -791,10 +790,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         animator2.SetBool(name, number);
     }
 
-    public override void Rise()
+    public void AddVelocity(Vector2 vel)
     {
-        rising = true;
-        Debug.Log("rising");
+        Debug.Log(velocity);
+        velocity += vel;
+        Debug.Log(vel);
+        Debug.Log(velocity);
     }
+
     bool rising;
 }

@@ -329,7 +329,4 @@ public abstract class PlayerMovement_parent : MonoBehaviour
         animator.SetTrigger(name);
         animator2.SetTrigger(name);
     }
-
-    public abstract void Rise();
-
 }
