@@ -244,6 +244,8 @@ public class CameraController : MonoBehaviour
         {
             Vector3 newPosition = Vector3.MoveTowards(controlcamera.transform.position, end, inverseMoveTime * Time.fixedDeltaTime);
             Vector3 offSet = newPosition - controlcamera.transform.position;
+            //Vector3 offSetN = offset.normalized;
+
             controlcamera.transform.position = newPosition;
             sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
             if (fara1 != null && Mathf.Abs(offSet.x) > float.Epsilon)
@@ -273,15 +275,17 @@ public class CameraController : MonoBehaviour
             yield return null;
         }
 
-
+        Debug.Log("진입 가속도 "+curRegion.EnterAccel);
 
         if (curRegion.EnterAccel)
         {
-            Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
+            //Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
+            //player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
+            Player.instance.mover.AddVelocity(Vector2.up * curRegion.EnterAccelMagnitude);
         }
         Time.timeScale = 1f;
         isCameraMoving = false;
+        
     }
 
     private int step = 15;

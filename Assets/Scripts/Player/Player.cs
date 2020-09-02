@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public bool specialControl;
     public static Player instance;
 
-    public PlayerMovement_parent mover { get; private set; }
+    public PlayerMovement_Kinematic mover { get; private set; }
     [SerializeField]private Animator animator;
     [SerializeField] private Animator animator2;
     private float horizontal = 0;
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            mover = GetComponent<PlayerMovement>();
+            //mover = GetComponent<PlayerMovement>();
             Destroy(GetComponent<PlayerMovement_Kinematic>());
         }
         FadeObject = GameObject.FindGameObjectWithTag("FadeObject");
