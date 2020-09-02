@@ -3,7 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_Bright("Brightness", float) = 0.3
+		_Bright("Brightness", float) = 0.1
     }
     SubShader
     {

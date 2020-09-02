@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519c427f3ac473345a4dfa7e9c26fa16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: {fileID: 0}
   sfx: {fileID: 1486043241886472602}
   soundDictionary:
     m_keys: 00000000010000000200000003000000040000000500000007000000080000000a0000000b0000000d0000000e000000
@@ -1368,12 +1367,12 @@ PrefabInstance:
     - target: {fileID: 2522879794918447580, guid: 2aec15a6c11f6944cb4378712efdc549,
         type: 3}
       propertyPath: Brightness
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2522879794918447580, guid: 2aec15a6c11f6944cb4378712efdc549,
         type: 3}
       propertyPath: lightRadius
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4568163325208121854, guid: 2aec15a6c11f6944cb4378712efdc549,
         type: 3}

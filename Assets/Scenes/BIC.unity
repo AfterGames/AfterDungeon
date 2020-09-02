@@ -225,7 +225,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - _DestinationResolution: {r: 1321, g: 743, b: 0, a: 0}
+    - _DestinationResolution: {r: 1065, g: 527, b: 0, a: 0}
 --- !u!4 &183373335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9009775260775215556, guid: 49f908a9b83d4f24cab91fefc0ccf690,
@@ -62092,8 +62092,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88f1386dd63147198d003daff00d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenResolution: {x: 1321, y: 743}
-  internalResolution: {x: 768, y: 432}
+  screenResolution: {x: 1065, y: 527}
+  internalResolution: {x: 873, y: 432}
   upscaledResolution: {x: 0, y: 0}
   smooth: 0
   forceSquarePixels: 0
@@ -62780,10 +62780,25 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5299351104076582901, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5944738446430691861, guid: 37e44611a40ab114e8bc886901a526ef,
         type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191713198495729623, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: Brightness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191713198495729623, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: lightRadius
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e44611a40ab114e8bc886901a526ef, type: 3}
