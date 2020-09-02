@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1910978357073940176}
   - component: {fileID: 1910978357073940175}
   - component: {fileID: 7755512788513314580}
-  - component: {fileID: 7438566630851383171}
   m_Layer: 13
   m_Name: One Way Platform
   m_TagString: Platform
@@ -104,18 +103,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &7438566630851383171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910978357073940173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c45223a858eee4fb9f482cb1965fb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6015274282540700500
 GameObject:
   m_ObjectHideFlags: 0
