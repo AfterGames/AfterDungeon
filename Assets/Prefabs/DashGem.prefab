@@ -102,7 +102,7 @@ MonoBehaviour:
   deActivated: {fileID: 21300000, guid: 7a1a1c65c04e6b24f8ebb5f0ca70fc0b, type: 3}
   source: {fileID: 6603730041994998920}
   regen: {fileID: 8300000, guid: 278253e9f9941d94baf787e1d57652f0, type: 3}
-  get: {fileID: 8300000, guid: 841ec53695b6e7540b11d28320e29a3f, type: 3}
+  get: {fileID: 8300000, guid: 588a61241961e5a43b8122ff0f5feaac, type: 3}
 --- !u!58 &2536723450452129556
 CircleCollider2D:
   m_ObjectHideFlags: 0

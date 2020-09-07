@@ -30,8 +30,6 @@ public class Dialogue : MonoBehaviour
     public List<GameObject> SpeakingObjects;
     public List<Animator> Animators;
 
-    AudioSource source;
-
     public AudioClip dialogueSound;
     public AudioClip squeak;
 
@@ -58,7 +56,6 @@ public class Dialogue : MonoBehaviour
         c.worldCamera = Camera.main;
         canvas = c.transform;
         c.renderMode = RenderMode.ScreenSpaceOverlay;
-        source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -130,16 +127,7 @@ public class Dialogue : MonoBehaviour
                 }
                
             }
-            if (SpeakingObjects[currentTalker].tag == "Mouse")
-            {
-                source.clip = squeak;
-            }
-            else
-            {
-                source.clip = dialogueSound;
-            }
-            source.Play();
-            Debug.Log(source.clip);
+
             if (Animators.Count != 0)
 
                 if (Animators[currentBubble.personNum] != null)
