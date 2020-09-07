@@ -32,7 +32,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-
     public GameObject player;
 
     private float curLeft = 0; // 현재 영역의 각 변들
@@ -132,9 +131,10 @@ public class CameraController : MonoBehaviour
                 }
             }
             //else if ((num = WhichRegion()) != transform.childCount)
+            //int prev
             else if ((num = WhichRegion()) < numberOfRegions)
             {
-                //Debug.Log(num);
+                
                 Debug.Log("region changed");
                 if (curRegion.cameratype == CameraType.Center)
                 {
@@ -196,6 +196,10 @@ public class CameraController : MonoBehaviour
                 curRight = regionx + width;
                 curUp = regiony + height;
                 curDown = regiony - height;
+                if (CollectableManager.instance != null && regionNum < i)
+                {
+                    CollectableManager.instance.RegionChange();
+                }
                 regionNum = i;
                 curRegion = region;
                 //Debug.Log(curUp);
