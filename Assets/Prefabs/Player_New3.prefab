@@ -590,7 +590,7 @@ MonoBehaviour:
   maxDistance: 6
   fireVelocity: 40
   fireJumpVelocity: {x: 5, y: 10}
-  projJumpVelocity: {x: 0, y: 20}
+  projJumpVelocity: {x: 0, y: 22}
   shortFireTime: 1
   longFireTime: 2.5
   whatIsWall:
