@@ -50,7 +50,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
         VelocityLimit();
         isGrounded = GroundChecking();
-        
+        if (isGrounded) rising = false;
 
         closestWall = WallChecking();
         g = GravityControl() * gravityScaleFactor;
@@ -140,7 +140,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     protected override void VelocityLimit()
     {
-        if (wallState == WallState.Slide)
+        if (wallState == WallState.Slide && velocity.y < slidingVelocity)
             velocity.y = slidingVelocity;
         if (velocity.y < (-1) * jumpVelocity.y + 0.2392f * g / 6)
         {
@@ -799,5 +799,5 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         Debug.Log(velocity);
     }
 
-    bool rising;
+    public bool rising;
 }

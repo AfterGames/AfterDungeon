@@ -242,6 +242,15 @@ public class CameraController : MonoBehaviour
     {
         isCameraMoving = true;
         float sqrRemainingDistance = (controlcamera.transform.position - end).sqrMagnitude;
+        Debug.Log("진입 가속도 " + curRegion.EnterAccel);
+
+        if (curRegion.EnterAccel)
+        {
+            //Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
+            //player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
+            Player.instance.mover.AddVelocity(Vector2.up * curRegion.EnterAccelMagnitude);
+            //Player.instance.mover.rising = true;
+        }
 
         Time.timeScale = 0f;
         while (sqrRemainingDistance > float.Epsilon)
@@ -279,14 +288,7 @@ public class CameraController : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("진입 가속도 "+curRegion.EnterAccel);
-
-        if (curRegion.EnterAccel)
-        {
-            //Vector2 vel = player.GetComponent<Rigidbody2D>().velocity;
-            //player.GetComponent<Rigidbody2D>().velocity = new Vector2(vel.x, vel.y + curRegion.EnterAccelMagnitude);
-            Player.instance.mover.AddVelocity(Vector2.up * curRegion.EnterAccelMagnitude);
-        }
+ 
         Time.timeScale = 1f;
         isCameraMoving = false;
         
