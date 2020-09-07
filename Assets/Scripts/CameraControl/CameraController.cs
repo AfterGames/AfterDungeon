@@ -136,6 +136,10 @@ public class CameraController : MonoBehaviour
             {
                 
                 Debug.Log("region changed");
+                if (CollectableManager.instance != null)
+                {
+                    CollectableManager.instance.RegionChange();
+                }
                 if (curRegion.cameratype == CameraType.Center)
                 {
                     StartCoroutine(Move(curRegion.Center + new Vector3(0f, 0f, -10f)));
@@ -196,10 +200,6 @@ public class CameraController : MonoBehaviour
                 curRight = regionx + width;
                 curUp = regiony + height;
                 curDown = regiony - height;
-                if (CollectableManager.instance != null && regionNum < i)
-                {
-                    CollectableManager.instance.RegionChange();
-                }
                 regionNum = i;
                 curRegion = region;
                 //Debug.Log(curUp);
