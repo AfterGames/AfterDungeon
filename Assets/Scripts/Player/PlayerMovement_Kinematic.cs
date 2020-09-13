@@ -374,43 +374,62 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     protected override void Fire(float horizontal)
     {
-        if (isFired == false && FireChecking())
+        if(!isFired)
         {
-            SoundManager.instance.Play(SoundManager.Clip.shoot);
-            SetTrigger("Fire");
-            isFired = true;
+            if(FireChecking())
+                StartCoroutine(DelayedFire(horizontal));
 
-            //GameObject projectile = Instantiate(projectilePrefab, (transform.position + fireChecker.position) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
-            GameObject projectile = Instantiate(projectilePrefab, (transform.position + (Vector3)FireCheckPos) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
-            projectile.GetComponent<ProjectileController>().Initialize(IsFacingRight, fireVelocity, maxDistance, this);
-            this.projectile = projectile.GetComponent<ProjectileController>();
-            this.projectile.SetLimit(projectileTime);
-            LoseScarf();
-
-            // StartCoroutine(ShootMotion());
-
-            if (isGrounded == false)
+            else if(ContactChecking())
             {
-                //projumped = true;
-                float x = fireJumpVelocity.x;
-                float y = fireJumpVelocity.y;
-                if (horizontal > 0) ApplyJumpVelocity(x, y);
-                else if (horizontal < 0) ApplyJumpVelocity(-x, y);
-                else ApplyJumpVelocity(0, y);
+                if (isGrounded == false)
+                {
+                    //projumped = true;
+                    float x = fireJumpVelocity.x;
+                    float y = fireJumpVelocity.y;
+                    if (horizontal > 0) ApplyJumpVelocity(x, y);
+                    else if (horizontal < 0) ApplyJumpVelocity(-x, y);
+                    else ApplyJumpVelocity(0, y);
+                }
             }
         }
-        else if (isFired == false && ContactChecking())
+    }
+
+    bool stashDash = false;
+    bool firing = false;
+    private IEnumerator DelayedFire(float horizontal)
+    {
+        firing = true;
+        yield return new WaitForSeconds(0.24f);
+        firing = false;
+        SoundManager.instance.Play(SoundManager.Clip.shoot);
+        SetTrigger("Fire");
+        isFired = true;
+
+        //GameObject projectile = Instantiate(projectilePrefab, (transform.position + fireChecker.position) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
+        GameObject projectile = Instantiate(projectilePrefab, (transform.position + (Vector3)FireCheckPos) / 2, (transform.localScale.x > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0)));
+        projectile.GetComponent<ProjectileController>().Initialize(IsFacingRight, fireVelocity, maxDistance, this);
+        this.projectile = projectile.GetComponent<ProjectileController>();
+        this.projectile.SetLimit(projectileTime);
+        LoseScarf();
+
+        // StartCoroutine(ShootMotion());
+
+        if (isGrounded == false)
         {
-            if (isGrounded == false)
-            {
-                //projumped = true;
-                float x = fireJumpVelocity.x;
-                float y = fireJumpVelocity.y;
-                if (horizontal > 0) ApplyJumpVelocity(x, y);
-                else if (horizontal < 0) ApplyJumpVelocity(-x, y);
-                else ApplyJumpVelocity(0, y);
-            }
+            //projumped = true;
+            float x = fireJumpVelocity.x;
+            float y = fireJumpVelocity.y;
+            if (horizontal > 0) ApplyJumpVelocity(x, y);
+            else if (horizontal < 0) ApplyJumpVelocity(-x, y);
+            else ApplyJumpVelocity(0, y);
         }
+
+        if(stashDash)
+        {
+            stashDash = false;
+            Dash(horizontal);
+        }
+        
     }
 
     public void SpringJump()
@@ -422,6 +441,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     protected override void Dash(float horizontal)
     {
         #region Dash
+        if (firing)
+        {
+            stashDash = true;
+            return;
+        }
         if ((isDashed == false) && (isDashing == false)/* && isGrounded == false*/)
         {
             isDashed = true;
