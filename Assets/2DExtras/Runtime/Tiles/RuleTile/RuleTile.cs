@@ -24,6 +24,7 @@ namespace UnityEngine
     [CreateAssetMenu(fileName = "New Rule Tile", menuName = "Tiles/Rule Tile")]
     public class RuleTile : TileBase
     {
+        public Sprite currentSprite;
         /// <summary>
         /// Returns the default Neighbor Rule Class type.
         /// </summary>
@@ -250,8 +251,10 @@ namespace UnityEngine
                     switch (rule.m_Output)
                     {
                         case TilingRule.OutputSprite.Single:
+                            //break;
                         case TilingRule.OutputSprite.Animation:
                             tileData.sprite = rule.m_Sprites[0];
+                            
                             break;
                         case TilingRule.OutputSprite.Random:
                             int index = Mathf.Clamp(Mathf.FloorToInt(GetPerlinValue(position, rule.m_PerlinScale, 100000f) * rule.m_Sprites.Length), 0, rule.m_Sprites.Length - 1);
@@ -263,6 +266,7 @@ namespace UnityEngine
                     tileData.transform = transform;
                     tileData.gameObject = rule.m_GameObject;
                     tileData.colliderType = rule.m_ColliderType;
+                    currentSprite = rule.m_Sprites[0];
 
                     // Converts the tile's rotation matrix to a quaternion to be used by the instantiated Game Object
                     m_GameObjectQuaternion = Quaternion.LookRotation(new Vector3(transform.m02, transform.m12, transform.m22), new Vector3(transform.m01, transform.m11, transform.m21));
