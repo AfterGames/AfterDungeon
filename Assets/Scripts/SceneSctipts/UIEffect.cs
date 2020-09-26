@@ -36,7 +36,8 @@ public class UIEffect : MonoBehaviour, IPointerEnterHandler
         Debug.Log("pointer enter");
         if(controller!=null)
             controller.IndexChange(this);
-        SoundManager.instance.Play(SoundManager.Clip.menuCursor);
+        if(SoundManager.instance != null)
+            SoundManager.instance.Play(SoundManager.Clip.menuCursor);
     }
 
 }
