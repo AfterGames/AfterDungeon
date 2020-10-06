@@ -18,8 +18,20 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     public LayerMask dangerousLayer;
     public Vector3 colliderOffset;
     public Vector2 colliderBox;
+    public float centerToFrontEnd;
+    public Vector3 colliderCenterPosition
+    {
+        get
+        {
+            Vector3 co = colliderOffset;
+            if (!IsFacingRight) co.x = -co.x;
+            return transform.position + co;
+        }
+    }
 
     private LayerMask projectileMask;
+
+    public Vector2 originalWallCheckPos;
 
     protected override void Awake()
     {
@@ -35,6 +47,9 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
         colliderOffset = bc.offset;
         colliderBox = bc.size + (Vector2.one * 0.1f);
+        centerToFrontEnd = bc.offset.x + colliderBox.x / 2;
+
+        originalWallCheckPos = wallChecker.localPosition;
     }
 
     private void Start()
@@ -49,7 +64,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     {
 
         VelocityLimit();
-        isGrounded = GroundChecking();
+        if(!isDashing)
+            isGrounded = GroundChecking();
         if (isGrounded) rising = false;
 
         closestWall = WallChecking();
@@ -249,9 +265,9 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         lastGround = Ground;
     }
 
-    protected override int? WallChecking()
+    protected override int? WallChecking(float preOffset = 0)
     {
-        Collider2D[] colls = Physics2D.OverlapBoxAll(WallCheckPos, wallBox, 0, whatIsWall);
+        Collider2D[] colls = Physics2D.OverlapBoxAll(WallCheckPos + Vector2.right * preOffset, wallBox, 0, whatIsWall);
         if (colls.Length != 0)
         {
             List<Collider2D> colliders = new List<Collider2D>();
@@ -324,6 +340,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         SetBool("IsJumping", false);
         Stamina = totalStamina;
         isDashed = false;
+        //wallChecker.position = originalWallCheckPos;
     }
 
     protected override float GravityControl()
@@ -433,7 +450,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             if (IsFacingRight) StartCoroutine(DashMove(x, 0, dashingTime));
             else StartCoroutine(DashMove(-x, 0, dashingTime));
             //StartCoroutine(EndDash());
-            Debug.Log("Stumping : " + velocity);
+            //Debug.Log("Stumping : " + velocity);
         }
         #endregion
     }
@@ -446,15 +463,20 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         SetTrigger("Dash");
         SetBool("isDashing", true);
         isDashing = true;
+        //wallChecker.localPosition += Vector3.right * 0.2f;
+        //wallBox.x += 0.2f;
         float startTime = Time.time;
-        while ((Time.time - startTime < dashingTime) && !isJumping && !WallChecking().HasValue)
+        while ((Time.time - startTime < dashingTime) && !isJumping)
         {
+            float elapsed = Time.time - startTime;
+            if (WallChecking(velocity.x * Time.deltaTime).HasValue)
+                break;
             if (spr.sprite.name == "ch_dashbody2" || spr.sprite.name == "ch_dashbody3")
             {
                 Tail.gameObject.SetActive(true);
                 Tail.Initiate(dashingTime, transform.localScale.x);
             }
-            float elapsed = Time.time - startTime;
+            
             if (elapsed < dashingTime / 4 - Time.deltaTime)
             {
                 velocity = new Vector2(elapsed * x * 4 / dashingTime, y);
@@ -472,9 +494,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             }
             yield return null;
         }
+        velocity.x = 0;
         Tail.End(tailPosition.position);
         SetBool("isDashing", false);
         SetTrigger("DashEnd");
+
+        //wallChecker.localPosition = originalWallCheckPos;
+        //wallBox.x -= 0.2f;
 
         isDashing = false;
 
@@ -486,11 +512,12 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 ProjectileJump();
             }
         }
-
+        SetTrigger("DashEnd");
         if (isGrounded)
         {
+            Debug.Log("땅에 닿아서 대시 충전");
             isDashed = false;
-            SetTrigger("DashEnd");
+
         }
     }
 
@@ -536,7 +563,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             closestWall = null;
             ApplyJumpVelocity(slidingJumpVelocity.x, slidingJumpVelocity.y, wallJumpExtortionTime);
         }
-        Debug.Log("Wall Jump : " + velocity);
+        //Debug.Log("Wall Jump : " + velocity);
 
         lastWallTime = -999f;
 
@@ -716,11 +743,25 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     public override void ProjectileJump()
     {
-        Debug.Log(projectile);
-        transform.position = projectile.transform.position;
-        float x = projJumpVelocity.x;
+        Vector3 newPos = projectile.transform.position;
+        float distanceToProjectile = newPos.x - colliderCenterPosition.x;
+
+        bool facingWall = WallChecking(distanceToProjectile).HasValue;
+        if(facingWall)
+        {
+            if(IsFacingRight)
+            {
+                newPos.x = (int)newPos.x - centerToFrontEnd - 2f;
+            }
+            else
+            {
+                newPos.x = (int)newPos.x + 1 + centerToFrontEnd + 1.5f;
+            }
+        }
+        transform.position = newPos;
+        float x = facingWall ? 0 : projJumpVelocity.x;
         float y = projJumpVelocity.y;
-        Debug.Log("projectile jump x: " + x + " y: " + y);
+        //Debug.Log("projectile jump x: " + x + " y: " + y);
         if (IsFacingRight) ApplyJumpVelocity(x, y, 0.01f);
         else ApplyJumpVelocity(-x, y, 0.01f);
     }
