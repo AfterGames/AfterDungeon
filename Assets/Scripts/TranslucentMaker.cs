@@ -12,10 +12,10 @@ public class TranslucentMaker : MonoBehaviour
         StartCoroutine(DelayedMakeTranslucent());
     }
 
+    int tick = 0;
     IEnumerator DelayedMakeTranslucent()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         TranslucentTile tt = Physics2D.OverlapCircle(transform.position, 0.2f).GetComponent<TranslucentTile>();
         tt.MakeTranslucent();
     }

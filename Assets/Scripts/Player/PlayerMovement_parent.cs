@@ -194,7 +194,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
 
     public abstract void GroundChange(GameObject Ground);
 
-    protected abstract int? WallChecking();
+    protected abstract int? WallChecking(float preOffset = 0);
 
     protected abstract bool FireChecking();
 

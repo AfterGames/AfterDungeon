@@ -137,7 +137,7 @@ public class PlayerMovement : PlayerMovement_parent
         lastGround = Ground;
     }
 
-    protected override int? WallChecking()
+    protected override int? WallChecking(float preOffset = 0)
     {
         Collider2D[] colls = Physics2D.OverlapBoxAll(WallCheckPos, wallBox, 0, whatIsWall);
         if (colls.Length != 0)
