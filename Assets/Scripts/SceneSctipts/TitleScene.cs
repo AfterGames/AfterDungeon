@@ -8,7 +8,8 @@ public class TitleScene : MonoBehaviour
 {
     private float elapsed = 0f;
 
-    public Text[] firstText;
+    //public Text[] firstText;
+    public Image firstTextImg;
     private bool first;
 
     public Image titleImage;
@@ -24,10 +25,11 @@ public class TitleScene : MonoBehaviour
         secondText.color = new Color(secondText.color.r, secondText.color.b, secondText.color.g, 0);
         secondText.gameObject.SetActive(false);
         changeAlpha(0f);
-        for (int i = 0; i < firstText.Length; i++)
-        {
-            firstText[i].gameObject.SetActive(false);
-        }
+        //for (int i = 0; i < firstText.Length; i++)
+        //{
+        //    firstText[i].gameObject.SetActive(false);
+        //}
+        firstTextImg.gameObject.SetActive(true);
         canPress = false;
         first = false;
         second = false;
@@ -52,7 +54,7 @@ public class TitleScene : MonoBehaviour
             bool c_pressed = Input.GetKeyDown(KeyCode.C);
             if (c_pressed)
             {
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Main_Demo");
             }
         }
     }
@@ -60,10 +62,11 @@ public class TitleScene : MonoBehaviour
     IEnumerator Title()
     {
         yield return new WaitForSeconds(2f);
-        for (int i = 0; i < firstText.Length; i++)
-        {
-            firstText[i].gameObject.SetActive(true);
-        }
+        //for (int i = 0; i < firstText.Length; i++)
+        //{
+        //    firstText[i].gameObject.SetActive(true);
+        //}
+        firstTextImg.gameObject.SetActive(true);
         elapsed = 0f;
         while(elapsed<=1.5f)
         {
@@ -140,9 +143,10 @@ public class TitleScene : MonoBehaviour
 
     void changeAlpha(float value)
     {
-        for (int i = 0; i < firstText.Length; i++)
-        {
-            firstText[i].color = new Color(firstText[i].color.r, firstText[i].color.b, firstText[i].color.g, value);
-        }
+        //for (int i = 0; i < firstText.Length; i++)
+        //{
+        //    firstText[i].color = new Color(firstText[i].color.r, firstText[i].color.b, firstText[i].color.g, value);
+        //}
+        firstTextImg.color = new Color(1,1,1, value);
     }
 }
