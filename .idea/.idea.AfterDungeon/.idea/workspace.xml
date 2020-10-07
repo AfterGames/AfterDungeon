@@ -334,11 +334,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="62" />
-    <option name="y" value="149" />
-    <option name="width" value="1152" />
-    <option name="height" value="612" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="61" />
+    <option name="y" value="148" />
+    <option name="width" value="1153" />
+    <option name="height" value="613" />
   </component>
   <component name="ProjectView">
     <navigator currentView="UnityExplorer" proportions="" version="1">
