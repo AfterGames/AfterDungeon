@@ -93,5 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ca3eb0b23a50a4fb676ac2c5df8af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Brightness: 4
+  Brightness: 2
   lightRadius: 4
+  curRadius: 0
+  isBlink: 0
+  blinkRange: 0
