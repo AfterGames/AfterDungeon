@@ -9,6 +9,7 @@ public class CollectableReset : ResetableObject
     private void Awake()
     {
         originalPos = transform.position;
+        c = GetComponent<Collectable>();
     }
     public override void Reset()
     {
