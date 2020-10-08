@@ -7,6 +7,7 @@
     <e p="C:\Users\black\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_AfterDungeon.1177703985.00" t="ExcludeRecursive" />
     <e p="C:\Users\black\Documents\GitHub\AfterDungeon" t="IncludeRecursive">
       <e p="AfterDungeon.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="2DExtras" t="Include">
@@ -117,30 +118,65 @@
             <e p="readme.txt" t="Include" />
           </e>
         </e>
+        <e p="Ocias" t="Include">
+          <e p="PixelArtCamera" t="Include">
+            <e p="BilinearSharp.shader" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="PixelArtCameraEditor.cs" t="Include" />
+            </e>
+            <e p="Example" t="Include">
+              <e p="CameraPan.cs" t="Include" />
+              <e p="RandomRotate.cs" t="Include" />
+              <e p="SixtyFPS.cs" t="Include" />
+              <e p="TileSpin.cs" t="Include" />
+            </e>
+            <e p="PixelArtCamera.cs" t="Include" />
+            <e p="PixelArtDiffuse.shader" t="Include" />
+            <e p="PixelArtFont.shader" t="Include" />
+            <e p="PixelArtParticle.shader" t="Include" />
+            <e p="PixelArtSprite.shader" t="Include" />
+            <e p="PixelArtSpriteDiffuse.shader" t="Include" />
+            <e p="PixelArtUI.shader" t="Include" />
+            <e p="readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="AlphaTestStartScene.cs" t="Include" />
           <e p="Attachable.cs" t="Include" />
+          <e p="BackGroundControl_X.cs" t="Include" />
+          <e p="BGMPlayer.cs" t="Include" />
           <e p="BGMStarter.cs" t="Include" />
+          <e p="BoldChanger.cs" t="Include" />
           <e p="ButtonControl.cs" t="Include" />
+          <e p="Camera_PlayerFollower.cs" t="Include" />
           <e p="CameraControl" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="CameraRegion.cs" t="Include" />
           </e>
           <e p="CircleLightController.cs" t="Include" />
+          <e p="ClusterButton.cs" t="Include" />
+          <e p="ClusterButtonGate.cs" t="Include" />
+          <e p="Collectable.cs" t="Include" />
+          <e p="CollectableManager.cs" t="Include" />
+          <e p="CollectableReset.cs" t="Include" />
           <e p="ContactPlayer.cs" t="Include" />
           <e p="Dangerous.cs" t="Include" />
           <e p="DashGem.cs" t="Include" />
           <e p="Dialogue.cs" t="Include" />
+          <e p="FadeIn.cs" t="Include" />
           <e p="FallingBlock.cs" t="Include" />
           <e p="FallingReset.cs" t="Include" />
           <e p="JumpGem.cs" t="Include" />
           <e p="Lamp.cs" t="Include" />
+          <e p="LeverPlatformReset.cs" t="Include" />
           <e p="LineLightController.cs" t="Include" />
           <e p="MovingSpike.cs" t="Include" />
           <e p="OneWaySensor.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Player.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerMovement_Kinematic.cs" t="Include" />
+            <e p="PlayerMovement_parent.cs" t="Include" />
             <e p="ProjectileController.cs" t="Include" />
             <e p="TailController.cs" t="Include" />
             <e p="TutorialControl.cs" t="Include" />
@@ -168,6 +204,7 @@
             <e p="DarkTexture.shader" t="Include" />
             <e p="FadeOutShader.shader" t="Include" />
             <e p="LineLight.shader" t="Include" />
+            <e p="Unstoppable.shader" t="Include" />
           </e>
           <e p="SoundManager.cs" t="Include" />
           <e p="SpawnControl" t="Include">
@@ -175,6 +212,7 @@
             <e p="SpawnRegion.cs" t="Include" />
           </e>
           <e p="SpeechBubbleCtrl.cs" t="Include" />
+          <e p="Spring.cs" t="Include" />
           <e p="Stage0" t="Include">
             <e p="StraightLight_0.cs" t="Include" />
           </e>
@@ -195,10 +233,26 @@
           </e>
           <e p="ThankYou.cs" t="Include" />
           <e p="Title.cs" t="Include" />
+          <e p="TranslucentMaker.cs" t="Include" />
+          <e p="TranslucentManager.cs" t="Include" />
+          <e p="TranslucentTile.cs" t="Include" />
           <e p="Tutorial_Fall.cs" t="Include" />
           <e p="Tutorial_GetScarf.cs" t="Include" />
         </e>
         <e p="SelfDestruction.cs" t="Include" />
+        <e p="SerializableDictionary" t="Include">
+          <e p="Editor" t="Include">
+            <e p="SerializableDictionaryPropertyDrawer.cs" t="Include" />
+          </e>
+          <e p="Example" t="Include">
+            <e p="Editor" t="Include">
+              <e p="UserSerializableDictionaryPropertyDrawers.cs" t="Include" />
+            </e>
+            <e p="SerializableDictionaryExample.cs" t="Include" />
+            <e p="UserSerializableDictionaries.cs" t="Include" />
+          </e>
+          <e p="SerializableDictionary.cs" t="Include" />
+        </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

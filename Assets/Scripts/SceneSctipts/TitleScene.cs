@@ -91,7 +91,7 @@ public class TitleScene : MonoBehaviour
     IEnumerator TitleFadeIn()
     {
         elapsed = 0f;
-        float fadeTime = 0.4f;
+        float fadeTime = 1.5f;
         titleImage.gameObject.SetActive(true);
         while(true)
         {
