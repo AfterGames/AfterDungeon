@@ -366,7 +366,7 @@ MonoBehaviour:
   airDecel: 80
   horizontalSpeed: 12
   originGravity: 6
-  jumpVelocity: {x: 12, y: 20.5}
+  jumpVelocity: {x: 12, y: 24}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 1946017592969873800}
   tailPosition: {fileID: 6132684805356263207}
@@ -385,7 +385,7 @@ MonoBehaviour:
   maxDistance: 6
   fireVelocity: 40
   fireJumpVelocity: {x: 5, y: 10}
-  projJumpVelocity: {x: 0, y: 20}
+  projJumpVelocity: {x: 0, y: 22}
   shortFireTime: 1
   longFireTime: 2.5
   whatIsWall:
@@ -395,7 +395,7 @@ MonoBehaviour:
   slidingVelocity: -4
   wallGravityFactor: 0.71428573
   detachWallTime: 0.1
-  slidingJumpVelocity: {x: 12, y: 17}
+  slidingJumpVelocity: {x: 12, y: 19}
   penetrateChecker: {fileID: 0}
   totalStamina: 100
   stamina: 0
@@ -571,7 +571,7 @@ MonoBehaviour:
   airDecel: 80
   horizontalSpeed: 12
   originGravity: 6
-  jumpVelocity: {x: 12, y: 22}
+  jumpVelocity: {x: 12, y: 24}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 1946017592969873800}
   tailPosition: {fileID: 6132684805356263207}
@@ -619,6 +619,8 @@ MonoBehaviour:
     m_Bits: 2048
   colliderOffset: {x: 0, y: 0, z: 0}
   colliderBox: {x: 0, y: 0}
+  centerToFrontEnd: 0
+  originalWallCheckPos: {x: 0, y: 0}
   rising: 0
 --- !u!1 &2664189599236864711
 GameObject:
