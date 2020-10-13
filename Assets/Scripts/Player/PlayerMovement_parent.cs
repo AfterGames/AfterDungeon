@@ -109,11 +109,11 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     [SerializeField] protected float wallJumpExtortionTime;
 
 
-    protected Vector2 groundBox = new Vector2(0.7f, 0.2f);
-    protected Vector2 buryCheckBox = new Vector2(0.7f, 0.1f);
-    protected Vector2 wallBox = new Vector2(0.2f, 1.2f);
-    protected Vector2 penetrateBox = new Vector2(0.2f, 1.2f);
-    protected Vector2 fireBox = new Vector3(1f, 0.4f);
+    public Vector2 groundBox = new Vector2(0.7f, 0.2f);
+    public Vector2 buryCheckBox = new Vector2(0.7f, 0.1f);
+    public Vector2 wallBox = new Vector2(0.2f, 1.2f);
+    public Vector2 penetrateBox = new Vector2(0.2f, 1.2f);
+    public Vector2 fireBox = new Vector3(1f, 0.4f);
 
     public Rigidbody2D rb2D { get; protected set; }
     [SerializeField] protected Animator animator;

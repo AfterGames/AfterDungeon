@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512956965600725784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: 1.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1748830457842185644}
@@ -230,7 +230,6 @@ GameObject:
   - component: {fileID: 1512956966128775176}
   - component: {fileID: 1512956966128775177}
   - component: {fileID: 1512956966128775178}
-  - component: {fileID: 1512956966128775179}
   - component: {fileID: 1629627112665743721}
   - component: {fileID: 4538872860511273360}
   - component: {fileID: 9004369557473961146}
@@ -339,76 +338,6 @@ MonoBehaviour:
   stageNum: 0
   dialogueReady: 0
   dead: 0
---- !u!114 &1512956966128775179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1512956966128775220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b967ca33a8383e4ca56e70802ecc7fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGrounded: 0
-  isJumping: 0
-  isDashed: 0
-  isFired: 0
-  isPlatform: 0
-  spr: {fileID: 4149253611494791460}
-  spr2: {fileID: 0}
-  movingPlatform: {fileID: 0}
-  platformVelocity: {x: 0, y: 0}
-  addVelocity: {x: 0, y: 0}
-  wallState: 0
-  groundAccel: 80
-  groundDecel: 200
-  airAccel: 40
-  airDecel: 80
-  horizontalSpeed: 12
-  originGravity: 6
-  jumpVelocity: {x: 12, y: 20.5}
-  dashVelocity: {x: 40, y: 5}
-  Tail: {fileID: 3100627993957595223}
-  tailPosition: {fileID: 7286169290362463992}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 25088
-  groundChecker: {fileID: 1512956967031692037}
-  buryChecker: {fileID: 0}
-  ceilingChecker: {fileID: 0}
-  whatIsCeiling:
-    serializedVersion: 2
-    m_Bits: 0
-  fireChecker: {fileID: 1512956965875450166}
-  projectilePrefab: {fileID: 2480807860061347004, guid: 65eb601f96614e34bbffcb36f1fec34a,
-    type: 3}
-  maxDistance: 6
-  fireVelocity: 40
-  fireJumpVelocity: {x: 5, y: 10}
-  projJumpVelocity: {x: 0, y: 20}
-  shortFireTime: 1
-  longFireTime: 2.5
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 16896
-  wallChecker: {fileID: 1512956965600725791}
-  slidingVelocity: -4
-  wallGravityFactor: 0.71428573
-  detachWallTime: 0.1
-  slidingJumpVelocity: {x: 12, y: 17}
-  penetrateChecker: {fileID: 1748830457842185644}
-  totalStamina: 100
-  stamina: 0
-  wallSlideStatmina: 0
-  mildJumpTime: 0.04
-  allowedJumpTime: 0.04
-  dashingTime: 0.2
-  mildWallTime: 0.04
-  wallJumpExtortionTime: 0.11
-  animator: {fileID: 7502948887635153046}
-  animator2: {fileID: 0}
 --- !u!82 &1629627112665743721
 AudioSource:
   m_ObjectHideFlags: 0
@@ -553,7 +482,6 @@ MonoBehaviour:
   isPlatform: 0
   spr: {fileID: 4149253611494791460}
   spr2: {fileID: 423973332723952847}
-  movingPlatform: {fileID: 0}
   platformVelocity: {x: 0, y: 0}
   addVelocity: {x: 0, y: 0}
   wallState: 0
@@ -611,6 +539,8 @@ MonoBehaviour:
     m_Bits: 2048
   colliderOffset: {x: 0, y: 0, z: 0}
   colliderBox: {x: 0, y: 0}
+  centerToFrontEnd: 0
+  originalWallCheckPos: {x: 0, y: 0}
   rising: 0
 --- !u!114 &1730856398000891554
 MonoBehaviour:
@@ -768,7 +698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5205856190888317646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1512956966128775182}
@@ -868,7 +798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5747715763947481481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1512956966128775182}

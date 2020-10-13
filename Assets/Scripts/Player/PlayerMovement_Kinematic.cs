@@ -56,7 +56,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     {
         whatIsGround += 1 << 16;
         projectileMask = LayerMask.NameToLayer("Projectile");
-        
     }
 
 
