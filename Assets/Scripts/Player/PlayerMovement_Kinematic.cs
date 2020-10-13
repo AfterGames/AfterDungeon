@@ -530,7 +530,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         {
             float x = jumpVelocity.x;
             float y = jumpVelocity.y;
-            Debug.Log("just jump");
             if (horizontal > 0) ApplyJumpVelocity(x, y);
             else if (horizontal < 0) ApplyJumpVelocity(-x, y);
             else ApplyJumpVelocity(0, y);
@@ -558,7 +557,6 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (closestWall == 1)
         {
             closestWall = null;
-            Debug.Log("wall jump");
             ApplyJumpVelocity(-slidingJumpVelocity.x, slidingJumpVelocity.y, wallJumpExtortionTime);
         }
         else if (closestWall == -1)
@@ -754,13 +752,15 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         bool facingWall = WallChecking(distanceToProjectile).HasValue;
         if(facingWall)
         {
-            if(IsFacingRight)
+            groundBox.x /= 16f;
+            if (IsFacingRight)
             {
-                newPos.x = (int)newPos.x - centerToFrontEnd - 2f;
+                
+                newPos.x = (int)newPos.x - centerToFrontEnd;
             }
             else
             {
-                newPos.x = (int)newPos.x + 1 + centerToFrontEnd + 1.5f;
+                newPos.x = (int)newPos.x + 1 + centerToFrontEnd;
             }
         }
         transform.position = newPos;
@@ -770,6 +770,9 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         Debug.Log("projectile jump");
         if (IsFacingRight) ApplyJumpVelocity(x, y, 0.01f);
         else ApplyJumpVelocity(-x, y, 0.01f);
+
+        if(facingWall)
+        groundBox.x *= 16;
     }
 
 
