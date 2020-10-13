@@ -391,9 +391,10 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     protected override void Fire(float horizontal)
     {
+        
         if (isFired == false && FireChecking())
         {
-            SoundManager.instance.Play(SoundManager.Clip.shoot);
+            Debug.Log("fire");
             SetTrigger("Fire");
             isFired = true;
 
@@ -411,9 +412,9 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 //projumped = true;
                 float x = fireJumpVelocity.x;
                 float y = fireJumpVelocity.y;
-                if (horizontal > 0) ApplyJumpVelocity(x, y);
-                else if (horizontal < 0) ApplyJumpVelocity(-x, y);
-                else ApplyJumpVelocity(0, y);
+                if (horizontal > 0) ApplyJumpVelocity(x, y, noSound : true);
+                else if (horizontal < 0) ApplyJumpVelocity(-x, y, noSound : true);
+                else ApplyJumpVelocity(0, y, noSound: true);
             }
         }
         else if (isFired == false && ContactChecking())
@@ -423,15 +424,16 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 //projumped = true;
                 float x = fireJumpVelocity.x;
                 float y = fireJumpVelocity.y;
-                if (horizontal > 0) ApplyJumpVelocity(x, y);
-                else if (horizontal < 0) ApplyJumpVelocity(-x, y);
-                else ApplyJumpVelocity(0, y);
+                if (horizontal > 0) ApplyJumpVelocity(x, y, noSound: true);
+                else if (horizontal < 0) ApplyJumpVelocity(-x, y, noSound: true);
+                else ApplyJumpVelocity(0, y, noSound: true);
             }
         }
     }
 
     public void SpringJump()
     {
+        Debug.Log("spring jump");
         ApplyJumpVelocity(0, 1.414f * jumpVelocity.y);
     }
 
@@ -529,6 +531,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         {
             float x = jumpVelocity.x;
             float y = jumpVelocity.y;
+            Debug.Log("just jump");
             if (horizontal > 0) ApplyJumpVelocity(x, y);
             else if (horizontal < 0) ApplyJumpVelocity(-x, y);
             else ApplyJumpVelocity(0, y);
@@ -556,11 +559,13 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (closestWall == 1)
         {
             closestWall = null;
+            Debug.Log("wall jump");
             ApplyJumpVelocity(-slidingJumpVelocity.x, slidingJumpVelocity.y, wallJumpExtortionTime);
         }
         else if (closestWall == -1)
         {
             closestWall = null;
+            Debug.Log("wall jump");
             ApplyJumpVelocity(slidingJumpVelocity.x, slidingJumpVelocity.y, wallJumpExtortionTime);
         }
         //Debug.Log("Wall Jump : " + velocity);
@@ -639,39 +644,40 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         //        SoundManager.instance.Stop();
         //}
     }
-    protected override void ApplyJumpVelocity(float x, float y, float duration = 0f)
+    protected override void ApplyJumpVelocity(float x, float y, float duration = 0f, bool noSound = false)
     {
         #region MovingPlatform
-        if (isPlatform && movingPlatform.status == Status.wait_jump)// 움직이는 플랫폼 마지막에 멈춰있는 구간동안 관대한 점프 판정
-        {
-            if (movingPlatform.directionType == Direction.x)
-            {
-                platformVelocity.x = (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.x;
-                x += (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.x;
-            }
-            else
-            {
-                platformVelocity.y = (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.y;
-                y += (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.y;
-            }
-        }
-        else if (isPlatform && movingPlatform.status == Status.forward)
-        {
-            if (movingPlatform.directionType == Direction.x)
-            {
-                platformVelocity.x += addVelocity.x;
-                x += platformVelocity.x;
-            }
-            else
-            {
-                platformVelocity.y += addVelocity.y;
-                y += platformVelocity.y;
-            }
-        }
+        //if (isPlatform && movingPlatform.status == Status.wait_jump)// 움직이는 플랫폼 마지막에 멈춰있는 구간동안 관대한 점프 판정
+        //{
+        //    if (movingPlatform.directionType == Direction.x)
+        //    {
+        //        platformVelocity.x = (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.x;
+        //        x += (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.x;
+        //    }
+        //    else
+        //    {
+        //        platformVelocity.y = (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.y;
+        //        y += (-1) * (movingPlatform.velocity + movingPlatform.extraVelocity) * movingPlatform.direction.y;
+        //    }
+        //}
+        //else if (isPlatform && movingPlatform.status == Status.forward)
+        //{
+        //    if (movingPlatform.directionType == Direction.x)
+        //    {
+        //        platformVelocity.x += addVelocity.x;
+        //        x += platformVelocity.x;
+        //    }
+        //    else
+        //    {
+        //        platformVelocity.y += addVelocity.y;
+        //        y += platformVelocity.y;
+        //    }
+        //}
         #endregion
         //Debug.Log(x + ", " + y);
 
-        SoundManager.instance.Play(SoundManager.Clip.jump);
+        if(!noSound)
+            SoundManager.instance.Play(SoundManager.Clip.jump);
         GroundChange(null);
         velocity = new Vector2(x, y);
         Flip(x);
@@ -762,6 +768,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         float x = facingWall ? 0 : projJumpVelocity.x;
         float y = projJumpVelocity.y;
         //Debug.Log("projectile jump x: " + x + " y: " + y);
+        Debug.Log("projectile jump");
         if (IsFacingRight) ApplyJumpVelocity(x, y, 0.01f);
         else ApplyJumpVelocity(-x, y, 0.01f);
     }

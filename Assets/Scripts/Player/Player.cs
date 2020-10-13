@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         if (beKinematic)
         {
             mover = GetComponent<PlayerMovement_Kinematic>();
-            Destroy(GetComponent<PlayerMovement>());
+            //Destroy(GetComponent<PlayerMovement>());
             rb.gravityScale = 0;
             //rb.bodyType = RigidbodyType2D.Kinematic;
             //rb.constraints = RigidbodyConstraints2D.FreezeAll ;
@@ -136,7 +136,9 @@ public class Player : MonoBehaviour
     public void GetDamage(float duration = 0.8f)
     {
         if (dead) return;
+        SoundManager.instance.Stop();
         SoundManager.instance.Play(SoundManager.Clip.gameOver);
+
         if(!fireLock)
             mover.FireEnd();
         DataAdmin.instance.IncrementData(DataType.deathNum);

@@ -6,11 +6,26 @@ public class Collectable : MonoBehaviour
 {
     Vector3 originalPos;
     public enum State { intact, following, collected }
-    public State currentState = State.intact;
+    private State currentState = State.intact;
+    public State CurrentState
+    {
+        get
+        {
+            return currentState;
+        }
+
+        set
+        {
+            currentState = value;
+            bc.enabled = currentState != State.following;
+        }
+    }
+    BoxCollider2D bc;
 
     private void Start()
     {
         CollectableManager.instance.Collect += (() => { if(currentState == State.following) currentState = State.collected;});
+        bc = GetComponent<BoxCollider2D>();
     }
 
 

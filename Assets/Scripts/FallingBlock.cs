@@ -242,7 +242,7 @@ public class FallingBlock : ContactPlayer
         {
             GameObject player = collision.collider.gameObject;
             if(player != null)
-            if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement>().IsGrounded && isFalling)
+            if(player.transform.position.y<transform.position.y-0.7f && player.GetComponent<PlayerMovement_Kinematic>().IsGrounded && isFalling)
             {
                 player.GetComponent<Player>().GetDamage();
             }
@@ -259,7 +259,7 @@ public class FallingBlock : ContactPlayer
                     curPlayer.Stop();
                     if(!Player.instance.beKinematic)
                     {
-                        curPlayer.movingPlatform = null;
+                        //curPlayer.movingPlatform = null;
                         curPlayer.rb2D.isKinematic = false;
 
                     }

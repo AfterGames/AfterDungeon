@@ -20,7 +20,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     //protected bool projumped;
 
 
-    [HideInInspector] public MovingPlatform movingPlatform;
+    //[HideInInspector] public MovingPlatform movingPlatform;
     [HideInInspector] public Vector2 platformVelocity;
     [HideInInspector] public Vector2 addVelocity;
 
@@ -223,7 +223,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     // Control only horizontal velocity
     protected abstract void HorizontalMove(float dir);
 
-    protected abstract void ApplyJumpVelocity(float x, float y, float duration = 0f);
+    protected abstract void ApplyJumpVelocity(float x, float y, float duration = 0f, bool noSound = false);
 
     public abstract void GrabWall(float horizontal);
 

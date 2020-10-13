@@ -52,9 +52,10 @@ public class DashGem : MonoBehaviour
         if (isActivated)
         {
             source.clip = get;
-            source.Play();
+            
             if (collision.tag == "Player")
             {
+                source.Play();
                 Debug.Log("player used");
                 collision.GetComponent<PlayerMovement_parent>().DashRefill();
                 isActivated = false;

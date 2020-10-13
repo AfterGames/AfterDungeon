@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 2664189598708974039}
   - component: {fileID: 2664189598708974038}
   - component: {fileID: 2664189598708974037}
-  - component: {fileID: 2664189598708974036}
   - component: {fileID: 3252062991085025098}
   - component: {fileID: 1486043241886472602}
   - component: {fileID: 3340607147308990372}
@@ -337,76 +336,6 @@ MonoBehaviour:
   stageNum: 0
   dialogueReady: 0
   dead: 0
---- !u!114 &2664189598708974036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664189598708974059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b967ca33a8383e4ca56e70802ecc7fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGrounded: 0
-  isJumping: 0
-  isDashed: 0
-  isFired: 0
-  isPlatform: 0
-  spr: {fileID: 689926118123202811}
-  spr2: {fileID: 3883300748811296016}
-  movingPlatform: {fileID: 0}
-  platformVelocity: {x: 0, y: 0}
-  addVelocity: {x: 0, y: 0}
-  wallState: 0
-  groundAccel: 80
-  groundDecel: 200
-  airAccel: 40
-  airDecel: 80
-  horizontalSpeed: 12
-  originGravity: 6
-  jumpVelocity: {x: 12, y: 24}
-  dashVelocity: {x: 40, y: 5}
-  Tail: {fileID: 1946017592969873800}
-  tailPosition: {fileID: 6132684805356263207}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 25088
-  groundChecker: {fileID: 2664189599956888282}
-  buryChecker: {fileID: 0}
-  ceilingChecker: {fileID: 0}
-  whatIsCeiling:
-    serializedVersion: 2
-    m_Bits: 0
-  fireChecker: {fileID: 2664189598429458665}
-  projectilePrefab: {fileID: 2480807860061347004, guid: 65eb601f96614e34bbffcb36f1fec34a,
-    type: 3}
-  maxDistance: 6
-  fireVelocity: 40
-  fireJumpVelocity: {x: 5, y: 10}
-  projJumpVelocity: {x: 0, y: 22}
-  shortFireTime: 1
-  longFireTime: 2.5
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 16896
-  wallChecker: {fileID: 2664189599236864704}
-  slidingVelocity: -4
-  wallGravityFactor: 0.71428573
-  detachWallTime: 0.1
-  slidingJumpVelocity: {x: 12, y: 19}
-  penetrateChecker: {fileID: 0}
-  totalStamina: 100
-  stamina: 0
-  wallSlideStatmina: 0
-  mildJumpTime: 0.04
-  allowedJumpTime: 0.04
-  dashingTime: 0.2
-  mildWallTime: 0.04
-  wallJumpExtortionTime: 0.11
-  animator: {fileID: 6348338563590906185}
-  animator2: {fileID: 2136960525051770354}
 --- !u!114 &3252062991085025098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,13 +350,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfx: {fileID: 1486043241886472602}
   soundDictionary:
-    m_keys: 00000000010000000200000003000000040000000500000007000000080000000a0000000b0000000d0000000e000000
+    m_keys: 000000000100000002000000030000000500000007000000080000000a0000000b0000000d0000000e000000
     m_values:
     - {fileID: 8300000, guid: d598f7f5e0dc70c4cbfc1745fbdf5f44, type: 3}
     - {fileID: 8300000, guid: 51dc460f1fff48e45b996cd9c04fda37, type: 3}
     - {fileID: 8300000, guid: 5844d524183941340bf2689ddcf0e855, type: 3}
     - {fileID: 8300000, guid: 045870f539f27974997c22bb7b685e33, type: 3}
-    - {fileID: 8300000, guid: 7888bda98dfd67241a9657835235f0d2, type: 3}
     - {fileID: 8300000, guid: ee3312d6f9bc50746b5f24450c7dfa33, type: 3}
     - {fileID: 8300000, guid: f8d326f4b911c254a96322fa59767da5, type: 3}
     - {fileID: 8300000, guid: 3a6401369afb02c4b839e8d68035d1db, type: 3}
@@ -561,7 +489,6 @@ MonoBehaviour:
   isPlatform: 0
   spr: {fileID: 689926118123202811}
   spr2: {fileID: 3883300748811296016}
-  movingPlatform: {fileID: 0}
   platformVelocity: {x: 0, y: 0}
   addVelocity: {x: 0, y: 0}
   wallState: 0

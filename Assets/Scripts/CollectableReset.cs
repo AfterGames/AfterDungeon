@@ -13,12 +13,12 @@ public class CollectableReset : ResetableObject
     }
     public override void Reset()
     {
-        if(c.currentState == Collectable.State.following)
+        if(c.CurrentState == Collectable.State.following)
         {
             transform.parent = null;
             transform.position = originalPos;
             transform.localScale = Vector3.one;
-            c.currentState = Collectable.State.intact;
+            c.CurrentState = Collectable.State.intact;
             CollectableManager.instance.followingNum = 0;
         }
     }
