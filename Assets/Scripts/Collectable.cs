@@ -18,14 +18,20 @@ public class Collectable : MonoBehaviour
         {
             currentState = value;
             bc.enabled = currentState != State.following;
+            if (currentState == State.following) source.clip = get;
+            else if (currentState == State.intact) source.clip = touch;
         }
     }
     BoxCollider2D bc;
+    AudioSource source;
+    public AudioClip get;
+    public AudioClip touch;
 
     private void Start()
     {
         CollectableManager.instance.Collect += (() => { if(currentState == State.following) currentState = State.collected;});
         bc = GetComponent<BoxCollider2D>();
+        source = GetComponent<AudioSource>();
     }
 
 
@@ -33,6 +39,7 @@ public class Collectable : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            source.Play();
             if (currentState == State.intact)
             {
                 currentState = State.following;
