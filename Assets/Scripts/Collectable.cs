@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     Vector3 originalPos;
+    SpriteRenderer spr;
     public enum State { intact, following, collected }
     private State currentState = State.intact;
     public State CurrentState
@@ -29,6 +30,7 @@ public class Collectable : MonoBehaviour
 
     private void Start()
     {
+        spr = GetComponent<SpriteRenderer>();
         CollectableManager.instance.Collect += (() => { if(currentState == State.following) currentState = State.collected;});
         bc = GetComponent<BoxCollider2D>();
         source = GetComponent<AudioSource>();
@@ -50,9 +52,17 @@ public class Collectable : MonoBehaviour
             else if (currentState == State.collected)
             {
                 CollectableManager.instance.AddCollection();
-                Destroy(gameObject);
+                StartCoroutine(DelayedDestroy());
             }
         }
+    }
+
+    IEnumerator DelayedDestroy()
+    {
+        spr.enabled = false;
+        bc.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
     public float speed;
