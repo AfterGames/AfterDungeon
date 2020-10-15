@@ -30,12 +30,12 @@ public class Title : MonoBehaviour
     }
     IEnumerator FadeOutAndStartGame()
     {
+        Saver.BICDemoLoad();
         for(int i = 0; i < 5; i++)
         {
             fader.color = new Color(0,0,0, (i + 1) / 5);
             yield return new WaitForSeconds(0.05f);
         }
         SceneManager.LoadScene("BIC_Demo");
-
     }
 }

@@ -79,6 +79,13 @@ public class Player : MonoBehaviour
         else
             SetSpawnPos(transform.position);
         escMenu = (InGameMenu)FindObjectOfType(typeof(InGameMenu));
+
+        Debug.Log(SaveDataWielder.instance);
+        if(SaveDataWielder.instance != null)
+        {
+            transform.position = SaveDataWielder.instance.spawnPoint;
+            Destroy(SaveDataWielder.instance.gameObject);
+        }
     }
 
     private void Update()
@@ -95,9 +102,7 @@ public class Player : MonoBehaviour
         }
         if(respawn && !specialControl)
         {
-            SpawnController.instance.Respawn();
-            transform.position = originPos;
-            GetFalseDamage(0.5f);
+            Cheat();
         }
         if (canControl && Time.timeScale>0 && !specialControl)
         {
@@ -132,6 +137,11 @@ public class Player : MonoBehaviour
         jump = false;
         
     }
+
+    //IEnumerator DelayedCheat()
+    //{
+    //    yield return new WaitUntil
+    //}
 
     public void GetDamage(float duration = 0.8f)
     {
@@ -171,8 +181,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Spawn set: "+ value);
         originPos = value;
-        //transform.position = value;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(x,y);
+        mover.velocity = new Vector2(x,y);
         if (num != -999)
             stageNum = num;
     }
@@ -315,5 +324,12 @@ public class Player : MonoBehaviour
         specialControl = true;
         CanControl(false);
         animator.SetFloat("Speed", -1);
+    }
+
+    public void Cheat()
+    {
+        SpawnController.instance.Respawn();
+        transform.position = originPos;
+        GetFalseDamage(0.5f);
     }
 }

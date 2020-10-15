@@ -27,6 +27,7 @@ public class SpawnController : MonoBehaviour
 
 
     SpawnRegion curRegion;
+    public SpawnRegion CurRegion { get { return curRegion; } }
 
     private void Awake()
     {
@@ -98,11 +99,13 @@ public class SpawnController : MonoBehaviour
 
     public void Respawn()
     {
+        Debug.Log(regionNum + " " +transform.childCount);
         if (regionNum < transform.childCount - 1)
         {
             curRegion = transform.GetChild(regionNum + 1).GetComponent<SpawnRegion>();
 
             regionNum++;
+            Debug.Log("region num 증가 해서 "+regionNum);
 
             float regionx = curRegion.gameObject.transform.position.x;
             float regiony = curRegion.gameObject.transform.position.y;

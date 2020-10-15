@@ -45,4 +45,24 @@ public class Saver : MonoBehaviour
     {
 
     }
+
+    public static void BICDemoSave(Vector2 spawnPoint)
+    {
+        PlayerPrefs.SetFloat("regionX", spawnPoint.x);
+        PlayerPrefs.SetFloat("regionY", spawnPoint.y);
+        PlayerPrefs.Save();
+    }
+
+    public static void BICDemoLoad()
+    {
+        var i = SaveDataWielder.instance;
+        if (PlayerPrefs.HasKey("regionX"))
+        {
+            SaveDataWielder.instance.spawnPoint =  new Vector2(PlayerPrefs.GetFloat("regionX"), PlayerPrefs.GetFloat("regionY"));
+        }
+        else
+        {
+            Destroy(i.gameObject);
+        }
+    }
 }

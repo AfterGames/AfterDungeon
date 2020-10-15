@@ -31,13 +31,23 @@ public class InGameMenu : UICluster
 
     public void SaveAndExit()
     {
-        Saver.SaveData(DataAdmin.instance.GetData(DataType.slotNum));
+        if(SceneManager.GetActiveScene().name == "BIC_Demo")
+        {
+            if(SpawnController.instance.CurRegion != SpawnController.instance.startRegion)
+            {
+                Saver.BICDemoSave(SpawnController.instance.CurRegion.transform.position);
+            }
+        }
+        else
+        {
+            Saver.SaveData(DataAdmin.instance.GetData(DataType.slotNum));
+        }
         StartCoroutine(DelayedSceneChange());
     }
     IEnumerator DelayedSceneChange()
     {
         yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main_Demo");
 
     }
 
