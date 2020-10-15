@@ -58,12 +58,12 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         projectileMask = LayerMask.NameToLayer("Projectile");
     }
 
-
+    bool projectileJumping = false;
     protected override void Update()
     {
 
         VelocityLimit();
-        if(!isDashing)
+        if(!isDashing && !projectileJumping)
             isGrounded = GroundChecking();
         if (isGrounded) rising = false;
 
@@ -752,7 +752,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         bool facingWall = WallChecking(distanceToProjectile).HasValue;
         if(facingWall)
         {
-            groundBox.x /= 16f;
+            Debug.Log("벽에 박힌 투사체 점프");
+            StartCoroutine(DelayedGroundCheckerExpand());
             if (IsFacingRight)
             {
                 
@@ -771,10 +772,18 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         if (IsFacingRight) ApplyJumpVelocity(x, y, 0.01f);
         else ApplyJumpVelocity(-x, y, 0.01f);
 
-        if(facingWall)
-        groundBox.x *= 16;
     }
 
+    float originalX;
+    IEnumerator DelayedGroundCheckerExpand()
+    {
+        projectileJumping = true;
+        originalX = groundBox.x;
+        groundBox.x = 0.01f;
+        yield return new WaitForSeconds(0.2f);
+        groundBox.x = originalX;
+        projectileJumping = false;
+    }
 
     protected override void Flip(float dir)
     {
