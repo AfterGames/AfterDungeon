@@ -80,11 +80,11 @@ public class Player : MonoBehaviour
             SetSpawnPos(transform.position);
         escMenu = (InGameMenu)FindObjectOfType(typeof(InGameMenu));
 
-        Debug.Log(SaveDataWielder.instance);
         if(SaveDataWielder.instance != null)
         {
             transform.position = SaveDataWielder.instance.spawnPoint;
             Destroy(SaveDataWielder.instance.gameObject);
+            CameraController.instance.ImmediateMove();
         }
     }
 

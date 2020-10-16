@@ -181,8 +181,26 @@ public class CameraController : MonoBehaviour
             SceneManager.LoadScene("1");
     }
 
+    public void ImmediateMove()
+    {
+        x = Player.instance.transform.position.x;
+        y = Player.instance.transform.position.y;
+
+        int num;
+
+        Debug.Log("immediate move");
+        if ((num = WhichRegion()) < numberOfRegions)
+        {
+            controlcamera.transform.position = curRegion.Center + new Vector3(0f, 0f, -10f);
+        }
+    }
+
     int WhichRegion()
     {
+        x = Player.instance.transform.position.x;
+        y = Player.instance.transform.position.y;
+
+        Debug.Log(x + ", " + y);
         int i;
         for (i = 0; i < transform.childCount; i++)
         {
@@ -202,15 +220,11 @@ public class CameraController : MonoBehaviour
                 curDown = regiony - height;
                 regionNum = i;
                 curRegion = region;
-                //Debug.Log(curUp);
-                //Debug.Log(curDown);
-                //Debug.Log(curLeft);
-                //Debug.Log(curRight);
                 break;
             }
         }
 
-        //Debug.Log(i);
+        Debug.Log("current camera region: "+curRegion.gameObject.name);
         return i;
     }
 
