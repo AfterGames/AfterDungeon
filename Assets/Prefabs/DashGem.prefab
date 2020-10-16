@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7485651590065192381}
   - component: {fileID: 2130287556947628719}
   - component: {fileID: 6603730041994998920}
+  - component: {fileID: 2251287488352449687}
   m_Layer: 0
   m_Name: DashGem
   m_TagString: Item
@@ -255,6 +256,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2251287488352449687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129997609592703545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505bd444b01ee3b4e80f55ee9df342e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5457786739875373073
 PrefabInstance:
   m_ObjectHideFlags: 0

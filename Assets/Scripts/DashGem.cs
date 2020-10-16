@@ -29,7 +29,7 @@ public class DashGem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isActivated==false)
+        if(isActivated == false)
         {
             elapsedTime += Time.deltaTime;
             if(elapsedTime>3f)
@@ -63,5 +63,11 @@ public class DashGem : MonoBehaviour
                 animator.enabled = false;
             }
         }
+    }
+
+    public void EnableByReset()
+    {
+        isActivated = true;
+        spr.sprite = activated;
     }
 }
