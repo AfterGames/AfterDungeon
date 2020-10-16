@@ -52,6 +52,7 @@ public class Collectable : MonoBehaviour
             else if (currentState == State.collected)
             {
                 CollectableManager.instance.AddCollection();
+                
                 StartCoroutine(DelayedDestroy());
             }
         }

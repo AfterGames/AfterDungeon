@@ -22,6 +22,7 @@ public class CollectableManager : MonoBehaviour
     public void AddCollection()
     {
         collectedNumberText.text = (++collectedNum).ToString();
+        followingNum--;
     }
 
     public void RegionChange()
