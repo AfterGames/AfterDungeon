@@ -46,23 +46,38 @@ public class Saver : MonoBehaviour
 
     }
 
-    public static void BICDemoSave(Vector2 spawnPoint)
+    public static void BICDemoSave(Vector2 spawnPoint, List<int> collected)
     {
         PlayerPrefs.SetFloat("regionX", spawnPoint.x);
         PlayerPrefs.SetFloat("regionY", spawnPoint.y);
+        string collectedStars = "";
+        if(collected.Count > 0)
+        for(int i = 0; i < collected.Count; i++)
+        {
+            collectedStars += (collected[i].ToString() + " ");
+        }
+        PlayerPrefs.SetString("collected", collectedStars);
         PlayerPrefs.Save();
     }
 
     public static void BICDemoLoad()
     {
-        var i = SaveDataWielder.instance;
+        var inst = SaveDataWielder.instance;
         if (PlayerPrefs.HasKey("regionX"))
         {
-            SaveDataWielder.instance.spawnPoint =  new Vector2(PlayerPrefs.GetFloat("regionX"), PlayerPrefs.GetFloat("regionY"));
+            inst.spawnPoint =  new Vector2(PlayerPrefs.GetFloat("regionX"), PlayerPrefs.GetFloat("regionY"));
+
+            string[] numberStrings = PlayerPrefs.GetString("collected").Split(' ');
+            if(numberStrings.Length > 0)
+                for(int j = 0; j < numberStrings.Length - 1; j++)
+                {
+                    Debug.Log(numberStrings[j]);
+                    inst.collectedStars.Add(int.Parse(numberStrings[j]));
+                }
         }
         else
         {
-            Destroy(i.gameObject);
+            Destroy(inst.gameObject);
         }
     }
 }

@@ -35,7 +35,7 @@ public class InGameMenu : UICluster
         {
             if(SpawnController.instance.CurRegion != SpawnController.instance.startRegion)
             {
-                Saver.BICDemoSave(SpawnController.instance.CurRegion.transform.position);
+                Saver.BICDemoSave(SpawnController.instance.CurRegion.transform.position, CollectableManager.instance.collectedStars);
             }
         }
         else

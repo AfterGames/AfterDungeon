@@ -28,10 +28,33 @@ public class Collectable : MonoBehaviour
     public AudioClip get;
     public AudioClip touch;
 
+    private int id;
+
     private void Start()
     {
+        id = transform.GetSiblingIndex();
+        if (SaveDataWielder.instance != null)
+        {
+            if (SaveDataWielder.instance.collectedStars.Contains(id))
+            {
+                CollectableManager.instance.AddCollection(true);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Initiate();
+            }
+        }
+        else
+        {
+            Initiate();
+        }
+    }
+
+    private void Initiate()
+    {
         spr = GetComponent<SpriteRenderer>();
-        CollectableManager.instance.Collect += (() => { if(currentState == State.following) currentState = State.collected;});
+        CollectableManager.instance.Collect += (() => { if (currentState == State.following) currentState = State.collected; });
         bc = GetComponent<BoxCollider2D>();
         source = GetComponent<AudioSource>();
     }
@@ -62,6 +85,7 @@ public class Collectable : MonoBehaviour
     {
         spr.enabled = false;
         bc.enabled = false;
+        CollectableManager.instance.collectedStars.Add(id);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
