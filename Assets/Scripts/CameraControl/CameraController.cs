@@ -62,6 +62,8 @@ public class CameraController : MonoBehaviour
 
     public float[] offsets = new float[4];
 
+    public bool ThankAfterClear;
+
     private void Awake()
     {
         instance = this;
@@ -174,11 +176,22 @@ public class CameraController : MonoBehaviour
         Player.instance.FadeOut();
         Player.instance.StopMoving();
         yield return new WaitForSeconds(0.5f);
-        SceneChange();
+        if (ThankAfterClear)
+            StartCoroutine(DelayedThankYou());
+        else
+            SceneChange();
     }
-    void SceneChange() {
+    void SceneChange()
+    {
         if (SceneManager.GetActiveScene().name == "0")
             SceneManager.LoadScene("1");
+    }
+
+
+    IEnumerator DelayedThankYou()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("ThankYou");
     }
 
     public void ImmediateMove()

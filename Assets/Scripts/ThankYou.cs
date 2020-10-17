@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ThankYou : MonoBehaviour
 {
+    public bool demo;
     public void Thankyou()
     {
         StartCoroutine(aaa());
@@ -14,6 +15,6 @@ public class ThankYou : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(demo ? "Main_Demo" : "Main");
     }
 }

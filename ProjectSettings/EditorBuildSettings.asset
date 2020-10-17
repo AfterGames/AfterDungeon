@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BIC_Demo.unity
     guid: 211e2f80812294e46a46468112533662
+  - enabled: 1
+    path: Assets/Scenes/ThankYou.unity
+    guid: d53a4f55e6b3b924ea80921aefddd915
   m_configObjects: {}
