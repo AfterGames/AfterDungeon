@@ -67,6 +67,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        isCameraMoving = false;
     }
 
     void Start()
@@ -79,6 +80,7 @@ public class CameraController : MonoBehaviour
         x = player.transform.position.x;
         y = player.transform.position.y;
         if (numberOfRegions > transform.childCount) numberOfRegions = transform.childCount;
+        StartCoroutine(Move(curRegion.Center + new Vector3(0f, 0f, -10f)));
     }
 
     // Update is called once per frame
@@ -134,9 +136,9 @@ public class CameraController : MonoBehaviour
             }
             //else if ((num = WhichRegion()) != transform.childCount)
             //int prev
+            
             else if ((num = WhichRegion()) < numberOfRegions)
             {
-                
                 Debug.Log("region changed");
                 if (CollectableManager.instance != null)
                 {
