@@ -17,6 +17,7 @@ public class TranslucentMaker : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         TranslucentTile tt = Physics2D.OverlapCircle(transform.position, 0.2f).GetComponent<TranslucentTile>();
+        if(tt!=null)
         tt.MakeTranslucent();
     }
 }
