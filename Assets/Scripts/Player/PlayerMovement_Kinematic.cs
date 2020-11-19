@@ -19,6 +19,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     public Vector3 colliderOffset;
     public Vector2 colliderBox;
     public float centerToFrontEnd;
+
     public Vector3 colliderCenterPosition
     {
         get
@@ -82,6 +83,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     private void Block(ref Vector2 velocity)
     {
+        ContactPlayer cp = null;
+        if (lastGround != null && !isJumping)
+        {
+            cp = lastGround.GetComponent<ContactPlayer>();
+        }
         if (closestWall != null)
         {
             if (IsFacingRight && velocity.x > 0) velocity.x = 0;
@@ -91,36 +97,36 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
                 transform.Translate(Vector3.right * (IsFacingRight ? -0.1f : 0.1f));
             }
         }
-        if (velocity.y < 0 && IsGrounded)
+        if(cp == null)
         {
-            velocity.y = 0;
-            while (Physics2D.OverlapBoxAll(buryChecker.position, buryCheckBox, 0, whatIsGround).Length > 0)
-            {
-                transform.Translate(Vector3.up * 0.1f);
-                //Debug.Log("파묻힌 거 꺼내는 중");
-            }
-        }
-        else if (velocity.y > 0)
-        {
-            if (CeilingCheck())
+            if (velocity.y < 0 && IsGrounded)
             {
                 velocity.y = 0;
-                //Debug.Log("천장에 막힘");
-                //if (IsGrounded)
-                //{
-                //    Player.instance.GetDamage();
-                //    Debug.Log("압사");
-                //}
+                while (Physics2D.OverlapBoxAll(buryChecker.position, buryCheckBox, 0, whatIsGround).Length > 0)
+                {
+                    transform.Translate(Vector3.up * 0.05f);
+                    //Debug.Log("파묻힌 거 꺼내는 중");
+                }
+            }
+            else if (velocity.y > 0)
+            {
+                if (CeilingCheck())
+                {
+                    velocity.y = 0;
+                }
             }
         }
-
-        if (lastGround != null && !isJumping)
+        
+        else if (velocity.y <= 0 || cp.currentVelocity.y >= 0)
         {
-            ContactPlayer cp = lastGround.GetComponent<ContactPlayer>();
-            if (cp != null && (velocity.y <= 0 || cp.currentVelocity.y >= 0))
+            velocity += cp.currentVelocity;
+            if(velocity.y < cp.currentVelocity.y)
             {
-
-                velocity += cp.currentVelocity;
+                velocity.y = cp.currentVelocity.y;
+                while (Physics2D.OverlapBoxAll(buryChecker.position, buryCheckBox, 0, whatIsGround).Length > 0)
+                {
+                    transform.Translate(Vector3.up * 0.05f);
+                }
             }
         }
         if (!Player.instance.dead)
@@ -230,19 +236,38 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         return colls.Length > 0;
     }
 
+    private void StretchGroundcheckers(bool stretch)
+    {
+        float cpIncrment = 0.25f;
+        if(stretch)
+        {
+            groundBox.y += cpIncrment;
+            buryCheckBox.y += cpIncrment/2;
+        }    
+        else
+        {
+            groundBox.y -= cpIncrment;
+            buryCheckBox.y -= cpIncrment / 2;
+        }
+    }
+    
     public override void GroundChange(GameObject Ground)
     {
         if (Ground == null && lastGround != null)
         {
             if (lastGround.GetComponent<ContactPlayer>() != null)
-
+            {
                 lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
+                StretchGroundcheckers(false);
+            }
         }
         else if (Ground != null && lastGround == null)
         {
             if (Ground.GetComponent<ContactPlayer>() != null)
-
+            {
                 Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
+                StretchGroundcheckers(true);
+            }
         }
         else if (Ground != null && lastGround != null)
         {
@@ -255,10 +280,15 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
             else
             {
                 if (lastGround.GetComponent<ContactPlayer>() != null)
-
+                {
                     lastGround.GetComponent<ContactPlayer>().OnPlayerExit(this);
+                    StretchGroundcheckers(false);
+                }
                 if (Ground.GetComponent<ContactPlayer>() != null)
+                {
                     Ground.GetComponent<ContactPlayer>().OnPlayerEnter(this);
+                    StretchGroundcheckers(true);
+                }
             }
         }
         lastGround = Ground;
