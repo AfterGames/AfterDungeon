@@ -161,7 +161,8 @@ public class CameraController : MonoBehaviour
             }
                 else if(y < curDown)
                 {
-                    //Debug.Log("추락");
+                //Debug.Log("추락");
+                Debug.Log(Player.instance);
                     Player.instance.GetDamage();
                 }
             else

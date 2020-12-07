@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private float fireButtonTime = 0f;
 
     private Vector2 originPos;
+    public Vector2 OriginPos { get { return originPos; } }
     public int stageNum;
 
     private InGameMenu escMenu;
@@ -254,6 +255,11 @@ public class Player : MonoBehaviour
         FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", 50);
         FadeObject.SetActive(false);
         CanControl(true);
+        if(Chaser.instance != null)
+        {
+            if (Chaser.instance.currentState != Chaser.State.Dormant)
+                Chaser.instance.StartChase();
+        }
     }
 
     private IEnumerator IDelayFadeIn()

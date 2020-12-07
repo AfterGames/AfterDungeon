@@ -143,6 +143,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     protected override void OnDrawGizmos()
     {
+        if (fireChecker == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundChecker.position, groundBox);
 
