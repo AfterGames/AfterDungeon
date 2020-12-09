@@ -13,7 +13,7 @@ public class PixelArtCamera : MonoBehaviour {
 	//[SerializeField] bool windowboxing = false; //Maybe implement this later?
 	[HideInInspector] public bool smooth = false;
 	[HideInInspector] public bool forceSquarePixels = false;
-	[HideInInspector] public Vector2Int pixels = new Vector2Int(1080/12, 1920/12);
+	[HideInInspector] public Vector2Int pixels = new Vector2Int(768, 432);
 	[HideInInspector] public float pixelsPerUnit = 100f;
 	[HideInInspector] public bool requireStencilBuffer = false;
 	public bool useUpscaleShader = false;
