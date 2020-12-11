@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ChaserReset : ResetableObject
 {
+    public ChaserSpawn cs;
     public override void Reset()
     {
-        Chaser.instance.Reset();
-        ChaserSpawn.instance.Reset();
+        cs.Reset();
+    }
+
+    public void OnDestroy()
+    {
+        resetObjects.Remove(this);
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8161786622128498834}
   - component: {fileID: 600332058614968856}
   - component: {fileID: 600332058614968857}
+  - component: {fileID: 4056448810579866955}
   m_Layer: 0
   m_Name: ChaserSpawn
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea328b99e19e13746946e133aa678b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myChaser: {fileID: 1620101450342177658}
 --- !u!50 &600332058614968856
 Rigidbody2D:
   serializedVersion: 4
@@ -93,6 +95,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2992325, y: 7.2286987}
   m_EdgeRadius: 0
+--- !u!114 &4056448810579866955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806507895339020852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3302eb7ded1612d4b8cff8f40d5e8be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cs: {fileID: 8161786622128498834}
 --- !u!1001 &3310051247358495757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,3 +183,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3310051247358495757}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1620101450342177658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4293174804361107319, guid: 1416b2c68bc44714c8724d26001d061d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3310051247358495757}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192a577cb188e14eb0d494be6b07c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

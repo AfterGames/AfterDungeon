@@ -5,110 +5,6 @@ using DG.Tweening;
 
 public class Chaser : MonoBehaviour
 {
-    //[Header("Control State")]
-    //public bool fireLock;
-    //[SerializeField] private bool canControl = true;
-    //public bool specialControl;
-
-    //public PlayerMovement_Kinematic mover { get; private set; }
-    //[SerializeField] private Animator animator;
-    //private float horizontal = 0;
-    //private bool jump = false;
-    //private bool dash = false;
-
-    //private bool fire = false;
-    //private bool stillfire = false;
-    //private bool fireUp = false;
-
-    //private float fireButtonTime = 0f;
-
-    //private Vector2 originPos;
-    //public int stageNum;
-
-    //Rigidbody2D rb;
-    //public bool dialogueReady = false;
-
-
-    //private void Awake()
-    //{
-    //    rb = GetComponent<Rigidbody2D>();
-    //    fireButtonTime = 0f;
-    //    mover = GetComponent<PlayerMovement_Kinematic>();
-    //    //Destroy(GetComponent<PlayerMovement>());
-    //    rb.gravityScale = 0;
-    //    //rb.bodyType = RigidbodyType2D.Kinematic;
-    //    //rb.constraints = RigidbodyConstraints2D.FreezeAll ;
-    //    rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-
-    //    rb = GetComponent<Rigidbody2D>();
-    //    rb = GetComponent<Rigidbody2D>();
-    //}
-
-    //private void Start()
-    //{
-
-    //}
-
-    //private void Update()
-    //{
-    //    //치트키 와드
-    //    if (canControl && Time.timeScale > 0 && !specialControl)
-    //    {
-    //        horizontal = Input.GetAxisRaw("Horizontal");
-    //        jump = Input.GetButtonDown("Jump");
-    //        dash = Input.GetButtonDown("Dash");
-    //        fire = Input.GetButtonDown("Fire");
-    //        stillfire = Input.GetButton("Fire");
-    //        fireUp = Input.GetButtonUp("Fire");
-
-    //        if (stillfire)
-    //        {
-    //            fireButtonTime += Time.deltaTime;
-    //            if (fireButtonTime > 1.0f)
-    //                mover.SetProjectileTime(1.2f);
-    //        }
-    //    }
-    //    mover.Move(horizontal, jump, dash, fireLock ? false : fire);
-    //    if (fireUp)
-    //    {
-    //        mover.SetProjectileTime(fireButtonTime);
-    //        fireButtonTime = 0f;
-    //    }
-
-    //    animator.SetFloat("Speed", Mathf.Abs(horizontal));
-    //    if (Mathf.Abs(horizontal) < 0.05f && mover.wallStateP == PlayerMovement_parent.WallState.None)
-    //        SoundManager.instance.Stop();
-    //    else if (mover.IsGrounded)
-    //        SoundManager.instance.Play(SoundManager.Clip.walk);
-
-    //    jump = false;
-
-    //}
-
-    //IEnumerator DelayedJump()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //}
-
-
-    //public void CanControl(bool canControl)
-    //{
-    //    this.canControl = canControl;
-    //    if (canControl) specialControl = false;
-    //    horizontal = 0;
-    //    jump = false;
-    //    fire = false;
-    //}
-
-    //public void StopMoving()
-    //{
-    //    SoundManager.instance.Stop();
-    //    mover.Stop();
-    //    specialControl = true;
-    //    CanControl(false);
-    //    animator.SetFloat("Speed", -1);
-    //}
-
     public static Chaser instance;
 
     public enum State { Dormant, Chasing, Waiting3, WaitingReset }
@@ -125,7 +21,6 @@ public class Chaser : MonoBehaviour
     private void Awake()
     {
         currentState = State.Dormant;
-        instance = this;
     }
 
     public void StartChase()
@@ -134,6 +29,7 @@ public class Chaser : MonoBehaviour
     }
     private IEnumerator IStartChase()
     {
+        instance = this;
         transform.position = Player.instance.OriginPos;
         currentState = State.Waiting3;
         yield return new WaitForSeconds(delay);

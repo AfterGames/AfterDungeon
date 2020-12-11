@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ChaserSpawn : MonoBehaviour
 {
-    public static ChaserSpawn instance;
+    private static ChaserSpawn instance;
+    [Header("체크하면 주인공이 닿았을 때 스폰되지 않고 추격이 끝남")]
+    public bool end = false;
     BoxCollider2D bc;
+    public Chaser myChaser;
     private void Awake()
     {
-        instance = this;
         bc = GetComponent<BoxCollider2D>();
     }
     
@@ -16,14 +18,19 @@ public class ChaserSpawn : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            if (instance != null && instance != this) Destroy(instance.gameObject);
+            if (end) return;
+            instance = this;
             Debug.Log("spawn snake");
             bc.enabled = false;
-            Chaser.instance.StartChase();
+            myChaser.StartChase();
         }
     }
 
     public void Reset()
     {
         bc.enabled = true;
+        if(myChaser != null)
+            myChaser.Reset();
     }
 }
