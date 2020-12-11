@@ -30,7 +30,7 @@ public class ChaserSpawn : MonoBehaviour
     public void Reset()
     {
         bc.enabled = true;
-        if(myChaser != null)
+        if(!end)
             myChaser.Reset();
     }
 }
