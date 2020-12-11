@@ -30,6 +30,7 @@ public class ClusterButton : ContactArrow
     {
         TurnedOn = true;
         gate.Check();
+        arrow.GetComponent<ProjectileController>().ArrowEnd();  
     }
     public override void OnLodgingStayAction(GameObject arrow)
     {

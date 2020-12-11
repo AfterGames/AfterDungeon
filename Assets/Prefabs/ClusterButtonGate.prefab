@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1131010495079171574}
   - component: {fileID: 2713867676308391860}
+  - component: {fileID: 5233650588268747370}
   m_Layer: 0
   m_Name: ClusterButtonGate
   m_TagString: Untagged
@@ -44,3 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: []
+--- !u!114 &5233650588268747370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933526051929693208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a1d35b20e58f04697d6764246fb6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
