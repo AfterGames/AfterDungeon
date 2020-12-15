@@ -545,7 +545,7 @@ MonoBehaviour:
   animator: {fileID: 6348338563590906185}
   animator2: {fileID: 2136960525051770354}
   velocity: {x: 0, y: 0}
-  gravityScaleFactor: 9.81
+  gravityScaleFactor: 9
   dangerousLayer:
     serializedVersion: 2
     m_Bits: 2048
