@@ -11,7 +11,15 @@ public class PlayerBacklight : CircleLightController
         transform.localScale = new Vector3(4 * lightRadius * transform.parent.localScale.x, 4 * lightRadius, 1);
         GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
         GetComponent<Renderer>().material.SetFloat("_CenterY", transform.position.y);
-
     }
 
+    public void Reduce()
+    {
+        GetComponent<Renderer>().material.SetFloat("_Radius", 4);
+    }
+
+    public void Reset()
+    {
+        GetComponent<Renderer>().material.SetFloat("_Radius", lightRadius);
+    }
 }
