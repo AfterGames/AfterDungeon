@@ -6,14 +6,16 @@ public class GemStoneManager : MonoBehaviour
 {
     private int collected = 0;
     public static GemStoneManager instance;
-    public GameObject dark;
-    public PlayerBacklight pbl; 
+    private GameObject dark;
+    private PlayerBacklight pbl;
+
+    public float originalRadius;
+    public float reducedRadius;
 
     private void Awake()
     {
         instance = this;
         Reset();
-        pbl = FindObjectOfType<PlayerBacklight>();
     }
 
     public void Collect()
@@ -21,7 +23,7 @@ public class GemStoneManager : MonoBehaviour
         switch(++collected)
         {
             case 1:
-                dark.SetActive(false);
+                dark.SetActive(true);
                 pbl.gameObject.SetActive(true);
                 break;
             case 2:
@@ -33,7 +35,17 @@ public class GemStoneManager : MonoBehaviour
     public void Reset()
     {
         collected = 0;
-        dark.SetActive(true);
+        if (dark == null)
+        {
+            dark = GameObject.Find("DarkEffect");
+            Debug.Log(dark);
+        }
+        if (pbl == null)
+        {
+            pbl = FindObjectOfType<PlayerBacklight>();
+            Debug.Log(pbl);
+        }
+        dark.SetActive(false);
         pbl.gameObject.SetActive(false);
         pbl.Reset();
     }

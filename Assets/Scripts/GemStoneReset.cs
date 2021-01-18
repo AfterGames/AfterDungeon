@@ -13,7 +13,7 @@ public class GemStoneReset : ResetableObject
 
     public override void Reset()
     {
-        gameObject.SetActive(true);
+        gs.Reset();
         GemStoneManager.instance.Reset();
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CircleLightController : MonoBehaviour
 {
+    protected Renderer myRenderer;
     public float Brightness;
     public float lightRadius;
     [SerializeField] private float curRadius;
@@ -15,10 +16,11 @@ public class CircleLightController : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        GetComponent<Renderer>().material.SetFloat("_Radius", lightRadius);
-        GetComponent<Renderer>().material.SetFloat("_Bright", Brightness);
-        GetComponent<Renderer>().material.SetFloat("_CenterX", transform.position.x);
-        GetComponent<Renderer>().material.SetFloat("_CenterY", transform.position.y);
+        myRenderer = GetComponent<Renderer>();
+        myRenderer.material.SetFloat("_Radius", lightRadius);
+        myRenderer.material.SetFloat("_Bright", Brightness);
+        myRenderer.material.SetFloat("_CenterX", transform.position.x);
+        myRenderer.material.SetFloat("_CenterY", transform.position.y);
         transform.localScale = new Vector3(2 * lightRadius, 2 * lightRadius, 1);
         curRadius = lightRadius;
     }
@@ -39,6 +41,6 @@ public class CircleLightController : MonoBehaviour
             BlinkDirection = -1;
         else if (curRadius < lightRadius - blinkRange)
             BlinkDirection = 1;
-        GetComponent<Renderer>().material.SetFloat("_Radius", curRadius);
+        myRenderer.material.SetFloat("_Radius", curRadius);
     }
 }

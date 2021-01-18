@@ -5,6 +5,14 @@ using UnityEngine;
 public class GemStone : MonoBehaviour
 {
     public GemStoneManager mgrPrefab;
+    private SpriteRenderer spr;
+    private Collider2D col;
+
+    private void Awake()
+    {
+        if (spr == null) spr = GetComponent<SpriteRenderer>();
+        if (col == null) col = GetComponent<Collider2D>();
+    }
 
     private void Start()
     {
@@ -17,8 +25,13 @@ public class GemStone : MonoBehaviour
         if(collision.tag == "Player")
         {
             GemStoneManager.instance.Collect();
-            gameObject.SetActive(false);
-            GemStoneManager.instance.Reset();
+            spr.enabled = false;
+            col.enabled = false;
         }
+    }
+    public void Reset()
+    {
+        spr.enabled = true;
+        col.enabled = true;
     }
 }
