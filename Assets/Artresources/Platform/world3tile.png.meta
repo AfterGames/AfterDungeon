@@ -1,0 +1,499 @@
+fileFormatVersion: 2
+guid: 20deb98ca1eed554abea24500aa8429f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4247149390219372994
+    second: world3tile_101
+  - first:
+      213: -8821304645594570253
+    second: world3tile_102
+  - first:
+      213: 6961072493243075430
+    second: world3tile_103
+  - first:
+      213: -8435419884035918555
+    second: world3tile_201
+  - first:
+      213: 338902348412851166
+    second: world3tile_104
+  - first:
+      213: 1031085747202147570
+    second: world3tile_105
+  - first:
+      213: 9047456758481062888
+    second: world3tile_106
+  - first:
+      213: 6570896294040624851
+    second: world3tile_202
+  - first:
+      213: 7732110540239012510
+    second: world3tile_107
+  - first:
+      213: -3763238331630061958
+    second: world3tile_108
+  - first:
+      213: 7583834505990518101
+    second: world3tile_109
+  - first:
+      213: -5023669811662184712
+    second: world3tile_203
+  - first:
+      213: 5585694862758316231
+    second: world3tile_301
+  - first:
+      213: 8117935545961597671
+    second: world3tile_302
+  - first:
+      213: 2579302947935999205
+    second: world3tile_303
+  - first:
+      213: -4930501102697325092
+    second: world3tile_401
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: world3tile_101
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 80
+        width: 17
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e3f73dc5ddfe7498890891191cab15
+      internalID: 4247149390219372994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_102
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11d2e74fb942d043ac76ce3ddeac452
+      internalID: -8821304645594570253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_103
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 17
+        height: 17
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd7530b7db95ee43b3d77eefbd93d1d
+      internalID: 6961072493243075430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_201
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 80
+        width: 19
+        height: 17
+      alignment: 9
+      pivot: {x: 0.47368422, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c70d0ada2fd25d4aaaded22639a12dd
+      internalID: -8435419884035918555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_104
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 64
+        width: 17
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 108b8bd156781a345a7b7472a49db314
+      internalID: 338902348412851166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_105
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d52da4643051b64cb6d905802116d25
+      internalID: 1031085747202147570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_106
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 17
+        height: 16
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6b20cbdb16076419a9f07047ca0444
+      internalID: 9047456758481062888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_202
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 64
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5794905c6077f4d864107841ca2e75
+      internalID: 6570896294040624851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_107
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 47
+        width: 17
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d68f68f5f38d644aae5921ba1f1c322
+      internalID: 7732110540239012510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_108
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 47
+        width: 16
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61e36fb94ae1904c98c65b15b07b836
+      internalID: -3763238331630061958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_109
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 47
+        width: 17
+        height: 17
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cace1df929a1443438108e9d6b68f7e8
+      internalID: 7583834505990518101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_203
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 47
+        width: 18
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b573796497a7c4194a8ea7a9ea89ab
+      internalID: -5023669811662184712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_301
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 15
+        width: 17
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e2f17ea114ef44b8bf23ca99ddadeb
+      internalID: 5585694862758316231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_302
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 15
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea161dfd4e721424fa4a8a3c5631524f
+      internalID: 8117935545961597671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_303
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 15
+        width: 17
+        height: 18
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14afe0a77459784985b4a8a1f5bbe16
+      internalID: 2579302947935999205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world3tile_401
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf333b8d1230eef49a6f6476161036a7
+      internalID: -4930501102697325092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
