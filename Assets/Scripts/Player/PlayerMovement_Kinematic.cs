@@ -13,7 +13,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     public Vector2 velocity = Vector2.zero;
     float g = 0;
     [SerializeField] public float gravityScaleFactor;
-
+    public Vector2 windVelocity = Vector2.zero;
 
     public LayerMask dangerousLayer;
     public Vector3 colliderOffset;
@@ -84,6 +84,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     private void Block(ref Vector2 velocity)
     {
         ContactPlayer cp = null;
+        velocity += windVelocity;
+        Debug.Log("풍속 " + windVelocity);
         if (lastGround != null && !isJumping)
         {
             cp = lastGround.GetComponent<ContactPlayer>();
