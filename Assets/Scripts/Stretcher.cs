@@ -49,15 +49,15 @@ public class Stretcher : MonoBehaviour
     {
         if(stretched)
         {
-            x = 1f - 0.75f * x;
+            x = 1f - 0.667f * x;
             child.localScale = new Vector3(1, x, 1);
         }
         else
         {
-            x = 0.25f + 0.75f * x;
+            x = 0.333f + 0.667f * x;
             child.localScale = new Vector3(1, x, 1);
         }
-        child.localPosition = new Vector3(0, 8 * x - 2, 0);
+        child.localPosition = new Vector3(0, 4 * x - 2, 0);
     }
 
     public void Reset()
