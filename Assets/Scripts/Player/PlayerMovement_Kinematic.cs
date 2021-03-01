@@ -85,7 +85,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     {
         ContactPlayer cp = null;
         velocity += windVelocity;
-        Debug.Log("풍속 " + windVelocity);
+        //Debug.Log("풍속 " + windVelocity);
         if (lastGround != null && !isJumping)
         {
             cp = lastGround.GetComponent<ContactPlayer>();

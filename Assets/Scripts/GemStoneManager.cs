@@ -45,8 +45,11 @@ public class GemStoneManager : MonoBehaviour
             pbl = FindObjectOfType<PlayerBacklight>();
             Debug.Log(pbl);
         }
-        dark.SetActive(false);
-        pbl.gameObject.SetActive(false);
-        pbl.Reset();
+        if(dark != null) dark.SetActive(false);
+        if (pbl != null)
+        {
+            pbl.gameObject.SetActive(false);
+            pbl.Reset();
+        }
     }
 }
