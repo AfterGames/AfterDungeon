@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WindCtrl : MonoBehaviour
 {
+    [SerializeField]
+    int region;
     public enum Direction { Right = 1, Left = -1 }
     public Direction direction;
     public float blowTime;
@@ -12,8 +14,18 @@ public class WindCtrl : MonoBehaviour
     private bool blowing;
     private float elapsedTime;
 
+    private void Start()
+    {
+        region = CameraController.instance.WhichRegion(transform.position.x, transform.position.y);
+    }
+
     private void Update()
     {
+        if (region != CameraController.instance.regionNum)
+        {
+            return;
+        }
+        Debug.Log("Player at " + CameraController.instance.regionNum);
         elapsedTime += Time.deltaTime;
         if(blowing)
         {
@@ -31,9 +43,12 @@ public class WindCtrl : MonoBehaviour
                 PlayerMovement_Kinematic.instance.windVelocity = new Vector2((direction == Direction.Right ? 1 : -1) * speed, 0);
                 elapsedTime = 0;
                 blowing = true;
+                
             }
         }
     }
+    
+    
 
     public void Reset()
     {

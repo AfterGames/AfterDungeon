@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
     private float curWidth = -1; // 현재 영역의 너비, 높이
     private float curHeight = -1;
 
-    private int regionNum;
+    public int regionNum { get; private set; }
 
     float x;
     float y; // player의 위치 저장용 변수
@@ -139,6 +139,7 @@ public class CameraController : MonoBehaviour
             
             else if ((num = WhichRegion()) < numberOfRegions)
             {
+                PlayerMovement_Kinematic.instance.windVelocity = Vector2.zero;
                 Debug.Log("region changed");
                 if (CollectableManager.instance != null)
                 {
@@ -213,9 +214,11 @@ public class CameraController : MonoBehaviour
 
     int WhichRegion()
     {
-        x = Player.instance.transform.position.x;
-        y = Player.instance.transform.position.y;
+        return WhichRegion(Player.instance.transform.position.x, Player.instance.transform.position.y);
+    }
 
+    public int WhichRegion(float x, float y)
+    {
         Debug.Log(x + ", " + y);
         int i;
         for (i = 0; i < transform.childCount; i++)
