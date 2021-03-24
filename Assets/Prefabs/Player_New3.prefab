@@ -279,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10461235, y: -0.13}
+  m_Offset: {x: 0.10461235, y: -0.19699073}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -290,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2092247, y: 1.7}
+  m_Size: {x: 1.2092247, y: 1.5660186}
   m_EdgeRadius: 0.02
 --- !u!50 &2664189598708974038
 Rigidbody2D:
@@ -498,7 +498,7 @@ MonoBehaviour:
   airDecel: 80
   horizontalSpeed: 12
   originGravity: 6
-  jumpVelocity: {x: 12, y: 24}
+  jumpVelocity: {x: 12, y: 22}
   dashVelocity: {x: 40, y: 5}
   Tail: {fileID: 1946017592969873800}
   tailPosition: {fileID: 6132684805356263207}
@@ -546,6 +546,7 @@ MonoBehaviour:
   animator2: {fileID: 2136960525051770354}
   velocity: {x: 0, y: 0}
   gravityScaleFactor: 9
+  windVelocity: {x: 0, y: 0}
   dangerousLayer:
     serializedVersion: 2
     m_Bits: 2048
