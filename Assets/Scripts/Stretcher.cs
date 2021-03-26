@@ -57,7 +57,7 @@ public class Stretcher : MonoBehaviour
             x = 0.333f + 0.667f * x;
             child.localScale = new Vector3(1, x, 1);
         }
-        child.localPosition = new Vector3(0, 4 * x - 2, 0);
+        child.localPosition = new Vector3(0, 3 * x - 1, 0);
     }
 
     public void Reset()

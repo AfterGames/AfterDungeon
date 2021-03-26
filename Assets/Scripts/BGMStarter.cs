@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BGMStarter : MonoBehaviour
 {
+    public int index = 0;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            BGMPlayer.instance.StartBGM();
+            BGMPlayer.instance.PlayBGM(index);
             Destroy(GetComponent<BoxCollider2D>());
         }
     }

@@ -18,18 +18,28 @@ public class GemStoneManager : MonoBehaviour
         Reset();
     }
 
+    //private void Start()
+    //{
+    //    BGMPlayer.instance.PlaySuperPosition(0);
+    //}
+
     public void Collect()
     {
         switch(++collected)
         {
             case 1:
-                dark.SetActive(true);
-                pbl.gameObject.SetActive(true);
+                if(dark != null)
+                    dark.SetActive(true);
+                if(pbl != null)
+                    pbl.gameObject.SetActive(true);
                 break;
             case 2:
-                pbl.Reduce();
+                if (pbl != null)
+                    pbl.Reduce();
                 break;
         }
+        if(BGMPlayer.instance != null)
+            BGMPlayer.instance.PlaySuperPosition(collected);
     }
 
     public void Reset()
@@ -51,5 +61,6 @@ public class GemStoneManager : MonoBehaviour
             pbl.gameObject.SetActive(false);
             pbl.Reset();
         }
+        BGMPlayer.instance.PlaySuperPosition(0);
     }
 }

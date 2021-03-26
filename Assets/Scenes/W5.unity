@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88f1386dd63147198d003daff00d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenResolution: {x: 965, y: 543}
+  screenResolution: {x: 955, y: 537}
   internalResolution: {x: 768, y: 432}
   upscaledResolution: {x: 0, y: 0}
   smooth: 1
@@ -745,7 +745,7 @@ MonoBehaviour:
   requireStencilBuffer: 0
   useUpscaleShader: 1
   upscaleMaterial: {fileID: 0}
-  finalBlitStretch: {x: 1, y: 1.0003455}
+  finalBlitStretch: {x: 1.0003492, y: 1}
   mainCamera: {fileID: 315791059}
   mainCanvas: {fileID: 1981411156}
 --- !u!1001 &323353017
@@ -18281,13 +18281,28 @@ PrefabInstance:
     - target: {fileID: 4557515155372978287, guid: 37e44611a40ab114e8bc886901a526ef,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5299351104076582900, guid: 37e44611a40ab114e8bc886901a526ef,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5991973228171198095, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: once.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991973228171198095, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: loop.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991973228171198095, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: loop.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bf37ea0e7a1e1743ac1655bd33b3231, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e44611a40ab114e8bc886901a526ef, type: 3}
 --- !u!1001 &1237198299

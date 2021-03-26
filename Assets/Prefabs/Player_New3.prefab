@@ -787,8 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b4dc68f037734d895d7293bd50cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intro: {fileID: 8300000, guid: 89c9c72d2254c454f90008d1ed49c046, type: 3}
-  loop: {fileID: 8300000, guid: 822f66034cad4804aa0e3c55d907cd3c, type: 3}
+  once: []
+  loop: []
+  PlayOnAwake: 1
+  fadeOutTime: 2
 --- !u!1 &5084581765457057770
 GameObject:
   m_ObjectHideFlags: 0
