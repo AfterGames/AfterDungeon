@@ -9,16 +9,16 @@ public class Stretcher : MonoBehaviour
     private bool stretchedAtStart;
     private Transform child;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip stretchSound;
     public AudioClip shrinkSound;
+    private int region;
 
     public enum Direction { up, down, left, right}
     public Direction direction;
     private void Awake()
     {
         stretchedAtStart = stretched;
-        audioSource = GetComponent<AudioSource>();
         child = transform.GetChild(0);
         switch(direction)
         {
@@ -43,6 +43,7 @@ public class Stretcher : MonoBehaviour
             StretcherManager.instance = Instantiate(mgrPrefab);
         if (!StretcherManager.instance.stretchers.Contains(this))
             StretcherManager.instance.stretchers.Add(this);
+        region = CameraController.instance.WhichRegion(transform.position.x, transform.position.y);
     }
 
     public void Move(float x)
@@ -67,6 +68,7 @@ public class Stretcher : MonoBehaviour
 
     public void Play()
     {
+        if (region != CameraController.instance.regionNum) return;
         if (shrinkSound == null || stretchSound == null) return;
         audioSource.clip = stretched ? shrinkSound : stretchSound;
         audioSource.Play();

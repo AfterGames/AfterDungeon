@@ -247,6 +247,38 @@ public class CameraController : MonoBehaviour
         return i;
     }
 
+    public float yBoundary(Vector3 position)
+    {
+        float x = position.x;
+        float y = position.y;
+        float width;
+        float height = 0;
+        float regionx = 0;
+        float regiony = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            CameraRegion region = transform.GetChild(i).gameObject.GetComponent<CameraRegion>();
+            width = region.Width;
+            height = region.Height;
+            regionx = region.gameObject.transform.position.x;
+            regiony = region.gameObject.transform.position.y;
+
+            if ((x >= regionx - width) && (x < regionx + width) && (y >= regiony - height) && (y < regiony + height))
+            {
+                curWidth = region.Width;
+                curHeight = region.Height;
+                curLeft = regionx - width;
+                curRight = regionx + width;
+                curUp = regiony + height;
+                curDown = regiony - height;
+                regionNum = i;
+                curRegion = region;
+                break;
+            }
+        }
+        return regiony - height;
+    }
+
     void SetMinOffset()
     {
         CameraType cameratype = curRegion.cameratype;

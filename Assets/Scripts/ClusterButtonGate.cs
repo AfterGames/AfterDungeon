@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClusterButtonGate : MonoBehaviour
 {
     public List<ClusterButton> buttons = new List<ClusterButton>();
+    public AudioSource source;
     //List<GameObject> platforms = new List<GameObject>();
 
     private void Awake()
@@ -33,6 +34,7 @@ public class ClusterButtonGate : MonoBehaviour
         {
             transform.GetChild(i).GetChild(0).gameObject.SetActive(false);
         }
+        source.Play();
     }
 
     public void Close()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WindCtrl : MonoBehaviour
 {
+    public AudioSource source;
     [SerializeField]
     int region;
     public enum Direction { Right = 1, Left = -1 }
@@ -34,6 +35,7 @@ public class WindCtrl : MonoBehaviour
                 PlayerMovement_Kinematic.instance.windVelocity = Vector2.zero;
                 elapsedTime = 0;
                 blowing = false;
+                source.Stop();
             }
         }
         else
@@ -43,7 +45,7 @@ public class WindCtrl : MonoBehaviour
                 PlayerMovement_Kinematic.instance.windVelocity = new Vector2((direction == Direction.Right ? 1 : -1) * speed, 0);
                 elapsedTime = 0;
                 blowing = true;
-                
+                source.Play();
             }
         }
     }
@@ -55,5 +57,6 @@ public class WindCtrl : MonoBehaviour
         elapsedTime = 0;
         blowing = false;
         PlayerMovement_Kinematic.instance.windVelocity = Vector2.zero;
+        source.Stop();
     }
 }

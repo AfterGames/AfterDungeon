@@ -23,6 +23,11 @@ public class FallingBlock : ContactPlayer
     [SerializeField]FallingBlock father;
     [SerializeField]List<FallingBlock> cluster;
     public Animator animator;
+    private AudioSource source;
+    public AudioClip start;
+    public AudioClip loop;
+    public AudioClip end;
+    private float yBoundary;
 
     private void OnDrawGizmos()
     {
@@ -68,7 +73,9 @@ public class FallingBlock : ContactPlayer
                     j++;
                 }
             }
-            //if(logger)
+            source = (AudioSource) gameObject.AddComponent(typeof(AudioSource));
+            source.playOnAwake = false;
+            yBoundary = CameraController.instance.yBoundary(transform.position);
         }
     }
     //public bool debug;
@@ -122,6 +129,8 @@ public class FallingBlock : ContactPlayer
     {
         if (intact)
         {
+            source.clip = start;
+            source.Play();
             //Debug.Log("delayed fall " + gameObject.name);
             foreach (FallingBlock fb in cluster)
             {
@@ -130,7 +139,9 @@ public class FallingBlock : ContactPlayer
                 //Debug.Log(fb.intact);
             }
             yield return new WaitForSeconds(1);
-
+            source.clip = loop;
+            source.loop = true;
+            source.Play();
             foreach (FallingBlock fb in cluster)
             {
                 fb.StartFall();
@@ -144,6 +155,7 @@ public class FallingBlock : ContactPlayer
     {
         if (isFalling || fallEnded) return;
         //Debug.Log("start fall " + gameObject.name);
+        
         isFalling = true;
         currentVelocity = new Vector2(0, -father.fallSpeed);
         //Debug.Log(currentVelocity);
@@ -174,6 +186,11 @@ public class FallingBlock : ContactPlayer
 
     void Check()
     {
+        if(this == father)
+        {
+            if (transform.position.y < yBoundary - 2)
+                EndFalling();
+        }
         List<Collider2D> colliders = new List<Collider2D>();
         Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position - Vector3.up * 0.05f, new Vector2(0.9f, 0.9f), 0);
         foreach (Collider2D coll in colls)
@@ -229,6 +246,10 @@ public class FallingBlock : ContactPlayer
             father.EndFalling();
         else
         {
+            source.Stop();
+            source.loop = false;
+            source.clip = end;
+            source.Play();
             foreach(FallingBlock fb in cluster)
             {
                 if(!fb.fallEnded)    fb.EndFalling();
@@ -267,6 +288,19 @@ public class FallingBlock : ContactPlayer
                 }
 
             }
+        }
+    }
+
+    public void Reset()
+    {
+        intact = true;
+        fallEnded = false;
+        isFalling = false;
+        currentVelocity = Vector2.zero;
+        if (attachable.IsFather)
+        {
+            transform.position = origin;
+            source.Stop();
         }
     }
 }

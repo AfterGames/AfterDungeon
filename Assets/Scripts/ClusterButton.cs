@@ -15,12 +15,18 @@ public class ClusterButton : ContactArrow
         {
             turnedOn = value;
             spr.sprite = value ? onImage : offImage;
+            source.clip = value ? activateClip : deactivateClip;
+            source.Play();
         }
     }
 
     private SpriteRenderer spr;
     public Sprite onImage;
     public Sprite offImage;
+
+    public AudioSource source;
+    public AudioClip activateClip;
+    public AudioClip deactivateClip;
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();

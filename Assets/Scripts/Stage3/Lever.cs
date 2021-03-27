@@ -11,6 +11,7 @@ public class Lever : ContactArrow
     private List<GameObject> leverPlatformsB;
     private bool isActive = false;
     public Animator animator;
+    public AudioSource source;
     private bool off;
 
     private void Awake()
@@ -55,6 +56,7 @@ public class Lever : ContactArrow
             arrow.GetComponent<ProjectileController>().ArrowEnd();
         //arrow.GetComponent<ArrowController>().Disable();
         //animator.SetBool("On", true);
+        source.Play();
         transition();
     }
 
@@ -83,5 +85,10 @@ public class Lever : ContactArrow
         {
             leverPlatform.GetComponent<LeverPlatform>().ChangeState();
         }
+    }
+
+    public void Reset()
+    {
+        
     }
 }

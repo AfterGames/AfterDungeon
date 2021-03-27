@@ -15,20 +15,7 @@ public class FallingReset : ResetableObject
     }
     public override void Reset()
     {
-        fallingBlock.intact = true;
-        fallingBlock.fallEnded = false;
-        fallingBlock.isFalling = false;
-        //anim.SetTrigger("fall");
-        
-        //if(attachable != null)
-        //{
-        //    GetComponent<Attachable>().allFather.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0f);
-        //    GetComponent<Attachable>().allFather.transform.position = GetComponent<Attachable>().allFatherPosition;
-        //}
-
-        fallingBlock.currentVelocity = Vector2.zero;
-        if(attachable.IsFather)
-            transform.position = fallingBlock.origin;
+        fallingBlock.Reset();
         //Debug.Log("reset");
     }
 }
