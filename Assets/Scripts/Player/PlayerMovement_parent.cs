@@ -86,7 +86,8 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     [SerializeField] protected float detachWallTime;
     [Tooltip("벽점프 속도 (오른쪽 점프 기준)")]
     [SerializeField] protected Vector2 slidingJumpVelocity;
-    [SerializeField] protected Transform penetrateChecker;
+    [SerializeField] protected Transform penetrateChecker_front;
+    [SerializeField] protected Transform penetrateChecker_hind;
 
     protected bool? isWallRight = null;
     protected float elapsed;
@@ -113,6 +114,7 @@ public abstract class PlayerMovement_parent : MonoBehaviour
     public Vector2 buryCheckBox = new Vector2(0.7f, 0.1f);
     public Vector2 wallBox = new Vector2(0.2f, 1.2f);
     public Vector2 penetrateBox = new Vector2(0.2f, 1.2f);
+    public Vector2 penetrateBox_hind = new Vector2(0.2f, 1.2f);
     public Vector2 fireBox = new Vector3(1f, 0.4f);
 
     public Rigidbody2D rb2D { get; protected set; }

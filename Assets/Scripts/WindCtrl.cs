@@ -26,7 +26,7 @@ public class WindCtrl : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Player at " + CameraController.instance.regionNum);
+        //Debug.Log("Player at " + CameraController.instance.regionNum);
         elapsedTime += Time.deltaTime;
         if(blowing)
         {

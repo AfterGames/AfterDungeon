@@ -84,20 +84,40 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
     private void Block(ref Vector2 velocity)
     {
         ContactPlayer cp = null;
-        velocity += windVelocity;
         //Debug.Log("풍속 " + windVelocity);
         if (lastGround != null && !isJumping)
         {
+            if(Mathf.Abs(velocity.x) > float.Epsilon)
+                velocity += windVelocity;
             cp = lastGround.GetComponent<ContactPlayer>();
         }
+        else
+        {
+            velocity += windVelocity;
+        }
+        if((IsFacingRight && velocity.x < 0) || (!IsFacingRight && velocity.x > 0))
+        {
+            if (Physics2D.OverlapBoxAll(penetrateChecker_hind.position, penetrateBox_hind, 0, whatIsWall).Length > 0)
+            {
+                while (Physics2D.OverlapBoxAll(penetrateChecker_hind.position, penetrateBox_hind, 0, whatIsWall).Length > 0)
+                {
+                    transform.Translate(Vector3.right * (IsFacingRight ? 0.1f : -0.1f));
+                }
+                Debug.Log("뒤집기");
+                //Flip(velocity.x);
+            }
+        }
+      
         if (closestWall != null)
         {
             if (IsFacingRight && velocity.x > 0) velocity.x = 0;
             else if (!IsFacingRight && velocity.x < 0) velocity.x = 0;
-            while (Physics2D.OverlapBoxAll(penetrateChecker.position, wallBox, 0, whatIsWall).Length > 0)
+
+            while (Physics2D.OverlapBoxAll(penetrateChecker_front.position, wallBox, 0, whatIsWall).Length > 0)
             {
                 transform.Translate(Vector3.right * (IsFacingRight ? -0.1f : 0.1f));
             }
+            
         }
         if(cp == null)
         {
@@ -159,7 +179,8 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         Gizmos.DrawWireCube(buryChecker.position, buryCheckBox);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(penetrateChecker.position, wallBox);
+        Gizmos.DrawWireCube(penetrateChecker_front.position, wallBox);
+        Gizmos.DrawWireCube(penetrateChecker_hind.position, penetrateBox_hind);
     }
 
     protected override void VelocityLimit()
