@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [Header("Control State")]
     public bool fireLock;
     [SerializeField] private bool canControl = true;
+    public bool canControlGetter { get { return canControl; } }
     public bool specialControl;
     public static Player instance;
 
@@ -238,8 +239,10 @@ public class Player : MonoBehaviour
 
         while (rad < 5)
         {
+            //transform.position = originPos;
             FadeObject.GetComponent<Renderer>().material.SetFloat("_Radius", rad);
             rad += 25 * Time.deltaTime;
+            //Debug.Log("부활 위치 " +transform.position);
             yield return null;
         }
 

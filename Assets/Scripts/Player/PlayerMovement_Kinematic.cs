@@ -83,6 +83,11 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
     private void Block(ref Vector2 velocity)
     {
+        if(Player.instance.dead)
+        {
+            velocity = Vector2.zero;
+            return;
+        }
         ContactPlayer cp = null;
         //Debug.Log("풍속 " + windVelocity);
         if (lastGround != null && !isJumping)
@@ -99,11 +104,12 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         {
             if (Physics2D.OverlapBoxAll(penetrateChecker_hind.position, penetrateBox_hind, 0, whatIsWall).Length > 0)
             {
-                while (Physics2D.OverlapBoxAll(penetrateChecker_hind.position, penetrateBox_hind, 0, whatIsWall).Length > 0)
+                while (Physics2D.OverlapBoxAll(penetrateChecker_hind.position, penetrateBox_hind, 0, whatIsWall).Length > 0
+                    && !Player.instance.dead)
                 {
+                    Debug.Log("벽에 뒤로 박혀있음");
                     transform.Translate(Vector3.right * (IsFacingRight ? 0.1f : -0.1f));
                 }
-                Debug.Log("뒤집기");
                 //Flip(velocity.x);
             }
         }
@@ -115,6 +121,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
 
             while (Physics2D.OverlapBoxAll(penetrateChecker_front.position, wallBox, 0, whatIsWall).Length > 0)
             {
+                Debug.Log("벽에서 꺼내기");
                 transform.Translate(Vector3.right * (IsFacingRight ? -0.1f : 0.1f));
             }
             
