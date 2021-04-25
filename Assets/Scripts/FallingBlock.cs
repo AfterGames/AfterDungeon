@@ -28,6 +28,7 @@ public class FallingBlock : ContactPlayer
     public AudioClip loop;
     public AudioClip end;
     private float yBoundary;
+    public LayerMask layerMask;
 
     private void OnDrawGizmos()
     {
@@ -192,7 +193,7 @@ public class FallingBlock : ContactPlayer
                 EndFalling();
         }
         List<Collider2D> colliders = new List<Collider2D>();
-        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position - Vector3.up * 0.05f, new Vector2(0.9f, 0.9f), 0);
+        Collider2D[] colls = Physics2D.OverlapBoxAll(transform.position - Vector3.up * 0.05f, new Vector2(0.9f, 0.9f), 0, layerMask);
         foreach (Collider2D coll in colls)
         {
             colliders.Add(coll);

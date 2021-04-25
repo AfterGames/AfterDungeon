@@ -144,6 +144,9 @@ MonoBehaviour:
   start: {fileID: 8300000, guid: 61d46a2e63ae10641aa2b3c9d4c56a51, type: 3}
   loop: {fileID: 8300000, guid: 4511bcf2e8cc1c442bf1f40ea5a83d2c, type: 3}
   end: {fileID: 8300000, guid: 3885e2b5a1dbe0547b626115a4488057, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 259895
 --- !u!1 &4143495750834586223
 GameObject:
   m_ObjectHideFlags: 0
