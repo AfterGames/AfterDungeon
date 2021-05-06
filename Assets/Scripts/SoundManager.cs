@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        spikeSound.volume = volumeDictionary[Clip.spike];
     }
 
     public void Play(Clip clip)
@@ -36,6 +37,7 @@ public class SoundManager : MonoBehaviour
                 return;
             }
             continuous.clip = soundDictionary[clip];
+            continuous.volume = volumeDictionary[clip];
             continuous.Play();
         }
         else
