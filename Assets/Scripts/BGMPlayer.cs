@@ -23,7 +23,10 @@ public class BGMPlayer : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         instance = this;
-        if (PlayOnAwake) PlayBGM(0);
+        if (PlayOnAwake)
+        {
+            PlayBGM(0);
+        }
     }
 
     public void PlayBGM(int index)
@@ -93,10 +96,10 @@ public class BGMPlayer : MonoBehaviour
         for(int i = 0; i < bgmSuperposList.Count; i++)
         {
             if (bgmSuperposList[i].relevantIndices[index])
-                bgmSuperposList[i].Play();
+                bgmSuperposList[i].FadeIn();
 
             else
-                bgmSuperposList[i].Stop();
+                bgmSuperposList[i].FadeOut();
         }
     }
 

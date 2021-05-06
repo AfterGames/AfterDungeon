@@ -16,12 +16,12 @@ public class BGM_superposition : MonoBehaviour
     void Start()
     {
         BGMPlayer.instance.AddBGMsuperposition(this);
+        if (BGMPlayer.instance.PlayOnAwake) source.Play();
     }
 
-    public void Stop()
+    public void FadeOut()
     {
-        if (source.isPlaying)
-            StartCoroutine(IFadeOut());
+        StartCoroutine(IFadeOut());
     }
 
     int steps = 10;
@@ -33,13 +33,16 @@ public class BGM_superposition : MonoBehaviour
             source.volume = i / steps;
             yield return new WaitForSeconds(foTime / steps);
         }
-        source.Stop();
+        source.volume = 0;
+        //source.Stop();
     }
-
     public void Play()
     {
-        if(!source.isPlaying)
-            StartCoroutine(IFadeIn());
+        source.Play();
+    }
+    public void FadeIn()
+    {
+        StartCoroutine(IFadeIn());
     }
 
     IEnumerator IFadeIn()
@@ -50,6 +53,6 @@ public class BGM_superposition : MonoBehaviour
             yield return new WaitForSeconds(foTime / steps);
         }
         source.volume = 1;
-        source.Play();
+        //source.Play();
     }
 }
