@@ -9,6 +9,8 @@ public class BGMPlayer : MonoBehaviour
     public AudioClip[] once;
     public AudioClip[] loop;
     public bool PlayOnAwake;
+    [Range(0.0f, 1.0f)]
+    public float volume;
 
     public static BGMPlayer instance;
 
@@ -32,7 +34,7 @@ public class BGMPlayer : MonoBehaviour
     public void PlayBGM(int index)
     {
         source.Stop();
-        source.volume = 1;
+        source.volume = volume;
         Debug.Log("브금 재생");
         if(!source.isPlaying)
         {
@@ -82,7 +84,7 @@ public class BGMPlayer : MonoBehaviour
         }
         for (float i = steps; i > 0; i--)
         {
-            source.volume = i / steps;
+            source.volume = volume * i / steps;
             yield return new WaitForSeconds(fadeOutTime / steps);
         }
 

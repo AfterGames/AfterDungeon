@@ -827,6 +827,7 @@ MonoBehaviour:
   once: []
   loop: []
   PlayOnAwake: 1
+  volume: 1
   fadeOutTime: 2
 --- !u!1 &5084581765457057770
 GameObject:
