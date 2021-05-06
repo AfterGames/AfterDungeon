@@ -44,14 +44,14 @@ public class SoundManager : MonoBehaviour
         {
             sfx.Stop();
             sfx.clip = soundDictionary[clip];
-            //if (volumeDictionary.ContainsKey(clip))
-            //{
-            //    sfx.volume = volumeDictionary[clip];
-            //}
-            //else
-            //{
+            if (volumeDictionary.ContainsKey(clip))
+            {
+                sfx.volume = volumeDictionary[clip];
+            }
+            else
+            {
                 sfx.volume = 1;
-            //}
+            }
             sfx.Play();
             
         }
