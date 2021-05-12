@@ -2055,8 +2055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88f1386dd63147198d003daff00d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenResolution: {x: 929, y: 523}
-  internalResolution: {x: 768, y: 432}
+  screenResolution: {x: 767, y: 418}
+  internalResolution: {x: 793, y: 432}
   upscaledResolution: {x: 0, y: 0}
   smooth: 1
   forceSquarePixels: 1
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   requireStencilBuffer: 0
   useUpscaleShader: 1
   upscaleMaterial: {fileID: 0}
-  finalBlitStretch: {x: 1, y: 1.0008372}
+  finalBlitStretch: {x: 0.9996078, y: 1}
   mainCamera: {fileID: 315791059}
   mainCanvas: {fileID: 1981411156}
 --- !u!1001 &323353017
@@ -56373,6 +56373,11 @@ PrefabInstance:
       propertyPath: MinDistance
       value: 3.0123062
       objectReference: {fileID: 0}
+    - target: {fileID: 1720746285337925207, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2664189598708974033, guid: 37e44611a40ab114e8bc886901a526ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -56458,6 +56463,11 @@ PrefabInstance:
       propertyPath: loop.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 9bf37ea0e7a1e1743ac1655bd33b3231, type: 3}
+    - target: {fileID: 5991973228171198095, guid: 37e44611a40ab114e8bc886901a526ef,
+        type: 3}
+      propertyPath: volume
+      value: 0.331
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e44611a40ab114e8bc886901a526ef, type: 3}
 --- !u!1001 &1167950511
