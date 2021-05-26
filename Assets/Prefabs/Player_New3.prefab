@@ -386,7 +386,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d598f7f5e0dc70c4cbfc1745fbdf5f44, type: 3}
     - {fileID: 8300000, guid: 51dc460f1fff48e45b996cd9c04fda37, type: 3}
     - {fileID: 8300000, guid: 5844d524183941340bf2689ddcf0e855, type: 3}
-    - {fileID: 8300000, guid: 783759fe680caac44a9898cee55b1591, type: 3}
+    - {fileID: 8300000, guid: 249a32e99366afc4cb4a16a84f3135bb, type: 3}
     - {fileID: 8300000, guid: ee3312d6f9bc50746b5f24450c7dfa33, type: 3}
     - {fileID: 8300000, guid: f8d326f4b911c254a96322fa59767da5, type: 3}
     - {fileID: 8300000, guid: 3a6401369afb02c4b839e8d68035d1db, type: 3}
@@ -395,18 +395,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3089a1828c6137549a8db509aefb7de2, type: 3}
     - {fileID: 8300000, guid: 3dd880dc32c16f947bf0acdd130172dd, type: 3}
   volumeDictionary:
-    m_keys: 0000000001000000020000000300000004000000050000000700000008000000090000000e000000
+    m_keys: 00000000010000000300000004000000050000000700000008000000090000000e000000020000000a000000
     m_values:
     - 1
     - 1
     - 0.5
-    - 0.35
     - 1
     - 0.8
     - 1
     - 1
     - 0.5
     - 0.8
+    - 0.5
+    - 0.3
   spikeSound: {fileID: 2032788160262540106}
   continuous: {fileID: 4918690005058845598}
 --- !u!82 &1486043241886472602
