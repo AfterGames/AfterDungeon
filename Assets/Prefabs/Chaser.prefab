@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 2664189598708974033}
   - component: {fileID: 2664189598708974039}
   - component: {fileID: 2664189598708974038}
-  - component: {fileID: 3252062991085025098}
   - component: {fileID: 1486043241886472602}
   - component: {fileID: 4293174804361107319}
   m_Layer: 11
@@ -247,44 +246,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3252062991085025098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664189598708974059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 519c427f3ac473345a4dfa7e9c26fa16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfx: {fileID: 1486043241886472602}
-  soundDictionary:
-    m_keys: 000000000100000002000000030000000500000007000000080000000a0000000b0000000d0000000e000000
-    m_values:
-    - {fileID: 8300000, guid: d598f7f5e0dc70c4cbfc1745fbdf5f44, type: 3}
-    - {fileID: 8300000, guid: 51dc460f1fff48e45b996cd9c04fda37, type: 3}
-    - {fileID: 8300000, guid: 5844d524183941340bf2689ddcf0e855, type: 3}
-    - {fileID: 8300000, guid: 045870f539f27974997c22bb7b685e33, type: 3}
-    - {fileID: 8300000, guid: ee3312d6f9bc50746b5f24450c7dfa33, type: 3}
-    - {fileID: 8300000, guid: f8d326f4b911c254a96322fa59767da5, type: 3}
-    - {fileID: 8300000, guid: 3a6401369afb02c4b839e8d68035d1db, type: 3}
-    - {fileID: 8300000, guid: 278253e9f9941d94baf787e1d57652f0, type: 3}
-    - {fileID: 8300000, guid: e5f96979235a8734e8e054593fbc71cf, type: 3}
-    - {fileID: 8300000, guid: 3089a1828c6137549a8db509aefb7de2, type: 3}
-    - {fileID: 8300000, guid: 3dd880dc32c16f947bf0acdd130172dd, type: 3}
-  volumeDictionary:
-    m_keys: 000000000100000002000000030000000400000006000000
-    m_values:
-    - 1
-    - 1
-    - 1
-    - 0.5
-    - 1
-    - 1
-  spikeSound: {fileID: 2032788160262540106}
-  continuous: {fileID: 4918690005058845598}
 --- !u!82 &1486043241886472602
 AudioSource:
   m_ObjectHideFlags: 0

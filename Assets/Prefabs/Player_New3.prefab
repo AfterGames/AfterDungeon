@@ -395,7 +395,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3089a1828c6137549a8db509aefb7de2, type: 3}
     - {fileID: 8300000, guid: 3dd880dc32c16f947bf0acdd130172dd, type: 3}
   volumeDictionary:
-    m_keys: 00000000010000000300000004000000050000000700000008000000090000000e000000020000000a000000
+    m_keys: 0000000001000000030000000400000005000000070000000800000009000000020000000a0000000d0000000e000000
     m_values:
     - 1
     - 1
@@ -405,9 +405,10 @@ MonoBehaviour:
     - 1
     - 1
     - 0.5
-    - 0.8
     - 0.5
     - 0.3
+    - 0.3
+    - 0.8
   spikeSound: {fileID: 2032788160262540106}
   continuous: {fileID: 4918690005058845598}
 --- !u!82 &1486043241886472602
@@ -735,7 +736,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 212
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -879,7 +880,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 34
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
