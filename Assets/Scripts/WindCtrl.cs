@@ -30,7 +30,10 @@ public class WindCtrl : MonoBehaviour
         if (region != CameraController.instance.regionNum)
         {
             if (blowing)
+            {
                 windArrow.color = Color.clear;
+                Reset();
+            }
             return;
         }
         //Debug.Log("Player at " + CameraController.instance.regionNum);
