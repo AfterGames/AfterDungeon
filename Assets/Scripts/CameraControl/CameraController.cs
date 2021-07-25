@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
 
     public Camera controlcamera;
     public float moveTime = 0.1f;
+    public AnimationCurve moveCurve;
     float inverseMoveTime;
 
     private bool isCameraMoving = false;
@@ -317,10 +318,24 @@ public class CameraController : MonoBehaviour
             //Player.instance.mover.rising = true;
         }
 
+        //lerp 사용으로 움직임 (animation curve 사용) 이에따라 move time 이 초단위로 변경됨
+        Vector3 startCameraPosition = controlcamera.transform.position;
+        float elapsed = 0f;
         Time.timeScale = 0f;
-        while (sqrRemainingDistance > float.Epsilon)
+
+        //위치에 따른 루프에서 시간에 따른 루프로 변경
+        while (elapsed < moveTime)
         {
-            Vector3 newPosition = Vector3.MoveTowards(controlcamera.transform.position, end, inverseMoveTime * Time.fixedDeltaTime);
+            elapsed += Time.unscaledDeltaTime;
+
+            if (elapsed > moveTime)
+                elapsed = moveTime;
+            float progress = moveCurve.Evaluate(elapsed / moveTime);
+            
+            Vector3 newPosition = Vector3.Lerp(startCameraPosition, end, progress);
+            //---------------------------------------------
+
+            //Vector3 newPosition = Vector3.MoveTowards(controlcamera.transform.position, end, inverseMoveTime * Time.unscaledDeltaTime);
             Vector3 offSet = newPosition - controlcamera.transform.position;
             //Vector3 offSetN = offset.normalized;
 
@@ -356,7 +371,6 @@ public class CameraController : MonoBehaviour
  
         Time.timeScale = 1f;
         isCameraMoving = false;
-        
     }
 
     private int step = 15;

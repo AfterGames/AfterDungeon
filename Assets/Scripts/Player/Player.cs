@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public bool fireLock;
     [SerializeField] private bool canControl = true;
     public bool canControlGetter { get { return canControl; } }
+    //can control setter 추가 (컷씬 중에는 컨트롤 불가하게)
+    public bool canControlSetter{set { canControl = value; } }
     public bool specialControl;
     public static Player instance;
 

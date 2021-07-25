@@ -71,7 +71,7 @@ public class PlayerMovement_Kinematic : PlayerMovement_parent
         closestWall = WallChecking();
         g = GravityControl() * gravityScaleFactor;
         if (!isDashing)
-            velocity.y -= g * Time.fixedDeltaTime;
+            velocity.y -= g * Time.deltaTime;
         //if (velocity.y > 0)
 
         Block(ref velocity);
