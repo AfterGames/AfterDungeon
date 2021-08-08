@@ -5,8 +5,10 @@ using UnityEngine.Events;
 
 public class CutScene : MonoBehaviour
 {
-    CutSceneModule[] cutSceneModules;
+    [SerializeField] private float CutSceneEndDelay;
     [SerializeField] private UnityEvent OnCutSceneEnd;
+    
+    CutSceneModule[] cutSceneModules;
     private int endCutSceneCnt = 0;
 
 
@@ -28,8 +30,15 @@ public class CutScene : MonoBehaviour
         endCutSceneCnt++;
         if (endCutSceneCnt == cutSceneModules.Length)
         {
-            OnCutSceneEnd.Invoke();
-            gameObject.SetActive(false);
+            StartCoroutine(CoDeactivate(CutSceneEndDelay));
         }
+    }
+
+    private IEnumerator CoDeactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        OnCutSceneEnd.Invoke();
+        gameObject.SetActive(false);
     }
 }
