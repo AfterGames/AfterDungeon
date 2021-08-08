@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public bool dialogueReady = false;
 
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -110,13 +112,19 @@ public class Player : MonoBehaviour
         }
         if (canControl && Time.timeScale>0 && !specialControl)
         {
-            horizontal = Input.GetAxisRaw("Horizontal");
-            jump = Input.GetButtonDown("Jump");
-            dash = Input.GetButtonDown("Dash");
-            fire = Input.GetButtonDown("Fire");
-            stillfire = Input.GetButton("Fire");
-            fireUp = Input.GetButtonUp("Fire");
-            
+            //Input.GetKeyDown(KeyCode.joy)
+            horizontal = Input.GetAxisRaw("Horizontal");// + Input.GetAxisRaw("HorizontalC");
+            //float ja = Input.
+            float hc = Input.GetAxisRaw("HorizontalC");
+            if (Mathf.Abs(hc) > 0.5f) horizontal += hc;
+            Debug.Log(horizontal);
+            jump = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button3);
+            dash = Input.GetButtonDown("Dash") || Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick1Button5)
+                 || Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.Joystick1Button7);
+            fire = Input.GetButtonDown("Fire") || Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button2);
+            stillfire = Input.GetButton("Fire") || Input.GetKey(KeyCode.Joystick1Button0) || Input.GetKey(KeyCode.Joystick1Button2);
+            fireUp = Input.GetButtonUp("Fire") || Input.GetKeyUp(KeyCode.Joystick1Button0) || Input.GetKeyUp(KeyCode.Joystick1Button2);
+
             if (stillfire)
             {
                 fireButtonTime += Time.deltaTime;
