@@ -77,9 +77,11 @@ public class CameraController : MonoBehaviour
         controlcamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         originalSize = controlcamera.orthographicSize;
         regionNum = WhichRegion();
+        Debug.Log(regionNum + " region num");
         inverseMoveTime = 1f / moveTime;
         x = player.transform.position.x;
         y = player.transform.position.y;
+        Debug.Log("player at " + x +", " + y);
         if (numberOfRegions > transform.childCount) numberOfRegions = transform.childCount;
         StartCoroutine(Move(curRegion.Center + new Vector3(0f, 0f, -10f)));
     }

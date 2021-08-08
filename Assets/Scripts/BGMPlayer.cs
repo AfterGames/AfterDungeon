@@ -38,6 +38,7 @@ public class BGMPlayer : MonoBehaviour
         Debug.Log("브금 재생");
         if(!source.isPlaying)
         {
+            if(once.Length > 0)
             if (once[index] != null)
             {
                 PlayIntro(index);
