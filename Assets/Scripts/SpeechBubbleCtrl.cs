@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpeechBubbleCtrl : MonoBehaviour
 {
     private RectTransform rt;
     public RectTransform tail;
-    public Text content;
+    public TextMeshProUGUI content;
     public GameObject tailEnd;
     public HorizontalLayoutGroup hlg;
 
