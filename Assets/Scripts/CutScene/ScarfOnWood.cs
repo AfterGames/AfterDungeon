@@ -9,8 +9,6 @@ public class ScarfOnWood : MonoBehaviour
     [SerializeField] private GameObject fallingScarf;
     [SerializeField] private GameObject scarfLight;
 
-    [SerializeField] private float minDistance;
-
     private void Awake()
     {
         playerT = FindObjectOfType<Player>().transform;
@@ -18,13 +16,15 @@ public class ScarfOnWood : MonoBehaviour
 
     private void Update()
     {
-        if (!scarfFell && Vector3.Distance(playerT.position, transform.position) <= minDistance)
+        if (!scarfFell && playerT.position.x > transform.position.x)
         {
             scarfFell = true;
             GetComponent<SpriteRenderer>().enabled = false;
             fallingScarf.SetActive(true);
 
             GetComponent<Animator>().SetTrigger("Trigger");
+        
+            FindObjectOfType<Player>().StopMoving();
         }
     }
 
@@ -32,12 +32,5 @@ public class ScarfOnWood : MonoBehaviour
     {
         scarfLight.SetActive(false);
         FindObjectOfType<CutSceneController>().StartCutScene(1);
-        
-        FindObjectOfType<Player>().canControlSetter = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, minDistance);
     }
 }

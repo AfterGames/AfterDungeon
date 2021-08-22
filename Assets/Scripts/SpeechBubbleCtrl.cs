@@ -45,12 +45,12 @@ public class SpeechBubbleCtrl : MonoBehaviour
     }
     public void SetText(string text)
     {
-        int pad = Screen.width / 40;
-        hlg.padding.bottom = pad;
-        hlg.padding.top = pad;
-        pad = (int) (1.5f * pad);
-        hlg.padding.left = pad;
-        hlg.padding.right = pad;
+        // int pad = Screen.width / 40;
+        // hlg.padding.bottom = pad;
+        // hlg.padding.top = pad;
+        // pad = (int) (1.5f * pad);
+        // hlg.padding.left = pad;
+        // hlg.padding.right = pad;
         content.text = "";
         content.fontSize = Screen.width / 50;
         //txtArray = text.Replace("NEWLINE", "\n").ToCharArray();

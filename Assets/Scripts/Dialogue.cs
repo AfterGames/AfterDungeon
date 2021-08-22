@@ -177,11 +177,16 @@ public class Dialogue : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().StopMoving();
-            Debug.Log("대화 트리거");
-            StartCoroutine(DelayedTalk());
+        { 
+            StartDialogue(collision.GetComponent<Player>());
         }
+    }
+
+    public void StartDialogue(Player player)
+    {
+        player.StopMoving();
+        Debug.Log("대화 트리거");
+        StartCoroutine(DelayedTalk());
     }
 
     IEnumerator DelayedTalk()

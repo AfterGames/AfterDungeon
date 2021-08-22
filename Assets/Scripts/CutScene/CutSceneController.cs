@@ -21,7 +21,7 @@ public class CutSceneController : MonoBehaviour
     
     public void StartCutScene(int index)
     {
-        if (player) player.canControlSetter = false;
+        if (player) player.CanControl(false);
         if (fadeIn) fadeIn.SetFade(false);
 
         cutScenes[index].gameObject.SetActive(true);
@@ -29,7 +29,7 @@ public class CutSceneController : MonoBehaviour
 
     public void OnCutSceneEnd()
     {
-        if (player) player.canControlSetter = true;
+        if (player) player.CanControl(true);
         if (fadeIn) fadeIn.SetFade(true);
     }
 }
