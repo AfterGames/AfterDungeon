@@ -52,7 +52,7 @@ public class SpeechBubbleCtrl : MonoBehaviour
         // hlg.padding.left = pad;
         // hlg.padding.right = pad;
         content.text = "";
-        content.fontSize = Screen.width / 50;
+        //content.fontSize = Screen.width / 50;
         //txtArray = text.Replace("NEWLINE", "\n").ToCharArray();
         //currentCharId = 0;
         //talking = true;
